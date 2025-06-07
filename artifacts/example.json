@@ -1,0 +1,47 @@
+{
+  "contractName": "Olando",
+  "constructorInputs": [],
+  "abi": [
+    {
+      "name": "test",
+      "inputs": [
+        {
+          "name": "value",
+          "type": "int"
+        }
+      ]
+    }
+  ],
+  "bytecode": "OP_1 OP_NUMEQUAL",
+  "source": "contract Olando() {\n  function test(int value) {\n    console.log(value, \"test\");\n    require(value == 1, \"Wrong value passed\");\n  }\n}\n",
+  "debug": {
+    "bytecode": "519c",
+    "sourceMap": "4:21:4:22;:12:::1",
+    "logs": [
+      {
+        "ip": 0,
+        "line": 3,
+        "data": [
+          {
+            "stackIndex": 0,
+            "type": "int",
+            "ip": 0
+          },
+          "test"
+        ]
+      }
+    ],
+    "requires": [
+      {
+        "ip": 2,
+        "line": 4,
+        "message": "Wrong value passed"
+      }
+    ]
+  },
+  "compiler": {
+    "name": "cashc",
+    "version": "0.11.0-next.4"
+  },
+  "updatedAt": "2025-06-07T05:08:09.560Z"
+}
