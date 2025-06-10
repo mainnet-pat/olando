@@ -1,6 +1,11 @@
 {
   "contractName": "Olando",
-  "constructorInputs": [],
+  "constructorInputs": [
+    {
+      "name": "instance",
+      "type": "int"
+    }
+  ],
   "abi": [
     {
       "name": "test",
@@ -12,20 +17,20 @@
       ]
     }
   ],
-  "bytecode": "OP_1 OP_NUMEQUAL",
-  "source": "contract Olando() {\n  function test(int value) {\n    console.log(value, \"test\");\n    require(value == 1, \"Wrong value passed\");\n  }\n}\n",
+  "bytecode": "OP_NUMEQUAL",
+  "source": "contract Olando(int instance) {\n  function test(int value) {\n    console.log(value, \"test\");\n    require(value == instance, \"Wrong value passed\");\n  }\n}\n",
   "debug": {
-    "bytecode": "519c",
-    "sourceMap": "4:21:4:22;:12:::1",
+    "bytecode": "9c",
+    "sourceMap": "4:12:4:29:1",
     "logs": [
       {
-        "ip": 0,
+        "ip": 1,
         "line": 3,
         "data": [
           {
-            "stackIndex": 0,
+            "stackIndex": 1,
             "type": "int",
-            "ip": 0
+            "ip": 1
           },
           "test"
         ]
@@ -43,5 +48,5 @@
     "name": "cashc",
     "version": "0.11.0-next.4"
   },
-  "updatedAt": "2025-06-07T05:08:09.560Z"
+  "updatedAt": "2025-06-07T09:22:34.542Z"
 }

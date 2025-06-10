@@ -1,0 +1,6 @@
+contract FakeCauldron() {
+  function spend() {
+    bytes output = 0xc7c94c0d3957ca268;
+    console.log(output, "spend");
+  }
+}

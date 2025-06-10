@@ -13,8 +13,26 @@ export const compile = (): void => {
     console.log(`Compiling ${fn}...`);
     const artifact = compileString(contents);
 
-    fs.writeFileSync(new URL(`../artifacts/${fn.replace('.cash', '.json')}`, import.meta.url), JSON.stringify(artifact, null, 2));
+    exportArtifact(artifact, new URL(`../artifacts/${fn.replace('.cash', '.artifact.ts')}`, import.meta.url));
   });
+};
+
+export const exportArtifact = (obj: object, outPath: string | URL): void => {
+  const toTs = (value: any): string => {
+    // First, stringify the object with indentation
+    let json = JSON.stringify(value, null, 2);
+
+    // Remove quotes from object keys where valid (simple JS identifiers)
+    json = json.replace(
+      /"([a-zA-Z_][a-zA-Z0-9_]*)":/g,
+      '$1:'
+    );
+
+    return json;
+  };
+
+  const content = `export default ${toTs(obj)} as const;`;
+  fs.writeFileSync(outPath, content, { encoding: 'utf-8' });
 };
 
 switch (process.argv[2]) {
