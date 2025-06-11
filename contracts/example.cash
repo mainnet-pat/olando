@@ -1,6 +1,0 @@
-contract Olando(int instance) {
-  function test(int value) {
-    console.log(value, "test");
-    require(value == instance, "Wrong value passed");
-  }
-}

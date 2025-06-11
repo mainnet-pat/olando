@@ -3,18 +3,40 @@ import fs from 'fs';
 import { URL } from 'url';
 import urlJoin from 'url-join';
 
+interface CompilationCacheItem {
+  mtime: number;
+}
+
 export const compile = (): void => {
-  const directory = new URL('../contracts', import.meta.url);
-  const result = fs.readdirSync(directory)
+  const cacheDirectory = new URL('../cache', import.meta.url);
+  fs.mkdirSync(cacheDirectory, { recursive: true });
+  const cacheFile = new URL('../cache/cashc.json', import.meta.url);
+  let compilationCache: Record<string, CompilationCacheItem> = {};
+  if (fs.existsSync(cacheFile)) {
+    compilationCache = JSON.parse(fs.readFileSync(cacheFile, { encoding: 'utf-8' }));
+  }
+
+  const artifactsDirectory = new URL('../artifacts', import.meta.url);
+  fs.mkdirSync(artifactsDirectory, { recursive: true });
+
+  const contractsDirectory = new URL('../contracts', import.meta.url);
+  const result = fs.readdirSync(contractsDirectory)
     .filter((fn) => fn.endsWith('.cash'))
-    .map((fn) => ({ fn, contents: fs.readFileSync(new URL(urlJoin(directory.toString(), fn)), { encoding: 'utf-8' }) }));
+    .map((fn) => ({ fn, contents: fs.readFileSync(new URL(urlJoin(contractsDirectory.toString(), fn)), { encoding: 'utf-8' }) }));
 
   result.forEach(({ fn, contents }) => {
-    console.log(`Compiling ${fn}...`);
-    const artifact = compileString(contents);
+    const mtime = fs.statSync(new URL(urlJoin(contractsDirectory.toString(), fn))).mtimeMs;
+    if (!compilationCache[fn] || compilationCache[fn].mtime !== mtime) {
+      console.log(`Compiling ${fn}...`);
+      const artifact = compileString(contents);
 
-    exportArtifact(artifact, new URL(`../artifacts/${fn.replace('.cash', '.artifact.ts')}`, import.meta.url));
+      exportArtifact(artifact, new URL(`../artifacts/${fn.replace('.cash', '.artifact.ts')}`, import.meta.url));
+      compilationCache[fn] = { mtime };
+    }
   });
+
+  // Write the updated cache back to the file
+  fs.writeFileSync(cacheFile, JSON.stringify(compilationCache, null, 2), { encoding: 'utf-8' });
 };
 
 export const exportArtifact = (obj: object, outPath: string | URL): void => {

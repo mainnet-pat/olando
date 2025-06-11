@@ -1,9 +1,9 @@
-import { bigIntToVmNumber, binToHex, CashAddressType, decodeCashAddress, encodeCashAddress, hash160, hexToBin, numberToBinUint32BE, padMinimallyEncodedVmNumber, secp256k1, utf8ToBin, vmNumberToBigInt } from '@bitauth/libauth';
-import artifact from '../artifacts/issuance.artifact.js';
-import FackeCauldronArtifact from '../artifacts/fakeCauldron.artifact.js';
+import { bigIntToVmNumber, binToHex, cashAddressToLockingBytecode, CashAddressType, decodeCashAddress, encodeCashAddress, hash160, hexToBin, numberToBinUint32BE, padMinimallyEncodedVmNumber, secp256k1, utf8ToBin, vmNumberToBigInt } from '@bitauth/libauth';
+import IssuanceFundArtifact from '../artifacts/IssuanceFund.artifact.js';
+import FakeCauldronArtifact from '../artifacts/FakeCauldron.artifact.js';
+import CouncilFund from '../artifacts/CouncilFund.artifact.js';
 import { BaseUnlocker, Contract, MockNetworkProvider, SignatureTemplate, TransactionBuilder, Unlocker, Utxo, randomUtxo } from 'cashscript';
 import 'cashscript/jest';
-import { addressToLockScript } from 'cashscript/dist/utils.js';
 
 export const padVmNumber = (num: bigint, length: number) => {
   return padMinimallyEncodedVmNumber(bigIntToVmNumber(num), length).slice(0, length);
@@ -11,6 +11,13 @@ export const padVmNumber = (num: bigint, length: number) => {
 
 const vmToBigInt = (vmNumber: string) => {
   return vmNumberToBigInt(hexToBin(vmNumber), { requireMinimalEncoding: false }) as bigint;
+}
+
+export function addressToLockScript(address: string): Uint8Array {
+  const result = cashAddressToLockingBytecode(address);
+  if (typeof result === 'string') throw new Error(result);
+
+  return result.bytecode;
 }
 
 const toCashAddress = (address: string) => {
@@ -42,6 +49,7 @@ const toTokenAddress = (address: string) => {
 const min = (...args: bigint[]) => args.reduce((m, e) => e < m ? e : m);
 
 const alicePriv = hexToBin('1'.repeat(64));
+const aliceSigTemplate = new SignatureTemplate(alicePriv);
 export const alicePub = secp256k1.derivePublicKeyCompressed(alicePriv) as Uint8Array;
 export const alicePkh = hash160(alicePub);
 export const aliceAddress = encodeCashAddress({ prefix: 'bchtest', type: 'p2pkh', payload: alicePkh, throwErrors: true }).address;
@@ -64,7 +72,7 @@ const createCauldronOlaUnlocker = (): CauldronOlaUnlocker => {
     return { generateUnlockingBytecode, generateLockingBytecode };
 }
 
-const deployContract = async (provider: MockNetworkProvider) => {
+const deployContract = async (provider: MockNetworkProvider, salt: bigint = 0n) => {
   provider.addUtxo(aliceAddress, randomUtxo({
     satoshis: 100_000_000n, // 1 BCH
   }));
@@ -81,7 +89,9 @@ const deployContract = async (provider: MockNetworkProvider) => {
     }
   }));
 
-  const contract = new Contract(artifact, [], { provider });
+  const councilFundContract = new Contract(CouncilFund, [salt], { provider, addressType: 'p2sh20' });
+
+  const issuanceFundContract = new Contract(IssuanceFundArtifact, [addressToLockScript(councilFundContract.address)], { provider });
   const deploymentTime = 1749427200; // Mon Jun 09 2025 00:00:00 GMT+0000
   const lastInteractionTime = deploymentTime;
 
@@ -99,7 +109,7 @@ const deployContract = async (provider: MockNetworkProvider) => {
     .addInput(tokenFundingUtxo, new SignatureTemplate(alicePriv).unlockP2PKH())
     .addInput(fundingUtxo, new SignatureTemplate(alicePriv).unlockP2PKH())
     .addOutput({
-      to: toTokenAddress(contract.address),
+      to: toTokenAddress(issuanceFundContract.address),
       amount: 1000n,
       token: {
         amount: 8_888_888_888_888_88n, // 2 decimals
@@ -132,7 +142,9 @@ const deployContract = async (provider: MockNetworkProvider) => {
     })
     .send();
 
-  console.log(`Deployed contract at ${contract.address} with txid ${deploymentTransaction.txid}`);
+  console.log(`Issuance fund deployed at ${issuanceFundContract.address} with txid ${deploymentTransaction.txid}`);
+
+  return { issuanceFundContract, councilFundContract };
 }
 
 const setupCauldronPools = async (provider: MockNetworkProvider) => {
@@ -150,7 +162,7 @@ const setupCauldronPools = async (provider: MockNetworkProvider) => {
   //   }
   // }));
 
-  const fakeCauldron = new Contract(FackeCauldronArtifact, [], { provider });
+  const fakeCauldron = new Contract(FakeCauldronArtifact, [], { provider });
   provider.addUtxo(fakeCauldron.address, randomUtxo({
     satoshis: 100000n,
     token: {
@@ -166,17 +178,18 @@ const setupCauldronPools = async (provider: MockNetworkProvider) => {
       category: olandoCategory,
     }
   }));
+
+  return { fakeCauldron }
 }
 
-describe('test issuance contract function', () => {
-  it('should check for output logs and error messages', async () => {
+describe('test contract functions', () => {
+  it('test issuance function', async () => {
     const provider = new MockNetworkProvider();
-    const contract = new Contract(artifact, [], { provider });
 
-    await deployContract(provider);
-    await setupCauldronPools(provider);
+    const { issuanceFundContract, councilFundContract } = await deployContract(provider);
+    const { fakeCauldron: cauldron } = await setupCauldronPools(provider);
 
-    const contractUtxo = (await provider.getUtxos(contract.address)).find(u =>
+    const contractUtxo = (await provider.getUtxos(issuanceFundContract.address)).find(u =>
       u.token?.category === olandoCategory &&
       u.token?.nft?.capability === 'mutable' &&
       u.token.nft.commitment.length === 16
@@ -186,17 +199,19 @@ describe('test issuance contract function', () => {
     const lastInteractionTime = vmToBigInt(contractUtxo.token!.nft!.commitment.slice(8, 16));
 
     // funding + cauldron token-buy bch input
-    // Create a contract Utxo
-    const tokenBuyUtxo = randomUtxo({
+    const investmentUtxo = randomUtxo({
       satoshis: 100_000_000n, // 1 BCH
     });
+    provider.addUtxo(aliceAddress, investmentUtxo);
 
-    const cauldron = new Contract(FackeCauldronArtifact, [], { provider });
+    // a BCH-only utxo at index 1 to be used to balance the council output
+    const councilUtxo = randomUtxo({
+      satoshis: 100000n,
+    });
+    provider.addUtxo(aliceAddress, councilUtxo);
+
     const cauldronPoolUtxos = (await provider.getUtxos(cauldron.address));
-    console.log(cauldronPoolUtxos, "cauldron pool utxos");
-    provider.addUtxo(aliceAddress, tokenBuyUtxo);
-    const alicePriv = hexToBin('a'.repeat(64));
-    const aliceSigTemplate = new SignatureTemplate(alicePriv);
+    const cauldronTradeBoughtTokens = 1000n;
 
     const currentTime = BigInt(Math.floor(Date.now() / 1000)); // Current time in seconds since epoch
 
@@ -213,7 +228,7 @@ describe('test issuance contract function', () => {
     console.log(currentEmissionCap, "current emission cap");
 
     // use inputs.length to find the cauldron token-buy output, since last ouput could be a bch change
-    const tokensBought = 1000n;
+    const tokensBought = cauldronTradeBoughtTokens;
 
     const maxEmission = min(tokensBought, currentEmissionCap - emitted);
     const issue = tokensBought * 9n / 10n; // 90% of tokens bought
@@ -226,13 +241,14 @@ describe('test issuance contract function', () => {
     const emitting = investorShare + fundShare;
     console.log("investorShare", investorShare, "fundShare", fundShare, "issue", issue, "tokensBought", tokensBought);
 
-    const transactionRightValuePassed = new TransactionBuilder({ provider })
-      .addInput(contractUtxo, contract.unlock.issue())
+    const builder = new TransactionBuilder({ provider })
+      .addInput(contractUtxo, issuanceFundContract.unlock.issue())
+      .addInput(councilUtxo, aliceSigTemplate.unlockP2PKH())
       .addInput(cauldronPoolUtxos[0], cauldron.unlock.spend())
       .addInput(cauldronPoolUtxos[1], cauldron.unlock.spend())
-      .addInput(tokenBuyUtxo, aliceSigTemplate.unlockP2PKH())
+      .addInput(investmentUtxo, aliceSigTemplate.unlockP2PKH())
       .addOutput({
-        to: toTokenAddress(contract.address),
+        to: toTokenAddress(issuanceFundContract.address),
         amount: contractUtxo.satoshis,
         token: {
           ...contractUtxo.token!,
@@ -245,6 +261,14 @@ describe('test issuance contract function', () => {
             ])),
           },
         },
+      })
+      .addOutput({
+        to: councilFundContract.tokenAddress,
+        amount: 1000n,
+        token: {
+          category: olandoCategory,
+          amount: fundShare, // council fund share
+        }
       })
       .addOutput({
         to: cauldron.tokenAddress,
@@ -270,12 +294,143 @@ describe('test issuance contract function', () => {
           token: {
           category: contractUtxo.token!.category,
           nft: undefined,
-          amount: tokensBought,
+          amount: investorShare,
         },
       })
-      .setLocktime(Number(currentTime))
-      .send();
+      .setLocktime(Number(currentTime));
 
-    await expect(transactionRightValuePassed).resolves.not.toThrow();
+    const txSize = builder.build().length / 2;
+    const change = builder.inputs.reduce((sum, input) => sum + input.satoshis, 0n) -
+      builder.outputs.reduce((sum, output) => sum + (output.amount ?? 0n), 0n);
+    builder.addOutput({
+      to: aliceAddress,
+      amount: change - BigInt(txSize) - 200n, // BCH change
+      token: undefined,
+    });
+
+    const result = builder.send();
+
+    await expect(result).resolves.not.toThrow();
+
+    {
+      const txSize = builder.build().length / 2;
+      const change = builder.inputs.reduce((sum, input) => sum + input.satoshis, 0n) -
+        builder.outputs.reduce((sum, output) => sum + (output.amount ?? 0n), 0n);
+      console.log(`Transaction size: ${txSize} bytes, change: ${change} satoshis, fee/byte ${Number(change) / txSize}`);
+    }
+  });
+
+  it('test migrating contract', async () => {
+    const provider = new MockNetworkProvider();
+
+    const { issuanceFundContract } = await deployContract(provider);
+    const { issuanceFundContract: newIssuanceFundContract } = await deployContract(provider, 1n);
+
+    const contractUtxo = (await provider.getUtxos(issuanceFundContract.address)).find(u =>
+      u.token?.category === olandoCategory &&
+      u.token?.nft?.capability === 'mutable' &&
+      u.token.nft.commitment.length === 16
+    )!;
+
+    const adminUtxo = (await provider.getUtxos(aliceAddress)).find(u =>
+      u.token?.category === olandoCategory &&
+      u.token?.nft?.capability === 'none' &&
+      u.token.nft.commitment === binToHex(utf8ToBin('admin'))
+    )!;
+
+    // funding + cauldron token-buy bch input
+    const fundingUtxo = randomUtxo({
+      satoshis: 100_000_000n, // 1 BCH
+    });
+    provider.addUtxo(aliceAddress, fundingUtxo);
+
+    const builder = new TransactionBuilder({ provider })
+      .addInput(contractUtxo, issuanceFundContract.unlock.migrate(addressToLockScript(newIssuanceFundContract.address)))
+      .addInput(adminUtxo, aliceSigTemplate.unlockP2PKH())
+      .addInput(fundingUtxo, aliceSigTemplate.unlockP2PKH())
+      .addOutput({
+        to: toTokenAddress(newIssuanceFundContract.address),
+        amount: contractUtxo.satoshis,
+        token: {...contractUtxo.token!},
+      })
+      .addOutput({
+        to: toTokenAddress(aliceAddress),
+        amount: 1000n,
+        token: {...adminUtxo.token!}
+      });
+
+    const txSize = builder.build().length / 2;
+    const change = builder.inputs.reduce((sum, input) => sum + input.satoshis, 0n) -
+      builder.outputs.reduce((sum, output) => sum + (output.amount ?? 0n), 0n);
+    builder.addOutput({
+      to: aliceAddress,
+      amount: change - BigInt(txSize) - 100n, // BCH change
+      token: undefined,
+    });
+
+    const result = builder.send();
+
+    await expect(result).resolves.not.toThrow();
+
+    {
+      const txSize = builder.build().length / 2;
+      const change = builder.inputs.reduce((sum, input) => sum + input.satoshis, 0n) -
+        builder.outputs.reduce((sum, output) => sum + (output.amount ?? 0n), 0n);
+      console.log(`Transaction size: ${txSize} bytes, change: ${change} satoshis, fee/byte ${Number(change) / txSize}`);
+    }
+  });
+
+  it('test dissolving contract', async () => {
+    const provider = new MockNetworkProvider();
+
+    const { issuanceFundContract } = await deployContract(provider);
+
+    const contractUtxo = (await provider.getUtxos(issuanceFundContract.address)).find(u =>
+      u.token?.category === olandoCategory &&
+      u.token?.nft?.capability === 'mutable' &&
+      u.token.nft.commitment.length === 16
+    )!;
+
+    const adminUtxo = (await provider.getUtxos(aliceAddress)).find(u =>
+      u.token?.category === olandoCategory &&
+      u.token?.nft?.capability === 'none' &&
+      u.token.nft.commitment === binToHex(utf8ToBin('admin'))
+    )!;
+
+    // funding + cauldron token-buy bch input
+    const fundingUtxo = randomUtxo({
+      satoshis: 100_000_000n, // 1 BCH
+    });
+    provider.addUtxo(aliceAddress, fundingUtxo);
+
+    const builder = new TransactionBuilder({ provider })
+      .addInput(contractUtxo, issuanceFundContract.unlock.dissolve())
+      .addInput(adminUtxo, aliceSigTemplate.unlockP2PKH())
+      .addInput(fundingUtxo, aliceSigTemplate.unlockP2PKH())
+      .addOutput({
+        to: toTokenAddress(aliceAddress),
+        amount: contractUtxo.satoshis,
+        token: {...contractUtxo.token!},
+      });
+
+    const txSize = builder.build().length / 2;
+    const change = builder.inputs.reduce((sum, input) => sum + input.satoshis, 0n) -
+      builder.outputs.reduce((sum, output) => sum + (output.amount ?? 0n), 0n);
+    builder.addOutput({
+      to: aliceAddress,
+      amount: change - BigInt(txSize) - 100n, // BCH change
+      token: undefined,
+    });
+
+    const result = builder.send();
+
+    await expect(result).resolves.not.toThrow();
+
+    {
+      const txSize = builder.build().length / 2;
+      const change = builder.inputs.reduce((sum, input) => sum + input.satoshis, 0n) -
+        builder.outputs.reduce((sum, output) => sum + (output.amount ?? 0n), 0n);
+      console.log(`Transaction size: ${txSize} bytes, change: ${change} satoshis, fee/byte ${Number(change) / txSize}`);
+    }
   });
 });
