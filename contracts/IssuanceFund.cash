@@ -21,8 +21,7 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
   //
   // Notes: if the issuance cap is not hit at the time of interaction, then ola bought from cauldron by investor
   // are augmented with 90% of the tokens bought, the OLA amounts are added together and split in half.
-  // If the issuance cap is hit and the OLA amount available for issuance is less that OLA bought from cauldron,
-  // then the investor share is 95% of the available issuance cap plus (the OLA bought from cauldron - issuance cap).
+  // If the issuance cap is hit the contract execution fails, suggesting the investor to buy less tokens.
   function issue() {
     // first rough check for presence of a cauldron trade
     require(tx.inputs.length >= 4, "Issue transaction must have at least 4 inputs");
@@ -33,7 +32,7 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
     require(tx.locktime > lastInteractionTime, "Current time is before last interaction time");
 
     int intialSupply = 8888888888888_88; // with 2 decimals
-    int emitted = intialSupply - tx.inputs[this.activeInputIndex].tokenAmount;
+    int issued = intialSupply - tx.inputs[this.activeInputIndex].tokenAmount;
 
     int SCALE = 1_000_000_000; // 1e9 for scaling
     int t = tx.locktime - deploymentTime; // time in seconds since deploymentTime
@@ -45,44 +44,37 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
     console.log(currentEmissionCap, "current emission cap");
 
     // use inputs.length to find the cauldron token-buy output, since last ouput could be a bch change
+    // here we already assume that the cauldron pool output got only 95% of the tokens bought, the other 5% are forwarded to council fund
     int tokensBought = 100 * tx.outputs[tx.inputs.length - 1].tokenAmount / 95;
-    int maxEmission = min(tokensBought, currentEmissionCap - emitted);
     int issue = tokensBought * 9 / 10; // 90% of tokens bought
-    int investorShare = (tokensBought + issue) / 2;
-    int fundShare = investorShare;
-    if (maxEmission < tokensBought) {
-      investorShare = 95 * maxEmission / 100 + tokensBought - maxEmission;
-      fundShare = 95 * maxEmission / 100; // 95% of current emission cap
-    }
-    int emitting = investorShare + fundShare;
+    require(issue <= currentEmissionCap - issued, "Issue amount exceeds current emission cap");
+    int issueShare = (tokensBought + issue) / 2;
 
-    console.log("investorShare", investorShare, "fundShare", fundShare, "issue", issue, "tokensBought", tokensBought);
+    console.log("investorShare", issueShare, "fundShare", issueShare, "issue", issue, "tokensBought", tokensBought);
 
     // constrain the input 0 and output 0 to be the issuance fund
     require(this.activeInputIndex == 0, "Active input index must be 0 for issuance contract");
-    require(tx.outputs[this.activeInputIndex].tokenAmount == (tx.inputs[this.activeInputIndex].tokenAmount - emitting), "Wrong amount of tokens emitted");
+    require(tx.outputs[this.activeInputIndex].tokenAmount == (tx.inputs[this.activeInputIndex].tokenAmount - issueShare - issueShare), "Wrong amount of tokens issued");
     require(tx.outputs[this.activeInputIndex].tokenCategory == tx.inputs[this.activeInputIndex].tokenCategory, "Can not change token category");
     require(tx.outputs[this.activeInputIndex].lockingBytecode == tx.inputs[this.activeInputIndex].lockingBytecode, "Can not change locking bytecode");
     require(tx.outputs[this.activeInputIndex].nftCommitment == bytes(deploymentTime) + bytes(tx.locktime), "NFT commitment must be updated with current time");
 
     // constrain the output 1 to be the council fund share
     require(tx.outputs[1].tokenCategory == tx.inputs[this.activeInputIndex].tokenCategory.split(32)[0], "Council fund share must have the same token category, no nft");
-    require(tx.outputs[1].tokenAmount == fundShare, "Council fund share must match the calculated fund share");
+    require(tx.outputs[1].tokenAmount == issueShare, "Council fund share must match the calculated fund share");
     require(tx.outputs[1].lockingBytecode == councilFundLockingBytecode, "Council fund share must have the correct locking bytecode");
     require(tx.outputs[1].value == 1000, "Council fund share must have a value of 1000 satoshis");
 
     // constrain the output N+1 to be the investor's share
     int investorShareIndex = tx.outputs.length - 2;
     require(tx.outputs[investorShareIndex].tokenCategory == tx.inputs[this.activeInputIndex].tokenCategory.split(32)[0], "Investor's share must have the same token category, no nft");
-    int amount = tx.outputs[investorShareIndex].tokenAmount;
-    console.log(amount, investorShare);
-    require(tx.outputs[investorShareIndex].tokenAmount == investorShare, "Investor's share must match the calculated share");
+    require(tx.outputs[investorShareIndex].tokenAmount == issueShare, "Investor's share must match the calculated share");
     require(tx.outputs[investorShareIndex].lockingBytecode == tx.inputs[1].lockingBytecode, "Investor's share must have the correct locking bytecode");
     require(tx.outputs[investorShareIndex].value == 1000, "Investor's share must have a value of 1000 satoshis");
 
 
     // constrain the cauldron inputs and outputs 2..N
-    bytes cauldronPoolContractSignature = 0xc7c94c0d3957ca26087551; // signature of cauldron pool contract
+    bytes cauldronPoolContractSignature = 0xc94c0d3957ca2608827700a0; // signature of cauldron pool contract
     int cauldronPoolContractSignatureSplit = 2;
 
     int index = this.activeInputIndex + 1; // 0

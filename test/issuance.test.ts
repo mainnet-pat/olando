@@ -216,7 +216,7 @@ describe('test contract functions', () => {
     const currentTime = BigInt(Math.floor(Date.now() / 1000)); // Current time in seconds since epoch
 
     const intialSupply = 8888888888888_88n; // with 2 decimals
-    const emitted = intialSupply - contractUtxo.token!.amount;
+    const issued = intialSupply - contractUtxo.token!.amount;
 
     const SCALE = 1_000_000_000n; // 1e9 for scaling
     const t = currentTime - deploymentTime; // time in seconds since startTime
@@ -229,17 +229,9 @@ describe('test contract functions', () => {
 
     // use inputs.length to find the cauldron token-buy output, since last ouput could be a bch change
     const tokensBought = cauldronTradeBoughtTokens;
-
-    const maxEmission = min(tokensBought, currentEmissionCap - emitted);
     const issue = tokensBought * 9n / 10n; // 90% of tokens bought
-    let investorShare = (tokensBought + issue) / 2n;
-    let fundShare = investorShare;
-    if (maxEmission < tokensBought) {
-      investorShare = 95n * maxEmission / 100n + tokensBought - maxEmission;
-      fundShare = 95n * maxEmission / 100n; // 95% of current emission cap
-    }
-    const emitting = investorShare + fundShare;
-    console.log("investorShare", investorShare, "fundShare", fundShare, "issue", issue, "tokensBought", tokensBought);
+    const issueShare = (tokensBought + issue) / 2n;
+    console.log("investorShare", issueShare, "fundShare", issueShare, "issue", issue, "tokensBought", tokensBought);
 
     const builder = new TransactionBuilder({ provider })
       .addInput(contractUtxo, issuanceFundContract.unlock.issue())
@@ -252,7 +244,7 @@ describe('test contract functions', () => {
         amount: contractUtxo.satoshis,
         token: {
           ...contractUtxo.token!,
-          amount: contractUtxo.token!.amount - emitting,
+          amount: contractUtxo.token!.amount - issueShare - issueShare,
           nft: {
             capability: 'mutable',
             commitment: binToHex(Uint8Array.from([
@@ -267,7 +259,7 @@ describe('test contract functions', () => {
         amount: 1000n,
         token: {
           category: olandoCategory,
-          amount: fundShare, // council fund share
+          amount: issueShare, // council fund share
         }
       })
       .addOutput({
@@ -294,7 +286,7 @@ describe('test contract functions', () => {
           token: {
           category: contractUtxo.token!.category,
           nft: undefined,
-          amount: investorShare,
+          amount: issueShare,
         },
       })
       .setLocktime(Number(currentTime));
