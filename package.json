@@ -22,12 +22,16 @@
     "prepare": "yarn build",
     "prepublishOnly": "yarn test && yarn lint",
     "pretest": "yarn build:test",
-    "test": "NODE_OPTIONS='--experimental-vm-modules --no-warnings' jest"
+    "test": "NODE_OPTIONS='--experimental-vm-modules --no-warnings' jest --forceExit",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@bitauth/libauth": "^3.1.0-next.2",
     "cashc": "^0.11.0-next.4",
+    "cashlab": "0.0.11",
     "cashscript": "link:../cashscript/packages/cashscript",
+    "mainnet-js": "^2.6.5",
+    "patch-package": "^8.0.0",
     "url-join": "^5.0.0"
   },
   "devDependencies": {

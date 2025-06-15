@@ -1,6 +1,0 @@
-contract FakeCauldron() {
-  function spend() {
-    bytes output = 0xc7c94c0d3957ca268;
-    require(output.length > 0, "Output must not be empty");
-  }
-}
