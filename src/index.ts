@@ -45,13 +45,6 @@ export const toTokenAddress = (address: string) => {
 
 export const olandoCategory = '7fa887fd4eac015478b95392c4984721fbe3060223c30b342d43cc06817f07f6';
 
-export const RawUnlocker = (unlockingBytecode: Uint8Array, lockingBytecode: Uint8Array): BaseUnlocker => {
-  return {
-    generateLockingBytecode: () => unlockingBytecode,
-    generateUnlockingBytecode: () => lockingBytecode,
-  };
-}
-
 let contractIndex = 0; // Used to differentiate contract names in tests
 export const replaceArtifactPlaceholders = <T extends Artifact>(artifact: T, parameters: Record<string, FunctionArgument>): T => {
   const artifactCopy = {...artifact};

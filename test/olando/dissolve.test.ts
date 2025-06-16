@@ -1,8 +1,8 @@
 import 'cashscript/jest';
 import { HashType, MockNetworkProvider, randomUtxo, SignatureAlgorithm, SignatureTemplate, TransactionBuilder } from "cashscript";
 import { binToHex, utf8ToBin } from "mainnet-js";
-import { olandoCategory, toTokenAddress } from "../src";
-import { deployContractP2pkhAdmin, aliceAddress, aliceSigTemplate, getMultisig2of3Contract, deployContractMultisigAdmin, alicePriv, bobPriv } from "./shared";
+import { olandoCategory, toTokenAddress } from "../../src";
+import { deployContractP2pkhAdmin, aliceAddress, aliceSigTemplate, getMultisig2of3Contract, deployContractMultisigAdmin, alicePriv, bobPriv } from "../shared";
 
 describe('Dissolving Contract', () => {
   it('test dissolving contract', async () => {

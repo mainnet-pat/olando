@@ -1,7 +1,7 @@
 import 'cashscript/jest';
 import { MockNetworkProvider, randomUtxo, TransactionBuilder } from "cashscript";
-import { olandoCategory, toTokenAddress } from "../src";
-import { deployContractP2pkhAdmin, aliceAddress, aliceSigTemplate } from "./shared";
+import { olandoCategory, toTokenAddress } from "../../src";
+import { deployContractP2pkhAdmin, aliceAddress, aliceSigTemplate } from "../shared";
 
 describe('Issuance Fund Contract Donation Tests', () => {
   it('test donation to contract, no token change', async () => {
