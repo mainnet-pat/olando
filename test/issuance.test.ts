@@ -2,7 +2,7 @@ import 'cashscript/jest';
 import { binToHex, hexToBin } from '@bitauth/libauth';
 import { MockNetworkProvider, TransactionBuilder, Unlocker, Utxo, randomUtxo } from 'cashscript';
 import { libauthOutputToCashScriptOutput, zip } from 'cashscript/dist/utils.js';
-import { aliceAddress, aliceSigTemplate, deployContract, MockWallet, setupFakeCauldronPools, require } from './shared.js';
+import { aliceAddress, aliceSigTemplate, deployContractP2pkhAdmin, MockWallet, setupFakeCauldronPools, require, getMultisig2of3Contract } from './shared.js';
 import { getCauldronPoolContractInstance, olandoCategory, padVmNumber, RawUnlocker, toTokenAddress, vmToBigInt } from '../src/index.js';
 import { buildSwapTransaction } from '../src/swap.js';
 
@@ -10,7 +10,7 @@ describe('test contract functions', () => {
   it('test issuance function, fake pools', async () => {
     const provider = new MockNetworkProvider();
 
-    const { issuanceFundContract, councilFundContract } = await deployContract(provider);
+    const { issuanceFundContract, councilFundContract } = await deployContractP2pkhAdmin(provider);
     const { fakeCauldron: cauldron } = await setupFakeCauldronPools(provider);
 
     const contractUtxo = (await provider.getUtxos(issuanceFundContract.address)).find(u =>
@@ -138,7 +138,7 @@ describe('test contract functions', () => {
   it.skip('test issuance function, real pools, raw unlocker', async () => {
     const provider = new MockNetworkProvider();
 
-    const { issuanceFundContract, councilFundContract } = await deployContract(provider);
+    const { issuanceFundContract, councilFundContract } = await deployContractP2pkhAdmin(provider);
 
     const contractUtxo = (await provider.getUtxos(issuanceFundContract.address)).find(u =>
       u.token?.category === olandoCategory &&
@@ -271,7 +271,7 @@ describe('test contract functions', () => {
   it('test issuance function, real pools, cauldron placeholder unlocker', async () => {
     const provider = new MockNetworkProvider();
 
-    const { issuanceFundContract, councilFundContract } = await deployContract(provider);
+    const { issuanceFundContract, councilFundContract } = await deployContractP2pkhAdmin(provider);
 
     const contractUtxo = (await provider.getUtxos(issuanceFundContract.address)).find(u =>
       u.token?.category === olandoCategory &&

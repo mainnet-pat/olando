@@ -405,7 +405,7 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
     require(tx.outputs.length == 2, "Dissolve requires exactly 2 outputs");
 
     // constrain the issuance fund input and output
-    require(tx.outputs[0].lockingBytecode == tx.inputs[1].lockingBytecode, "Locking bytecode must be the same as admin p2pkh input");
+    require(tx.outputs[0].lockingBytecode == tx.inputs[1].lockingBytecode, "Locking bytecode must be the same as admin input");
     require(tx.outputs[0].tokenCategory == tx.inputs[0].tokenCategory, "Token category must remain the same");
     require(tx.outputs[0].tokenAmount == tx.inputs[0].tokenAmount, "Token amount must remain the same");
     require(tx.outputs[0].nftCommitment == tx.inputs[0].nftCommitment, "NFT commitment must remain the same");
