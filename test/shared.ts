@@ -11,6 +11,11 @@ export const alicePub = secp256k1.derivePublicKeyCompressed(alicePriv) as Uint8A
 export const alicePkh = hash160(alicePub);
 export const aliceAddress = encodeCashAddress({ prefix: 'bchtest', type: 'p2pkh', payload: alicePkh, throwErrors: true }).address;
 export const min = (...args: bigint[]) => args.reduce((m, e) => e < m ? e : m);
+export const require = (predicate: boolean, message: string) => {
+  if (!predicate) {
+    throw new Error(message);
+  }
+}
 
 export const MockWallet = async (provider: MockNetworkProvider): Promise<TestNetWallet> => {
   const wif = encodePrivateKeyWif(alicePriv, "testnet");

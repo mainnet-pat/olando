@@ -51,9 +51,6 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
     int issue = tokensBought * 9 / 10; // 90% of tokens bought
     console.log("tokensBought", tokensBought, "issue", issue);
     require(issue <= currentEmissionCap - issued, "Issue amount exceeds current emission cap");
-    // int issueShare = (tokensBought + issue) / 2;
-
-    // console.log("investorShare", issueShare, "fundShare", issueShare, "issue", issue, "tokensBought", tokensBought);
 
     // constrain the input 0 and output 0 to be the issuance fund
     require(this.activeInputIndex == 0, "Active input index must be 0 for issuance contract");
@@ -73,9 +70,6 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
 
     // constrain the output N+1 to be the investor's share
     int investorShareIndex = tx.outputs.length - 2;
-    bytes actualCategory = tx.outputs[investorShareIndex].tokenCategory;
-    bytes expectedCategory = tx.inputs[this.activeInputIndex].tokenCategory.split(32)[0];
-    console.log("Investor share category", actualCategory, "expected", expectedCategory, investorShareIndex);
     require(tx.outputs[investorShareIndex].tokenCategory == tx.inputs[this.activeInputIndex].tokenCategory.split(32)[0], "Investor's share must have the same token category, no nft");
     require(tx.outputs[investorShareIndex].tokenAmount == cauldronTradeAdjustedTokenAmount, "Investor's share must match the calculated share");
     require(tx.outputs[investorShareIndex].lockingBytecode == tx.inputs[1].lockingBytecode, "Investor's share must have the correct locking bytecode");
@@ -83,20 +77,19 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
 
 
     // constrain the cauldron inputs and outputs 2..N
-    bytes cauldronPoolContractSignature = 0x88ac67c0d1c0ce88c25288c0cdc0c788c0c6c0d095c0c6c0cc9490539502e80396c0cc7c94c0d3957ca268; // signature of cauldron pool contract
-    int cauldronPoolContractSignatureSplit = 26;
+    bytes cauldronPoolContractSignature = 0x88ac67c0d1c0ce88c25288c0cdc0c788c0c6c0d095c0c6c0cc9490539502e80396c0cc7c94c0d3957ca268; // partial signature of cauldron pool contract
+    int cauldronPoolContractSignatureSplit = 26; // split the signature at this byte index
 
-    int index = this.activeInputIndex + 1; // 0
+    int index = this.activeInputIndex + 1;
     index = index + 1; // cauldron pool token output
     if (index + 1 < tx.inputs.length) {
       console.log("Checking cauldron pool input and output at index", index);
-      bytes bytecode = tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1];
-      console.log(index, cauldronPoolContractSignatureSplit, bytecode, cauldronPoolContractSignature, "cauldron pool contract signature split");
       require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, "Cauldron pool contract signature must match");
 
       require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, "Cauldron pool token category must remain the same");
       require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, "Cauldron pool token commitment must remain the same");
       require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, "Cauldron pool token locking bytecode must remain the same");
+      require(tx.inputs[index].unlockingBytecode.length == 69, "Wrong unlocking bytecode length for cauldron pool input");
       require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, "Cauldron pool token amount must be less than input amount");
       require(tx.outputs[index].value > tx.inputs[index].value, "Cauldron pool satoshi output value must be greater than input value");
     }
@@ -110,6 +103,7 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
       require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, "Cauldron pool token category must remain the same");
       require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, "Cauldron pool token commitment must remain the same");
       require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, "Cauldron pool token locking bytecode must remain the same");
+      require(tx.inputs[index].unlockingBytecode.length == 69, "Wrong unlocking bytecode length for cauldron pool input");
       require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, "Cauldron pool token amount must be less than input amount");
       require(tx.outputs[index].value > tx.inputs[index].value, "Cauldron pool satoshi output value must be greater than input value");
     }
@@ -122,6 +116,7 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
       require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, "Cauldron pool token category must remain the same");
       require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, "Cauldron pool token commitment must remain the same");
       require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, "Cauldron pool token locking bytecode must remain the same");
+      require(tx.inputs[index].unlockingBytecode.length == 69, "Wrong unlocking bytecode length for cauldron pool input");
       require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, "Cauldron pool token amount must be less than input amount");
       require(tx.outputs[index].value > tx.inputs[index].value, "Cauldron pool satoshi output value must be greater than input value");
     }
@@ -134,6 +129,7 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
       require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, "Cauldron pool token category must remain the same");
       require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, "Cauldron pool token commitment must remain the same");
       require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, "Cauldron pool token locking bytecode must remain the same");
+      require(tx.inputs[index].unlockingBytecode.length == 69, "Wrong unlocking bytecode length for cauldron pool input");
       require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, "Cauldron pool token amount must be less than input amount");
       require(tx.outputs[index].value > tx.inputs[index].value, "Cauldron pool satoshi output value must be greater than input value");
     }
@@ -146,6 +142,7 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
       require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, "Cauldron pool token category must remain the same");
       require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, "Cauldron pool token commitment must remain the same");
       require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, "Cauldron pool token locking bytecode must remain the same");
+      require(tx.inputs[index].unlockingBytecode.length == 69, "Wrong unlocking bytecode length for cauldron pool input");
       require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, "Cauldron pool token amount must be less than input amount");
       require(tx.outputs[index].value > tx.inputs[index].value, "Cauldron pool satoshi output value must be greater than input value");
     }
@@ -158,6 +155,7 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
       require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, "Cauldron pool token category must remain the same");
       require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, "Cauldron pool token commitment must remain the same");
       require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, "Cauldron pool token locking bytecode must remain the same");
+      require(tx.inputs[index].unlockingBytecode.length == 69, "Wrong unlocking bytecode length for cauldron pool input");
       require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, "Cauldron pool token amount must be less than input amount");
       require(tx.outputs[index].value > tx.inputs[index].value, "Cauldron pool satoshi output value must be greater than input value");
     }
@@ -170,6 +168,7 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
       require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, "Cauldron pool token category must remain the same");
       require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, "Cauldron pool token commitment must remain the same");
       require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, "Cauldron pool token locking bytecode must remain the same");
+      require(tx.inputs[index].unlockingBytecode.length == 69, "Wrong unlocking bytecode length for cauldron pool input");
       require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, "Cauldron pool token amount must be less than input amount");
       require(tx.outputs[index].value > tx.inputs[index].value, "Cauldron pool satoshi output value must be greater than input value");
     }
@@ -182,6 +181,7 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
       require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, "Cauldron pool token category must remain the same");
       require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, "Cauldron pool token commitment must remain the same");
       require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, "Cauldron pool token locking bytecode must remain the same");
+      require(tx.inputs[index].unlockingBytecode.length == 69, "Wrong unlocking bytecode length for cauldron pool input");
       require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, "Cauldron pool token amount must be less than input amount");
       require(tx.outputs[index].value > tx.inputs[index].value, "Cauldron pool satoshi output value must be greater than input value");
     }
@@ -194,6 +194,7 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
       require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, "Cauldron pool token category must remain the same");
       require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, "Cauldron pool token commitment must remain the same");
       require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, "Cauldron pool token locking bytecode must remain the same");
+      require(tx.inputs[index].unlockingBytecode.length == 69, "Wrong unlocking bytecode length for cauldron pool input");
       require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, "Cauldron pool token amount must be less than input amount");
       require(tx.outputs[index].value > tx.inputs[index].value, "Cauldron pool satoshi output value must be greater than input value");
     }
@@ -206,6 +207,7 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
       require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, "Cauldron pool token category must remain the same");
       require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, "Cauldron pool token commitment must remain the same");
       require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, "Cauldron pool token locking bytecode must remain the same");
+      require(tx.inputs[index].unlockingBytecode.length == 69, "Wrong unlocking bytecode length for cauldron pool input");
       require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, "Cauldron pool token amount must be less than input amount");
       require(tx.outputs[index].value > tx.inputs[index].value, "Cauldron pool satoshi output value must be greater than input value");
     }
@@ -218,6 +220,7 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
       require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, "Cauldron pool token category must remain the same");
       require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, "Cauldron pool token commitment must remain the same");
       require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, "Cauldron pool token locking bytecode must remain the same");
+      require(tx.inputs[index].unlockingBytecode.length == 69, "Wrong unlocking bytecode length for cauldron pool input");
       require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, "Cauldron pool token amount must be less than input amount");
       require(tx.outputs[index].value > tx.inputs[index].value, "Cauldron pool satoshi output value must be greater than input value");
     }
@@ -230,6 +233,7 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
       require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, "Cauldron pool token category must remain the same");
       require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, "Cauldron pool token commitment must remain the same");
       require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, "Cauldron pool token locking bytecode must remain the same");
+      require(tx.inputs[index].unlockingBytecode.length == 69, "Wrong unlocking bytecode length for cauldron pool input");
       require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, "Cauldron pool token amount must be less than input amount");
       require(tx.outputs[index].value > tx.inputs[index].value, "Cauldron pool satoshi output value must be greater than input value");
     }
@@ -242,6 +246,7 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
       require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, "Cauldron pool token category must remain the same");
       require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, "Cauldron pool token commitment must remain the same");
       require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, "Cauldron pool token locking bytecode must remain the same");
+      require(tx.inputs[index].unlockingBytecode.length == 69, "Wrong unlocking bytecode length for cauldron pool input");
       require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, "Cauldron pool token amount must be less than input amount");
       require(tx.outputs[index].value > tx.inputs[index].value, "Cauldron pool satoshi output value must be greater than input value");
     }
@@ -254,6 +259,7 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
       require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, "Cauldron pool token category must remain the same");
       require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, "Cauldron pool token commitment must remain the same");
       require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, "Cauldron pool token locking bytecode must remain the same");
+      require(tx.inputs[index].unlockingBytecode.length == 69, "Wrong unlocking bytecode length for cauldron pool input");
       require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, "Cauldron pool token amount must be less than input amount");
       require(tx.outputs[index].value > tx.inputs[index].value, "Cauldron pool satoshi output value must be greater than input value");
     }
@@ -266,6 +272,7 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
       require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, "Cauldron pool token category must remain the same");
       require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, "Cauldron pool token commitment must remain the same");
       require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, "Cauldron pool token locking bytecode must remain the same");
+      require(tx.inputs[index].unlockingBytecode.length == 69, "Wrong unlocking bytecode length for cauldron pool input");
       require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, "Cauldron pool token amount must be less than input amount");
       require(tx.outputs[index].value > tx.inputs[index].value, "Cauldron pool satoshi output value must be greater than input value");
     }
@@ -278,6 +285,7 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
       require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, "Cauldron pool token category must remain the same");
       require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, "Cauldron pool token commitment must remain the same");
       require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, "Cauldron pool token locking bytecode must remain the same");
+      require(tx.inputs[index].unlockingBytecode.length == 69, "Wrong unlocking bytecode length for cauldron pool input");
       require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, "Cauldron pool token amount must be less than input amount");
       require(tx.outputs[index].value > tx.inputs[index].value, "Cauldron pool satoshi output value must be greater than input value");
     }
@@ -290,6 +298,7 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
       require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, "Cauldron pool token category must remain the same");
       require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, "Cauldron pool token commitment must remain the same");
       require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, "Cauldron pool token locking bytecode must remain the same");
+      require(tx.inputs[index].unlockingBytecode.length == 69, "Wrong unlocking bytecode length for cauldron pool input");
       require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, "Cauldron pool token amount must be less than input amount");
       require(tx.outputs[index].value > tx.inputs[index].value, "Cauldron pool satoshi output value must be greater than input value");
     }
@@ -302,6 +311,7 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
       require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, "Cauldron pool token category must remain the same");
       require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, "Cauldron pool token commitment must remain the same");
       require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, "Cauldron pool token locking bytecode must remain the same");
+      require(tx.inputs[index].unlockingBytecode.length == 69, "Wrong unlocking bytecode length for cauldron pool input");
       require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, "Cauldron pool token amount must be less than input amount");
       require(tx.outputs[index].value > tx.inputs[index].value, "Cauldron pool satoshi output value must be greater than input value");
     }
@@ -314,6 +324,7 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
       require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, "Cauldron pool token category must remain the same");
       require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, "Cauldron pool token commitment must remain the same");
       require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, "Cauldron pool token locking bytecode must remain the same");
+      require(tx.inputs[index].unlockingBytecode.length == 69, "Wrong unlocking bytecode length for cauldron pool input");
       require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, "Cauldron pool token amount must be less than input amount");
       require(tx.outputs[index].value > tx.inputs[index].value, "Cauldron pool satoshi output value must be greater than input value");
     }
@@ -326,6 +337,7 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
       require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, "Cauldron pool token category must remain the same");
       require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, "Cauldron pool token commitment must remain the same");
       require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, "Cauldron pool token locking bytecode must remain the same");
+      require(tx.inputs[index].unlockingBytecode.length == 69, "Wrong unlocking bytecode length for cauldron pool input");
       require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, "Cauldron pool token amount must be less than input amount");
       require(tx.outputs[index].value > tx.inputs[index].value, "Cauldron pool satoshi output value must be greater than input value");
     }
@@ -338,6 +350,7 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
       require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, "Cauldron pool token category must remain the same");
       require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, "Cauldron pool token commitment must remain the same");
       require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, "Cauldron pool token locking bytecode must remain the same");
+      require(tx.inputs[index].unlockingBytecode.length == 69, "Wrong unlocking bytecode length for cauldron pool input");
       require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, "Cauldron pool token amount must be less than input amount");
       require(tx.outputs[index].value > tx.inputs[index].value, "Cauldron pool satoshi output value must be greater than input value");
     }
@@ -355,10 +368,12 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
   //   1: admin NFT output, same as input
   //   2: bch change output
   function migrate(bytes newLockingBytecode) {
+    // contrain the general transaction shape
     require(this.activeInputIndex == 0, "Active input index must be 0");
     require(tx.inputs.length == 3, "Migration requires exactly 3 inputs");
     require(tx.outputs.length == 3, "Migration requires exactly 3 outputs");
 
+    // constrain the issuance fund input and output
     require(tx.outputs[0].lockingBytecode == newLockingBytecode, "New locking bytecode must be provided for the issuance fund output");
     require(tx.outputs[0].tokenCategory == tx.inputs[0].tokenCategory, "Token category must remain the same");
     require(tx.outputs[0].tokenAmount == tx.inputs[0].tokenAmount, "Token amount must remain the same");
@@ -371,7 +386,7 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
     require(tx.inputs[1].nftCommitment == 0x61646D696E, "Second input must have 'admin' commitment");
     require(tx.outputs[1].lockingBytecode == tx.inputs[1].lockingBytecode, "Locking bytecode must remain the same for second output");
 
-    // bch change output is not burdened with any requirements
+    // bch change output is not burdened with any requirements and must be taken care of by the spender
   }
 
   // dissolve contract and release tokens to admin
@@ -384,10 +399,12 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
   //   0: same properties as input 0 paid to admin p2pkh
   //   1: bch change output
   function dissolve() {
+    // constrain the general transaction shape
     require(this.activeInputIndex == 0, "Active input index must be 0");
     require(tx.inputs.length == 3, "Dissolve requires exactly 3 inputs");
     require(tx.outputs.length == 2, "Dissolve requires exactly 2 outputs");
 
+    // constrain the issuance fund input and output
     require(tx.outputs[0].lockingBytecode == tx.inputs[1].lockingBytecode, "Locking bytecode must be the same as admin p2pkh input");
     require(tx.outputs[0].tokenCategory == tx.inputs[0].tokenCategory, "Token category must remain the same");
     require(tx.outputs[0].tokenAmount == tx.inputs[0].tokenAmount, "Token amount must remain the same");
@@ -408,17 +425,19 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
   //   [1]: token change if any
   //   [2]: bch change if any
   function donate() {
+    // constrain the general transaction shape
     require(this.activeInputIndex == 0, "Active input index must be 0");
     require(tx.inputs.length == 3, "Donation requires exactly 3 inputs");
     require(tx.outputs.length > 1, "Donation requires more than 1 output");
     require(tx.outputs.length < 4, "Donation requires less than 4 outputs");
 
+    // constrain the issuance fund input and output
     require(tx.outputs[0].lockingBytecode == tx.inputs[0].lockingBytecode, "Locking bytecode must remain the same");
     require(tx.outputs[0].tokenCategory == tx.inputs[0].tokenCategory, "Token category must remain the same");
     require(tx.outputs[0].tokenAmount > tx.inputs[0].tokenAmount, "Token amount must increase");
     require(tx.outputs[0].nftCommitment == tx.inputs[0].nftCommitment, "NFT commitment must remain the same");
     require(tx.outputs[0].value == tx.inputs[0].value, "Output value must remain the same");
 
-    // token and bch change outputs is not burdened with any requirements
+    // bch change output is not burdened with any requirements and must be taken care of by the spender
   }
 }

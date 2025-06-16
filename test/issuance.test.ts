@@ -2,7 +2,7 @@ import 'cashscript/jest';
 import { binToHex, hexToBin } from '@bitauth/libauth';
 import { MockNetworkProvider, TransactionBuilder, Unlocker, Utxo, randomUtxo } from 'cashscript';
 import { libauthOutputToCashScriptOutput, zip } from 'cashscript/dist/utils.js';
-import { aliceAddress, aliceSigTemplate, deployContract, MockWallet, setupFakeCauldronPools } from './shared.js';
+import { aliceAddress, aliceSigTemplate, deployContract, MockWallet, setupFakeCauldronPools, require } from './shared.js';
 import { getCauldronPoolContractInstance, olandoCategory, padVmNumber, RawUnlocker, toTokenAddress, vmToBigInt } from '../src/index.js';
 import { buildSwapTransaction } from '../src/swap.js';
 
@@ -335,6 +335,7 @@ describe('test contract functions', () => {
     const tokensBought = 100n * cauldronTradeAdjustedTokenAmount / 95n;
     const issue = tokensBought * 9n / 10n; // 90% of tokens bought
     console.log("tokensBought", tokensBought, "issue", issue);
+    require(issue <= currentEmissionCap - issued, "Issue amount exceeds current emission cap");
 
     const builder = new TransactionBuilder({ provider })
       .addInput(contractUtxo, issuanceFundContract.unlock.issue())
