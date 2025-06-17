@@ -1,10 +1,11 @@
 import { secp256k1, encodeCashAddress, hexToBin, hash160, encodePrivateKeyWif } from "@bitauth/libauth";
-import { Contract, MockNetworkProvider, randomUtxo, SignatureTemplate, TransactionBuilder } from "cashscript";
+import { Contract, MockNetworkProvider, randomNFT, randomUtxo, SignatureTemplate, TransactionBuilder } from "cashscript";
 import { binToHex, TestNetWallet, TokenI, utf8ToBin, UtxoI } from "mainnet-js";
 import { addressToLockScript, getCauldronPoolContractInstance, olandoCategory, padVmNumber, replaceArtifactPlaceholders, toTokenAddress } from "../src";
 import IssuanceFundArtifact from '../artifacts/IssuanceFund.artifact.js';
 import CouncilFundArtifact from '../artifacts/CouncilFund.artifact.js';
 import Multisig_2of3Artifact from "../artifacts/Multisig_2of3.artifact.js";
+import AuthGuardArtifact from "../artifacts/AuthGuard.artifact.js";
 
 export const alicePriv = hexToBin('1'.repeat(64));
 export const aliceSigTemplate = new SignatureTemplate(alicePriv);
@@ -88,6 +89,134 @@ export const deployContractP2pkhAdmin = async (provider: MockNetworkProvider, sa
   const deploymentTransaction = await new TransactionBuilder({ provider })
     .addInput(tokenFundingUtxo, new SignatureTemplate(alicePriv).unlockP2PKH())
     .addInput(fundingUtxo, new SignatureTemplate(alicePriv).unlockP2PKH())
+    .addOutput({
+      to: toTokenAddress(issuanceFundContract.address),
+      amount: 1000n,
+      token: {
+        amount: 8_888_888_888_888_88n, // 2 decimals
+        category: olandoCategory,
+        nft: {
+          capability: 'mutable',
+          commitment: binToHex(Uint8Array.from([
+            ...padVmNumber(BigInt(deploymentTime), 4),
+            ...padVmNumber(BigInt(lastInteractionTime), 4),
+          ])),
+        }
+      }
+    })
+    .addOutput({
+      to: toTokenAddress(aliceAddress),
+      amount: 1000n,
+      token: {
+        amount: 0n,
+        category: olandoCategory,
+        nft: {
+          capability: 'none',
+          commitment: binToHex(utf8ToBin('admin')),
+        }
+      }
+    })
+    .addOutput({
+      to: aliceAddress,
+      amount: fundingUtxo.satoshis - 3000n, // BCH change
+      token: undefined,
+    })
+    .send();
+
+  console.log(`Issuance fund deployed at ${issuanceFundContract.address} with txid ${deploymentTransaction.txid}`);
+
+  return { issuanceFundContract, councilFundContract };
+}
+
+export const deployContractP2pkhAdminWithAuthGuard = async (provider: MockNetworkProvider, salt: bigint = 0n) => {
+   {
+    provider.addUtxo(aliceAddress, randomUtxo({
+      satoshis: 100_000_000n, // 1 BCH
+    }));
+
+    const authKeyUtxo = randomUtxo({
+      satoshis: 1000n,
+      token: randomNFT({
+        nft: {
+          capability: 'none',
+          commitment: '00',
+        }
+      })
+    });
+    provider.addUtxo(aliceAddress, authKeyUtxo);
+
+    const authGuardContract = new Contract(AuthGuardArtifact, [binToHex(hexToBin(authKeyUtxo.token!.category).reverse())], { provider, addressType: "p2sh20" });
+
+    provider.addUtxo(authGuardContract.address, randomUtxo({
+      satoshis: 1000n,
+      token: {
+        amount: 8_888_888_888_888_888_88n, // 2 decimals
+        category: olandoCategory,
+        nft: {
+          capability: 'mutable',
+          commitment: '',
+        }
+      }
+    }));
+  }
+
+  const authGuard = await (async () => {
+    const userUtxos = await provider.getUtxos(aliceAddress);
+    const authKeyCandidates = userUtxos.filter(utxo =>
+      utxo.token?.amount === 0n &&
+      utxo.token?.nft?.capability === 'none' &&
+      utxo.token.nft.commitment === '00'
+    );
+
+    for (const authKeyCandidate of authKeyCandidates) {
+      const authGuardContract = new Contract(AuthGuardArtifact, [binToHex(hexToBin(authKeyCandidate.token!.category).reverse())], { provider, addressType: "p2sh20" });
+      const contractUtxos = await provider.getUtxos(authGuardContract.address);
+      const authGuardCandidate = contractUtxos.find(contractUtxo =>
+        contractUtxo.token &&
+        contractUtxo.token.category === olandoCategory &&
+        contractUtxo.token.amount > 8_888_888_888_888_88n && // 2 decimals
+        contractUtxo.token.nft?.capability === 'mutable' &&
+        contractUtxo.token.nft?.commitment === ''
+      );
+
+      if (authGuardCandidate) {
+        return { authGuardContract, authGuardUtxo: authGuardCandidate, authKeyUtxo: authKeyCandidate };
+      }
+    };
+  })();
+
+  if (!authGuard) {
+    throw new Error('No valid auth guard pair found in the wallet');
+  }
+  console.log(authGuard)
+
+  const councilFundContract = new Contract(CouncilFundArtifact, [salt], { provider, addressType: 'p2sh20' });
+
+  const issuanceFundContract = new Contract(IssuanceFundArtifact, [addressToLockScript(councilFundContract.address)], { provider });
+  const deploymentTime = 1749427200; // Mon Jun 09 2025 00:00:00 GMT+0000
+  const lastInteractionTime = deploymentTime;
+
+  const utxos = await provider.getUtxos(aliceAddress);
+
+  const fundingUtxo = utxos.find(utxo => utxo.token === undefined && utxo.satoshis >= 100000n)!;
+
+  const deploymentTransaction = await new TransactionBuilder({ provider })
+    .addInput(authGuard.authGuardUtxo, authGuard.authGuardContract.unlock.unlockWithNft(true))
+    .addInput(authGuard.authKeyUtxo, new SignatureTemplate(alicePriv).unlockP2PKH())
+    .addInput(fundingUtxo, new SignatureTemplate(alicePriv).unlockP2PKH())
+    .addOutput({
+      to: authGuard.authGuardContract.tokenAddress,
+      amount: authGuard.authGuardUtxo.satoshis,
+      token: {
+        ...authGuard.authGuardUtxo.token!,
+        amount: authGuard.authGuardUtxo.token!.amount - 8_888_888_888_888_88n, // 2 decimals
+      }
+    })
+    .addOutput({
+      to: toTokenAddress(aliceAddress),
+      amount: authGuard.authKeyUtxo.satoshis,
+      token: authGuard.authKeyUtxo.token,
+    })
     .addOutput({
       to: toTokenAddress(issuanceFundContract.address),
       amount: 1000n,

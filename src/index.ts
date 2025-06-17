@@ -1,5 +1,5 @@
 import { hexToBin, padMinimallyEncodedVmNumber, bigIntToVmNumber, vmNumberToBigInt, cashAddressToLockingBytecode, decodeCashAddress, encodeCashAddress, CashAddressType, binToHex } from "@bitauth/libauth";
-import { BaseUnlocker, Artifact, FunctionArgument, encodeFunctionArgument, MockNetworkProvider, Contract } from "cashscript";
+import { Artifact, FunctionArgument, encodeFunctionArgument, MockNetworkProvider, Contract } from "cashscript";
 import CauldronPoolArtifact from "../artifacts/CauldronPool.artifact.js";
 
 export const padVmNumber = (num: bigint, length: number) => {
