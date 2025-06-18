@@ -3,7 +3,7 @@
 // The contract is deployed with a fixed supply of 8,888,888,888.88 tokens.
 // The contract emits tokens based on the time since deployment and the amount of tokens bought so far.
 // The contract can be migrated to a new issuance or dissolved to release tokens to the admin.
-contract IssuanceFund(bytes councilFundLockingBytecode) {
+contract IssuanceFund(bytes councilFundLockingBytecode, bytes adminLockingBytecode) {
 
   // invest into Olando ecosystem by buying tokens from the cauldron pool
   // tx layout:
@@ -357,18 +357,18 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
 // #endregion
   }
 
-  // migrate contract to a new issuance fund contract
+  // migrate contract to a new instance of issuance fund contract or change admin locking bytecode
   // tx layout:
   //  inputs:
   //   0: issuance fund input
-  //   1: admin NFT input
+  //   1: admin input
   //   2: funding input
   //  outputs:
   //   0: issuance fund output. all same properties but new locking bytecode
-  //   1: admin NFT output, same as input
+  //   1: admin output, same as input
   //   2: bch change output
-  function migrate(bytes newLockingBytecode) {
-    // contrain the general transaction shape
+  function migrate(bytes newLockingBytecode, bytes newAdminLockingBytecode) {
+    // constrain the general transaction shape
     require(this.activeInputIndex == 0, "Active input index must be 0");
     require(tx.inputs.length == 3, "Migration requires exactly 3 inputs");
     require(tx.outputs.length == 3, "Migration requires exactly 3 outputs");
@@ -380,11 +380,13 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
     require(tx.outputs[0].nftCommitment == tx.inputs[0].nftCommitment, "NFT commitment must remain the same");
     require(tx.outputs[0].value == tx.inputs[0].value, "Output value must remain the same");
 
-    // preserve admin NFT: same category
-    require(tx.inputs[1].tokenCategory == tx.inputs[0].tokenCategory.split(32)[0], "Second input must have the same token category as the first input");
-    require(tx.inputs[1].tokenCategory.length == 32, "Second input must have 'none' capability");
-    require(tx.inputs[1].nftCommitment == 0x61646D696E, "Second input must have 'admin' commitment");
-    require(tx.outputs[1].lockingBytecode == tx.inputs[1].lockingBytecode, "Locking bytecode must remain the same for second output");
+    // preserve admin input
+    require(tx.inputs[1].lockingBytecode == adminLockingBytecode, "Admin input must have the correct locking bytecode");
+    require(tx.outputs[1].lockingBytecode == newAdminLockingBytecode, "New admin locking bytecode must be provided for the admin output");
+    require(tx.outputs[1].value == tx.inputs[1].value, "Output value must remain the same for admin output");
+    require(tx.outputs[1].tokenCategory == tx.inputs[1].tokenCategory, "Token category must remain the same for admin output");
+    require(tx.outputs[1].tokenAmount == tx.inputs[1].tokenAmount, "Token amount must remain the same for admin output");
+    require(tx.outputs[1].nftCommitment == tx.inputs[1].nftCommitment, "NFT commitment must remain the same for admin output");
 
     // bch change output is not burdened with any requirements and must be taken care of by the spender
   }
@@ -393,10 +395,11 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
   // tx layout:
   //  inputs:
   //   0: issuance fund input
-  //   1: admin NFT input
+  //   1: admin input
   //   2: funding input
   //  outputs:
-  //   0: same properties as input 0 paid to admin p2pkh
+  //   0: same properties as input 0 paid to admin locking bytecode
+  //   1: admin output
   //   1: bch change output
   function dissolve() {
     // constrain the general transaction shape
@@ -410,6 +413,9 @@ contract IssuanceFund(bytes councilFundLockingBytecode) {
     require(tx.outputs[0].tokenAmount == tx.inputs[0].tokenAmount, "Token amount must remain the same");
     require(tx.outputs[0].nftCommitment == tx.inputs[0].nftCommitment, "NFT commitment must remain the same");
     require(tx.outputs[0].value == tx.inputs[0].value, "Output value must remain the same");
+
+    // constrain the admin input, do not require it to be present in outputs
+    require(tx.inputs[1].lockingBytecode == adminLockingBytecode, "Admin input must have the correct locking bytecode");
 
     // bch change output is not burdened with any requirements
   }

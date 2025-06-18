@@ -1,13 +1,13 @@
 import 'cashscript/jest';
 import { MockNetworkProvider, randomUtxo, TransactionBuilder } from "cashscript";
 import { olandoCategory, toTokenAddress } from "../../src";
-import { deployContractP2pkhAdmin, aliceAddress, aliceSigTemplate } from "../shared";
+import { aliceAddress, aliceSigTemplate, deployContractFromAuthGuard } from "../shared";
 
 describe('Issuance Fund Contract Donation Tests', () => {
   it('test donation to contract, no token change', async () => {
     const provider = new MockNetworkProvider();
 
-    const { issuanceFundContract } = await deployContractP2pkhAdmin(provider);
+    const { issuanceFundContract } = await deployContractFromAuthGuard(provider);
 
     const contractUtxo = (await provider.getUtxos(issuanceFundContract.address)).find(u =>
       u.token?.category === olandoCategory &&
@@ -66,7 +66,7 @@ describe('Issuance Fund Contract Donation Tests', () => {
   it('test donation to contract, with token change', async () => {
     const provider = new MockNetworkProvider();
 
-    const { issuanceFundContract } = await deployContractP2pkhAdmin(provider);
+    const { issuanceFundContract } = await deployContractFromAuthGuard(provider);
 
     const contractUtxo = (await provider.getUtxos(issuanceFundContract.address)).find(u =>
       u.token?.category === olandoCategory &&
@@ -133,7 +133,7 @@ describe('Issuance Fund Contract Donation Tests', () => {
   it('test donation to contract, wrong token change', async () => {
     const provider = new MockNetworkProvider();
 
-    const { issuanceFundContract } = await deployContractP2pkhAdmin(provider);
+    const { issuanceFundContract } = await deployContractFromAuthGuard(provider);
 
     const contractUtxo = (await provider.getUtxos(issuanceFundContract.address)).find(u =>
       u.token?.category === olandoCategory &&
@@ -200,7 +200,7 @@ describe('Issuance Fund Contract Donation Tests', () => {
   it('test donation to contract, no token amount change for issuance fund', async () => {
     const provider = new MockNetworkProvider();
 
-    const { issuanceFundContract } = await deployContractP2pkhAdmin(provider);
+    const { issuanceFundContract } = await deployContractFromAuthGuard(provider);
 
     const contractUtxo = (await provider.getUtxos(issuanceFundContract.address)).find(u =>
       u.token?.category === olandoCategory &&

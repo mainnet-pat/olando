@@ -54,10 +54,13 @@ export const replaceArtifactPlaceholders = <T extends Artifact>(artifact: T, par
   }, {} as Record<string, string>);
   Object.entries(parameters).forEach(([key, value]) => {
     artifactCopy.bytecode = artifactCopy.bytecode.replaceAll(`<${key}>`, binToHex(encodeFunctionArgument(value, argumentTypes[key] ?? "bytes") as Uint8Array));
-    // artifactCopy.debug!.bytecode = binToHex(asmToBytecode(artifactCopy.bytecode));
   });
 
-  artifactCopy.contractName = artifactCopy.contractName + contractIndex++;
+  artifactCopy.contractName = artifactCopy.contractName + ` #${contractIndex++}`;
+
+  if (artifactCopy.bytecode.includes('<')) {
+    throw new Error(`Not all placeholders in artifact ${artifactCopy.contractName} were replaced. Remaining placeholders: ${artifactCopy.bytecode.match(/<[^>]+>/g)?.join(', ')}`);
+  }
 
   return artifactCopy;
 };

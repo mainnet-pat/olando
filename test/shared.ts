@@ -3,7 +3,6 @@ import { Contract, MockNetworkProvider, randomNFT, randomUtxo, SignatureTemplate
 import { binToHex, TestNetWallet, TokenI, utf8ToBin, UtxoI } from "mainnet-js";
 import { addressToLockScript, getCauldronPoolContractInstance, olandoCategory, padVmNumber, replaceArtifactPlaceholders, toTokenAddress } from "../src";
 import IssuanceFundArtifact from '../artifacts/IssuanceFund.artifact.js';
-import CouncilFundArtifact from '../artifacts/CouncilFund.artifact.js';
 import Multisig_2of3Artifact from "../artifacts/Multisig_2of3.artifact.js";
 import AuthGuardArtifact from "../artifacts/AuthGuard.artifact.js";
 
@@ -24,6 +23,12 @@ export const charlieSigTemplate = new SignatureTemplate(charliePriv);
 export const charliePub = secp256k1.derivePublicKeyCompressed(charliePriv) as Uint8Array;
 export const charliePkh = hash160(charliePub);
 export const charlieAddress = encodeCashAddress({ prefix: 'bchtest', type: 'p2pkh', payload: charliePkh, throwErrors: true }).address;
+
+export const davePriv = hexToBin('4'.repeat(64));
+export const daveSigTemplate = new SignatureTemplate(davePriv);
+export const davePub = secp256k1.derivePublicKeyCompressed(davePriv) as Uint8Array;
+export const davePkh = hash160(davePub);
+export const daveAddress = encodeCashAddress({ prefix: 'bchtest', type: 'p2pkh', payload: davePkh, throwErrors: true }).address;
 
 export const min = (...args: bigint[]) => args.reduce((m, e) => e < m ? e : m);
 export const require = (predicate: boolean, message: string) => {
@@ -53,83 +58,8 @@ export const MockWallet = async (provider: MockNetworkProvider): Promise<TestNet
   return wallet;
 }
 
-export const deployContractP2pkhAdmin = async (provider: MockNetworkProvider, salt: bigint = 0n) => {
-  provider.addUtxo(aliceAddress, randomUtxo({
-    satoshis: 100_000_000n, // 1 BCH
-  }));
-
-  provider.addUtxo(aliceAddress, randomUtxo({
-    satoshis: 1000n, // 1 BCH
-    token: {
-      amount: 8_888_888_888_888_888_88n, // 2 decimals
-      category: olandoCategory,
-      nft: {
-        capability: 'mutable',
-        commitment: '',
-      }
-    }
-  }));
-
-  const councilFundContract = new Contract(CouncilFundArtifact, [salt], { provider, addressType: 'p2sh20' });
-
-  const issuanceFundContract = new Contract(IssuanceFundArtifact, [addressToLockScript(councilFundContract.address)], { provider });
-  const deploymentTime = 1749427200; // Mon Jun 09 2025 00:00:00 GMT+0000
-  const lastInteractionTime = deploymentTime;
-
-  const utxos = await provider.getUtxos(aliceAddress);
-
-  const fundingUtxo = utxos.find(utxo => utxo.token === undefined && utxo.satoshis >= 100000n)!;
-
-  const tokenFundingUtxo = utxos.find(utxo =>
-    utxo.token?.category === olandoCategory &&
-    utxo.token?.nft?.capability === 'mutable' &&
-    utxo.token.nft.commitment.length === 0 &&
-    utxo.token.amount > 8_888_888_888_888_88n)!;
-
-  const deploymentTransaction = await new TransactionBuilder({ provider })
-    .addInput(tokenFundingUtxo, new SignatureTemplate(alicePriv).unlockP2PKH())
-    .addInput(fundingUtxo, new SignatureTemplate(alicePriv).unlockP2PKH())
-    .addOutput({
-      to: toTokenAddress(issuanceFundContract.address),
-      amount: 1000n,
-      token: {
-        amount: 8_888_888_888_888_88n, // 2 decimals
-        category: olandoCategory,
-        nft: {
-          capability: 'mutable',
-          commitment: binToHex(Uint8Array.from([
-            ...padVmNumber(BigInt(deploymentTime), 4),
-            ...padVmNumber(BigInt(lastInteractionTime), 4),
-          ])),
-        }
-      }
-    })
-    .addOutput({
-      to: toTokenAddress(aliceAddress),
-      amount: 1000n,
-      token: {
-        amount: 0n,
-        category: olandoCategory,
-        nft: {
-          capability: 'none',
-          commitment: binToHex(utf8ToBin('admin')),
-        }
-      }
-    })
-    .addOutput({
-      to: aliceAddress,
-      amount: fundingUtxo.satoshis - 3000n, // BCH change
-      token: undefined,
-    })
-    .send();
-
-  console.log(`Issuance fund deployed at ${issuanceFundContract.address} with txid ${deploymentTransaction.txid}`);
-
-  return { issuanceFundContract, councilFundContract };
-}
-
-export const deployContractP2pkhAdminWithAuthGuard = async (provider: MockNetworkProvider, salt: bigint = 0n) => {
-   {
+export const deployContractFromAuthGuard = async (provider: MockNetworkProvider, newCouncilContract?: Contract<typeof Multisig_2of3Artifact>, newAdminContract?: Contract<typeof Multisig_2of3Artifact>) => {
+  {
     provider.addUtxo(aliceAddress, randomUtxo({
       satoshis: 100_000_000n, // 1 BCH
     }));
@@ -174,7 +104,7 @@ export const deployContractP2pkhAdminWithAuthGuard = async (provider: MockNetwor
       const authGuardCandidate = contractUtxos.find(contractUtxo =>
         contractUtxo.token &&
         contractUtxo.token.category === olandoCategory &&
-        contractUtxo.token.amount > 8_888_888_888_888_88n && // 2 decimals
+        contractUtxo.token.amount >= 8_888_888_888_888_88n && // 2 decimals
         contractUtxo.token.nft?.capability === 'mutable' &&
         contractUtxo.token.nft?.commitment === ''
       );
@@ -188,11 +118,11 @@ export const deployContractP2pkhAdminWithAuthGuard = async (provider: MockNetwor
   if (!authGuard) {
     throw new Error('No valid auth guard pair found in the wallet');
   }
-  console.log(authGuard)
 
-  const councilFundContract = new Contract(CouncilFundArtifact, [salt], { provider, addressType: 'p2sh20' });
+  const adminMultisig = newAdminContract ?? getAdminMultisig2of3Contract(provider);
+  const councilFundContract = newCouncilContract ?? getCouncilMultisig2of3Contract(provider);
 
-  const issuanceFundContract = new Contract(IssuanceFundArtifact, [addressToLockScript(councilFundContract.address)], { provider });
+  const issuanceFundContract = new Contract(IssuanceFundArtifact, [addressToLockScript(councilFundContract.address), addressToLockScript(adminMultisig.address)], { provider });
   const deploymentTime = 1749427200; // Mon Jun 09 2025 00:00:00 GMT+0000
   const lastInteractionTime = deploymentTime;
 
@@ -208,7 +138,8 @@ export const deployContractP2pkhAdminWithAuthGuard = async (provider: MockNetwor
       to: authGuard.authGuardContract.tokenAddress,
       amount: authGuard.authGuardUtxo.satoshis,
       token: {
-        ...authGuard.authGuardUtxo.token!,
+        category: olandoCategory,
+        nft: undefined, // nft gets transferred to the issuance fund contract
         amount: authGuard.authGuardUtxo.token!.amount - 8_888_888_888_888_88n, // 2 decimals
       }
     })
@@ -233,93 +164,8 @@ export const deployContractP2pkhAdminWithAuthGuard = async (provider: MockNetwor
       }
     })
     .addOutput({
-      to: toTokenAddress(aliceAddress),
-      amount: 1000n,
-      token: {
-        amount: 0n,
-        category: olandoCategory,
-        nft: {
-          capability: 'none',
-          commitment: binToHex(utf8ToBin('admin')),
-        }
-      }
-    })
-    .addOutput({
-      to: aliceAddress,
-      amount: fundingUtxo.satoshis - 3000n, // BCH change
-      token: undefined,
-    })
-    .send();
-
-  console.log(`Issuance fund deployed at ${issuanceFundContract.address} with txid ${deploymentTransaction.txid}`);
-
-  return { issuanceFundContract, councilFundContract };
-}
-
-export const deployContractMultisigAdmin = async (provider: MockNetworkProvider, salt: bigint = 0n) => {
-  provider.addUtxo(aliceAddress, randomUtxo({
-    satoshis: 100_000_000n, // 1 BCH
-  }));
-
-  provider.addUtxo(aliceAddress, randomUtxo({
-    satoshis: 1000n, // 1 BCH
-    token: {
-      amount: 8_888_888_888_888_888_88n, // 2 decimals
-      category: olandoCategory,
-      nft: {
-        capability: 'mutable',
-        commitment: '',
-      }
-    }
-  }));
-
-  const councilFundContract = new Contract(CouncilFundArtifact, [salt], { provider, addressType: 'p2sh20' });
-
-  const issuanceFundContract = new Contract(IssuanceFundArtifact, [addressToLockScript(councilFundContract.address)], { provider });
-  const deploymentTime = 1749427200; // Mon Jun 09 2025 00:00:00 GMT+0000
-  const lastInteractionTime = deploymentTime;
-
-  const utxos = await provider.getUtxos(aliceAddress);
-
-  const fundingUtxo = utxos.find(utxo => utxo.token === undefined && utxo.satoshis >= 100000n)!;
-
-  const tokenFundingUtxo = utxos.find(utxo =>
-    utxo.token?.category === olandoCategory &&
-    utxo.token?.nft?.capability === 'mutable' &&
-    utxo.token.nft.commitment.length === 0 &&
-    utxo.token.amount > 8_888_888_888_888_88n)!;
-
-  const multisigContract = getMultisig2of3Contract(provider);
-
-  const deploymentTransaction = await new TransactionBuilder({ provider })
-    .addInput(tokenFundingUtxo, new SignatureTemplate(alicePriv).unlockP2PKH())
-    .addInput(fundingUtxo, new SignatureTemplate(alicePriv).unlockP2PKH())
-    .addOutput({
-      to: toTokenAddress(issuanceFundContract.address),
-      amount: 1000n,
-      token: {
-        amount: 8_888_888_888_888_88n, // 2 decimals
-        category: olandoCategory,
-        nft: {
-          capability: 'mutable',
-          commitment: binToHex(Uint8Array.from([
-            ...padVmNumber(BigInt(deploymentTime), 4),
-            ...padVmNumber(BigInt(lastInteractionTime), 4),
-          ])),
-        }
-      }
-    })
-    .addOutput({
-      to: multisigContract.tokenAddress,
-      amount: 1000n,
-      token: {
-        amount: 0n,
-        category: olandoCategory,
-        nft: {
-          capability: 'none',
-          commitment: binToHex(utf8ToBin('admin')),
-        }
-      }
+      to: adminMultisig.address,
+      amount: 1000n, // intentionally low amount to avoid this utxo being spent alone
     })
     .addOutput({
       to: aliceAddress,
@@ -354,13 +200,24 @@ export const setupFakeCauldronPools = async (provider: MockNetworkProvider) => {
   return { fakeCauldron }
 }
 
-export const getMultisig2of3Contract = (provider: MockNetworkProvider) => {
+export const getAdminMultisig2of3Contract = (provider: MockNetworkProvider) => {
   const artifact = replaceArtifactPlaceholders(Multisig_2of3Artifact, {
     pubkeyA: alicePub,
     pubkeyB: bobPub,
     pubkeyC: charliePub,
   });
 
-  const contract = new Contract(artifact, [], { provider, ignoreFunctionSelector: true });
+  const contract = new Contract(artifact, [], { provider, ignoreFunctionSelector: true, addressType: 'p2sh20' });
+  return contract;
+}
+
+export const getCouncilMultisig2of3Contract = (provider: MockNetworkProvider) => {
+  const artifact = replaceArtifactPlaceholders(Multisig_2of3Artifact, {
+    pubkeyA: alicePub,
+    pubkeyB: bobPub,
+    pubkeyC: davePub,
+  });
+
+  const contract = new Contract(artifact, [], { provider, ignoreFunctionSelector: true, addressType: 'p2sh20' });
   return contract;
 }
