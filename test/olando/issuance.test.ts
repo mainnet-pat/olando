@@ -398,8 +398,6 @@ describe('test contract functions', () => {
       token: undefined,
     });
 
-    console.log(builder.outputs, proposedTx.libauth_generated_transaction.outputs)
-
     const result = builder.send();
     await expect(result).resolves.not.toThrow();
 

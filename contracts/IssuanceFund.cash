@@ -399,7 +399,6 @@ contract IssuanceFund(bytes councilFundLockingBytecode, bytes adminLockingByteco
   //   2: funding input
   //  outputs:
   //   0: same properties as input 0 paid to admin locking bytecode
-  //   1: admin output
   //   1: bch change output
   function dissolve() {
     // constrain the general transaction shape
@@ -416,6 +415,47 @@ contract IssuanceFund(bytes councilFundLockingBytecode, bytes adminLockingByteco
 
     // constrain the admin input, do not require it to be present in outputs
     require(tx.inputs[1].lockingBytecode == adminLockingBytecode, "Admin input must have the correct locking bytecode");
+
+    // bch change output is not burdened with any requirements
+  }
+
+  // dissolve contract and release tokens to admin
+  // tx layout:
+  //  inputs:
+  //   0: authguard
+  //   1: authkey
+  //   2: admin input
+  //   3: issuance fund input
+  //   4: funding input
+  //  outputs:
+  //   0: authguard output, receives mutable NFT from issuance fund input, commitment set to empty
+  //   1: authkey, no changes
+  //   2: bch change output
+  function dissolveIntoAuthguard() {
+    // constrain the general transaction shape
+    require(this.activeInputIndex == 3, "Active input index must be 3");
+    require(tx.inputs.length == 5, "Dissolve requires exactly 5 inputs");
+    require(tx.outputs.length == 3, "Dissolve requires exactly 3 outputs");
+
+    // constrain the authguard input and output
+    require(tx.outputs[0].lockingBytecode == tx.inputs[0].lockingBytecode, "Locking bytecode must be the same as authguard input");
+    require(tx.outputs[0].tokenCategory == (tx.inputs[0].tokenCategory + 0x01), "Token category must remain the same, become mutable NFT");
+    require(tx.outputs[0].tokenAmount == tx.inputs[0].tokenAmount + tx.inputs[3].tokenAmount, "Token amount must be the sum of authguard and issuance fund inputs");
+    require(tx.outputs[0].nftCommitment == 0x, "NFT commitment must be empty for authguard output");
+    require(tx.outputs[0].value == tx.inputs[0].value, "Output value must remain the same for authguard output");
+
+    // constrain the authkey input and output
+    require(tx.outputs[1].lockingBytecode == tx.inputs[1].lockingBytecode, "Locking bytecode must be the same as authkey input");
+    require(tx.outputs[1].tokenCategory == tx.inputs[1].tokenCategory, "Token category must remain the same");
+    require(tx.outputs[1].tokenAmount == tx.inputs[1].tokenAmount, "Token amount must remain the same");
+    require(tx.outputs[1].nftCommitment == tx.inputs[1].nftCommitment, "NFT commitment must remain the same");
+    require(tx.outputs[1].value == tx.inputs[1].value, "Output value must remain the same");
+
+    // constrain the admin input, do not require it to be present in outputs
+    require(tx.inputs[2].lockingBytecode == adminLockingBytecode, "Admin input must have the correct locking bytecode");
+
+    // constrain the issuance fund input and output
+    require(tx.outputs[0].tokenCategory == tx.inputs[3].tokenCategory, "Token category must remain the same");
 
     // bch change output is not burdened with any requirements
   }
