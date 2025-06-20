@@ -1,6 +1,8 @@
 import { hexToBin, padMinimallyEncodedVmNumber, bigIntToVmNumber, vmNumberToBigInt, cashAddressToLockingBytecode, decodeCashAddress, encodeCashAddress, CashAddressType, binToHex } from "@bitauth/libauth";
 import { Artifact, FunctionArgument, encodeFunctionArgument, MockNetworkProvider, Contract } from "cashscript";
 import CauldronPoolArtifact from "../artifacts/CauldronPool.artifact.js";
+import { NetworkProvider } from "cashscript";
+import AuthGuardArtifact from "../artifacts/AuthGuard.artifact.js";
 
 export const min = (...args: bigint[]) => args.reduce((m, e) => e < m ? e : m);
 export const require = (predicate: boolean, message: string) => {
@@ -78,3 +80,42 @@ export const getCauldronPoolContractInstance = (provider: MockNetworkProvider, p
   });
   return new Contract(cauldronArtifact, [], { provider, ignoreFunctionSelector: true });
 }
+
+// if we are at predeployment stage, we will look for auth guard with mutable capability and empty commitment
+// after the deployment the authguard will not have the NFT, as it will be moved to the issuance contract
+export const findAuthGuard = async ({
+    predeployment,
+    provider,
+    authKeyHolderAddress,
+    olandoCategory
+  } : {
+    predeployment: boolean,
+    provider: NetworkProvider,
+    authKeyHolderAddress: string,
+    olandoCategory: string
+  }) => {
+  const userUtxos = await provider.getUtxos(authKeyHolderAddress);
+  const authKeyCandidates = userUtxos.filter(utxo =>
+    utxo.token?.amount === 0n &&
+    utxo.token?.nft?.capability === 'none' &&
+    utxo.token.nft.commitment === '00'
+  );
+
+  for (const authKeyCandidate of authKeyCandidates) {
+    const authGuardContract = new Contract(AuthGuardArtifact, [binToHex(hexToBin(authKeyCandidate.token!.category).reverse())], { provider, addressType: "p2sh20" });
+    const contractUtxos = await provider.getUtxos(authGuardContract.address);
+    const authGuardCandidate = contractUtxos.find(contractUtxo =>
+      contractUtxo.token &&
+      contractUtxo.token.category === olandoCategory &&
+      contractUtxo.token.amount >= 8_888_888_888_888_88n && // 2 decimals
+      predeployment ? (
+        contractUtxo.token.nft?.capability === 'mutable' &&
+        contractUtxo.token.nft?.commitment === ''
+      ) : true
+    );
+
+    if (authGuardCandidate) {
+      return { authGuardContract, authGuardUtxo: authGuardCandidate, authKeyUtxo: authKeyCandidate };
+    }
+  };
+};

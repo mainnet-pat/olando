@@ -1,10 +1,9 @@
 import { Contract, NetworkProvider, SignatureTemplate, TransactionBuilder } from "cashscript";
-import { binToHex, hexToBin } from "@bitauth/libauth";
-import { olandoCategory, addressToLockScript, toTokenAddress, padVmNumber } from "./index.js";
+import { binToHex } from "@bitauth/libauth";
+import { olandoCategory, addressToLockScript, toTokenAddress, padVmNumber, findAuthGuard } from "./index.js";
 
 import IssuanceFundArtifact from '../artifacts/IssuanceFund.artifact.js';
 import Multisig_2of3Artifact from "../artifacts/Multisig_2of3.artifact.js";
-import AuthGuardArtifact from "../artifacts/AuthGuard.artifact.js";
 
 export const deployContractFromAuthGuard = async ({
   deployerAddress,
@@ -19,30 +18,12 @@ export const deployContractFromAuthGuard = async ({
   councilContract: Contract<typeof Multisig_2of3Artifact>,
   adminContract: Contract<typeof Multisig_2of3Artifact>,
 }) => {
-  const authGuard = await (async () => {
-    const userUtxos = await provider.getUtxos(deployerAddress);
-    const authKeyCandidates = userUtxos.filter(utxo =>
-      utxo.token?.amount === 0n &&
-      utxo.token?.nft?.capability === 'none' &&
-      utxo.token.nft.commitment === '00'
-    );
-
-    for (const authKeyCandidate of authKeyCandidates) {
-      const authGuardContract = new Contract(AuthGuardArtifact, [binToHex(hexToBin(authKeyCandidate.token!.category).reverse())], { provider, addressType: "p2sh20" });
-      const contractUtxos = await provider.getUtxos(authGuardContract.address);
-      const authGuardCandidate = contractUtxos.find(contractUtxo =>
-        contractUtxo.token &&
-        contractUtxo.token.category === olandoCategory &&
-        contractUtxo.token.amount >= 8_888_888_888_888_88n && // 2 decimals
-        contractUtxo.token.nft?.capability === 'mutable' &&
-        contractUtxo.token.nft?.commitment === ''
-      );
-
-      if (authGuardCandidate) {
-        return { authGuardContract, authGuardUtxo: authGuardCandidate, authKeyUtxo: authKeyCandidate };
-      }
-    };
-  })();
+  const authGuard = await findAuthGuard({
+    predeployment: true,
+    provider,
+    authKeyHolderAddress: deployerAddress,
+    olandoCategory: olandoCategory,
+  })
 
   if (!authGuard) {
     throw new Error('No valid auth guard pair found in the wallet');
