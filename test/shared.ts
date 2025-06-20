@@ -47,14 +47,15 @@ export const MockWallet = async (provider: MockNetworkProvider): Promise<TestNet
     }));
   };
 
+  wallet.submitTransaction = async (transaction: Uint8Array, awaitPropagation?: boolean | undefined): Promise<string> => {
+    const txid = await provider.sendRawTransaction(binToHex(transaction));
+    return txid;
+  };
+
   return wallet;
 }
 
 export const setupAuthGuard = async (provider: MockNetworkProvider) => {
-  provider.addUtxo(aliceAddress, randomUtxo({
-    satoshis: 100_000_000n, // 1 BCH
-  }));
-
   const authKeyUtxo = randomUtxo({
     satoshis: 1000n,
     token: randomNFT({

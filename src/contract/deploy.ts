@@ -1,9 +1,9 @@
 import { Contract, NetworkProvider, SignatureTemplate, TransactionBuilder } from "cashscript";
 import { binToHex } from "@bitauth/libauth";
-import { olandoCategory, addressToLockScript, toTokenAddress, padVmNumber, findAuthGuard } from "./index.js";
+import { olandoCategory, addressToLockScript, toTokenAddress, padVmNumber, findAuthGuard } from "../index.js";
 
-import IssuanceFundArtifact from '../artifacts/IssuanceFund.artifact.js';
-import Multisig_2of3Artifact from "../artifacts/Multisig_2of3.artifact.js";
+import IssuanceFundArtifact from '../../artifacts/IssuanceFund.artifact.js';
+import Multisig_2of3Artifact from "../../artifacts/Multisig_2of3.artifact.js";
 
 export const deployContractFromAuthGuard = async ({
   deployerAddress,

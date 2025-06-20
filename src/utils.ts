@@ -74,7 +74,7 @@ export const replaceArtifactPlaceholders = <T extends Artifact>(artifact: T, par
   return artifactCopy;
 };
 
-export const getCauldronPoolContractInstance = (provider: MockNetworkProvider, poolOwnerPublicKeyHash160: Uint8Array) => {
+export const getCauldronPoolContractInstance = (provider: NetworkProvider, poolOwnerPublicKeyHash160: Uint8Array) => {
   const cauldronArtifact = replaceArtifactPlaceholders(CauldronPoolArtifact, {
     pool_owner_public_key_hash160: poolOwnerPublicKeyHash160,
   });

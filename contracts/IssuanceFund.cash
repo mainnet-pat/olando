@@ -3,6 +3,9 @@
 // The contract is deployed with a fixed supply of 8,888,888,888.88 tokens.
 // The contract emits tokens based on the time since deployment and the amount of tokens bought so far.
 // The contract can be migrated to a new issuance or dissolved to release tokens to the admin.
+
+// NOTE: we are making use of nLocktime, which is MTP (Median Time Past) based.
+// We adjust the passed nLocktime by -2h to make the transactions immediately spendable.
 contract IssuanceFund(bytes councilFundLockingBytecode, bytes adminLockingBytecode) {
 
   // invest into Olando ecosystem by buying tokens from the cauldron pool
@@ -38,25 +41,22 @@ contract IssuanceFund(bytes councilFundLockingBytecode, bytes adminLockingByteco
 
     int SCALE = 1_000_000_000; // 1e9 for scaling
     int t = tx.locktime - deploymentTime; // time in seconds since deploymentTime
-    console.log(t, "time since start");
+
     int k = 3; // 3E-9 scaled by 1e9
     int denom = SCALE + k * t; // (1 + 3E-9 * t) * 1e9
     int denomSquared = denom * denom / SCALE; // (1 + 3E-9 * t)^2 * 1e9
     int currentEmissionCap = intialSupply * (SCALE - SCALE * SCALE / denomSquared) / SCALE;
-    console.log(currentEmissionCap, "current emission cap");
 
     // use inputs.length to find the cauldron token-buy output, since last ouput could be a bch change
     // here we already assume that the cauldron pool output got only 95% of the tokens bought, the other 5% are forwarded to council fund
     int tokensBought = 100 * tx.outputs[tx.inputs.length - 1].tokenAmount / 95;
     int issue = tokensBought * 9 / 10; // 90% of tokens bought
-    console.log("tokensBought", tokensBought, "issue", issue);
+
     require(issue <= currentEmissionCap - issued, "Issue amount exceeds current emission cap");
 
     // constrain the input 0 and output 0 to be the issuance fund
     require(this.activeInputIndex == 0, "Active input index must be 0 for issuance contract");
-    int expected = tx.inputs[this.activeInputIndex].tokenAmount - cauldronTradeAdjustedTokenAmount - cauldronTradeAdjustedTokenAmount;
-    int actual = tx.outputs[this.activeInputIndex].tokenAmount;
-    console.log(expected, actual);
+
     require(tx.outputs[this.activeInputIndex].tokenAmount == (tx.inputs[this.activeInputIndex].tokenAmount - cauldronTradeAdjustedTokenAmount - cauldronTradeAdjustedTokenAmount), "Wrong amount of tokens issued");
     require(tx.outputs[this.activeInputIndex].tokenCategory == tx.inputs[this.activeInputIndex].tokenCategory, "Can not change token category");
     require(tx.outputs[this.activeInputIndex].lockingBytecode == tx.inputs[this.activeInputIndex].lockingBytecode, "Can not change locking bytecode");
@@ -83,7 +83,6 @@ contract IssuanceFund(bytes councilFundLockingBytecode, bytes adminLockingByteco
     int index = this.activeInputIndex + 1;
     index = index + 1; // cauldron pool token output
     if (index + 1 < tx.inputs.length) {
-      console.log("Checking cauldron pool input and output at index", index);
       require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, "Cauldron pool contract signature must match");
 
       require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, "Cauldron pool token category must remain the same");
@@ -97,7 +96,6 @@ contract IssuanceFund(bytes councilFundLockingBytecode, bytes adminLockingByteco
 // #region 20 more cauldron pool input-output checks
     index = index + 1; // cauldron pool token output
     if (index + 1 < tx.inputs.length) {
-      console.log("Checking cauldron pool input and output at index", index);
       require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, "Cauldron pool contract signature must match");
 
       require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, "Cauldron pool token category must remain the same");
