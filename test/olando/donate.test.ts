@@ -1,13 +1,23 @@
 import 'cashscript/jest';
 import { MockNetworkProvider, randomUtxo, TransactionBuilder } from "cashscript";
-import { olandoCategory, toTokenAddress } from "../../src";
-import { aliceAddress, aliceSigTemplate, deployContractFromAuthGuard } from "../shared";
+import { deployContractFromAuthGuard, olandoCategory, toTokenAddress } from "../../src/index.js";
+import { aliceAddress, alicePriv, aliceSigTemplate, getAdminMultisig2of3Contract, getCouncilMultisig2of3Contract, setupAuthGuard } from "../shared.js";
 
 describe('Issuance Fund Contract Donation Tests', () => {
   it('test donation to contract, no token change', async () => {
     const provider = new MockNetworkProvider();
 
-    const { issuanceFundContract } = await deployContractFromAuthGuard(provider);
+    const councilMultisigContract = getCouncilMultisig2of3Contract(provider);
+    const adminMultisigContract = getAdminMultisig2of3Contract(provider);
+
+    await setupAuthGuard(provider);
+    const { issuanceFundContract } = await deployContractFromAuthGuard({
+      provider,
+      deployerAddress: aliceAddress,
+      deployerPriv: alicePriv,
+      councilContract: councilMultisigContract,
+      adminContract: adminMultisigContract,
+    });
 
     const contractUtxo = (await provider.getUtxos(issuanceFundContract.address)).find(u =>
       u.token?.category === olandoCategory &&
@@ -66,7 +76,17 @@ describe('Issuance Fund Contract Donation Tests', () => {
   it('test donation to contract, with token change', async () => {
     const provider = new MockNetworkProvider();
 
-    const { issuanceFundContract } = await deployContractFromAuthGuard(provider);
+    const councilMultisigContract = getCouncilMultisig2of3Contract(provider);
+    const adminMultisigContract = getAdminMultisig2of3Contract(provider);
+
+    await setupAuthGuard(provider);
+    const { issuanceFundContract } = await deployContractFromAuthGuard({
+      provider,
+      deployerAddress: aliceAddress,
+      deployerPriv: alicePriv,
+      councilContract: councilMultisigContract,
+      adminContract: adminMultisigContract,
+    });
 
     const contractUtxo = (await provider.getUtxos(issuanceFundContract.address)).find(u =>
       u.token?.category === olandoCategory &&
@@ -133,7 +153,17 @@ describe('Issuance Fund Contract Donation Tests', () => {
   it('test donation to contract, wrong token change', async () => {
     const provider = new MockNetworkProvider();
 
-    const { issuanceFundContract } = await deployContractFromAuthGuard(provider);
+    const councilMultisigContract = getCouncilMultisig2of3Contract(provider);
+    const adminMultisigContract = getAdminMultisig2of3Contract(provider);
+
+    await setupAuthGuard(provider);
+    const { issuanceFundContract } = await deployContractFromAuthGuard({
+      provider,
+      deployerAddress: aliceAddress,
+      deployerPriv: alicePriv,
+      councilContract: councilMultisigContract,
+      adminContract: adminMultisigContract,
+    });
 
     const contractUtxo = (await provider.getUtxos(issuanceFundContract.address)).find(u =>
       u.token?.category === olandoCategory &&
@@ -200,7 +230,17 @@ describe('Issuance Fund Contract Donation Tests', () => {
   it('test donation to contract, no token amount change for issuance fund', async () => {
     const provider = new MockNetworkProvider();
 
-    const { issuanceFundContract } = await deployContractFromAuthGuard(provider);
+    const councilMultisigContract = getCouncilMultisig2of3Contract(provider);
+    const adminMultisigContract = getAdminMultisig2of3Contract(provider);
+
+    await setupAuthGuard(provider);
+    const { issuanceFundContract } = await deployContractFromAuthGuard({
+      provider,
+      deployerAddress: aliceAddress,
+      deployerPriv: alicePriv,
+      councilContract: councilMultisigContract,
+      adminContract: adminMultisigContract,
+    });
 
     const contractUtxo = (await provider.getUtxos(issuanceFundContract.address)).find(u =>
       u.token?.category === olandoCategory &&

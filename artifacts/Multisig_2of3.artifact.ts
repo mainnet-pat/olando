@@ -28,7 +28,7 @@ export default {
   source: "",
   compiler: {
     name: "cashc",
-    version: "0.11.0-next.4"
+    version: "0.11.0"
   },
   updatedAt: "2025-06-12T06:27:28.123Z"
 } as const;

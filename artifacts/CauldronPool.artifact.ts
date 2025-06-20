@@ -24,7 +24,7 @@ export default {
   source: "https://raw.githubusercontent.com/hosseinzoda/cashlab/c2ef62036bfcc7f63e7b462ef285f9e94f0bce0f/src/cauldron/cauldron-libauth-template.json",
   compiler: {
     name: "cashc",
-    version: "0.11.0-next.4"
+    version: "0.11.0"
   },
   updatedAt: "2025-06-12T06:27:28.123Z"
 } as const;

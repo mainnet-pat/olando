@@ -391,33 +391,34 @@ contract IssuanceFund(bytes councilFundLockingBytecode, bytes adminLockingByteco
     // bch change output is not burdened with any requirements and must be taken care of by the spender
   }
 
-  // dissolve contract and release tokens to admin
-  // tx layout:
-  //  inputs:
-  //   0: issuance fund input
-  //   1: admin input
-  //   2: funding input
-  //  outputs:
-  //   0: same properties as input 0 paid to admin locking bytecode
-  //   1: bch change output
-  function dissolve() {
-    // constrain the general transaction shape
-    require(this.activeInputIndex == 0, "Active input index must be 0");
-    require(tx.inputs.length == 3, "Dissolve requires exactly 3 inputs");
-    require(tx.outputs.length == 2, "Dissolve requires exactly 2 outputs");
+  // NOTE: excluded due to input size limitations of 1650 bytes
+  // // dissolve contract and release tokens to admin
+  // // tx layout:
+  // //  inputs:
+  // //   0: issuance fund input
+  // //   1: admin input
+  // //   2: funding input
+  // //  outputs:
+  // //   0: same properties as input 0 paid to admin locking bytecode
+  // //   1: bch change output
+  // function dissolve() {
+  //   // constrain the general transaction shape
+  //   require(this.activeInputIndex == 0, "Active input index must be 0");
+  //   require(tx.inputs.length == 3, "Dissolve requires exactly 3 inputs");
+  //   require(tx.outputs.length == 2, "Dissolve requires exactly 2 outputs");
 
-    // constrain the issuance fund input and output
-    require(tx.outputs[0].lockingBytecode == tx.inputs[1].lockingBytecode, "Locking bytecode must be the same as admin input");
-    require(tx.outputs[0].tokenCategory == tx.inputs[0].tokenCategory, "Token category must remain the same");
-    require(tx.outputs[0].tokenAmount == tx.inputs[0].tokenAmount, "Token amount must remain the same");
-    require(tx.outputs[0].nftCommitment == tx.inputs[0].nftCommitment, "NFT commitment must remain the same");
-    require(tx.outputs[0].value == tx.inputs[0].value, "Output value must remain the same");
+  //   // constrain the issuance fund input and output
+  //   require(tx.outputs[0].lockingBytecode == tx.inputs[1].lockingBytecode, "Locking bytecode must be the same as admin input");
+  //   require(tx.outputs[0].tokenCategory == tx.inputs[0].tokenCategory, "Token category must remain the same");
+  //   require(tx.outputs[0].tokenAmount == tx.inputs[0].tokenAmount, "Token amount must remain the same");
+  //   require(tx.outputs[0].nftCommitment == tx.inputs[0].nftCommitment, "NFT commitment must remain the same");
+  //   require(tx.outputs[0].value == tx.inputs[0].value, "Output value must remain the same");
 
-    // constrain the admin input, do not require it to be present in outputs
-    require(tx.inputs[1].lockingBytecode == adminLockingBytecode, "Admin input must have the correct locking bytecode");
+  //   // constrain the admin input, do not require it to be present in outputs
+  //   require(tx.inputs[1].lockingBytecode == adminLockingBytecode, "Admin input must have the correct locking bytecode");
 
-    // bch change output is not burdened with any requirements
-  }
+  //   // bch change output is not burdened with any requirements
+  // }
 
   // dissolve contract and release tokens to admin
   // tx layout:

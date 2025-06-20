@@ -2,15 +2,26 @@ import 'cashscript/jest';
 import { binToHex, hexToBin } from '@bitauth/libauth';
 import { MockNetworkProvider, TransactionBuilder, Utxo, randomUtxo } from 'cashscript';
 import { libauthOutputToCashScriptOutput, zip } from 'cashscript/dist/utils.js';
-import { aliceAddress, aliceSigTemplate, MockWallet, setupFakeCauldronPools, require, deployContractFromAuthGuard } from '../shared.js';
-import { getCauldronPoolContractInstance, olandoCategory, padVmNumber, toTokenAddress, vmToBigInt } from '../../src/index.js';
+import { aliceAddress, aliceSigTemplate, MockWallet, setupFakeCauldronPools, alicePriv, getAdminMultisig2of3Contract, getCouncilMultisig2of3Contract, setupAuthGuard } from '../shared.js';
+import { getCauldronPoolContractInstance, olandoCategory, padVmNumber, toTokenAddress, vmToBigInt, require, deployContractFromAuthGuard } from '../../src/index.js';
 import { buildSwapTransaction } from '../../src/swap.js';
 
 describe('test contract functions', () => {
   it('test issuance function, fake pools', async () => {
     const provider = new MockNetworkProvider();
 
-    const { issuanceFundContract, councilFundContract } = await deployContractFromAuthGuard(provider);
+    const councilMultisigContract = getCouncilMultisig2of3Contract(provider);
+    const adminMultisigContract = getAdminMultisig2of3Contract(provider);
+
+    await setupAuthGuard(provider);
+    const { issuanceFundContract } = await deployContractFromAuthGuard({
+      provider,
+      deployerAddress: aliceAddress,
+      deployerPriv: alicePriv,
+      councilContract: councilMultisigContract,
+      adminContract: adminMultisigContract,
+    });
+
     const { fakeCauldron: cauldron } = await setupFakeCauldronPools(provider);
 
     const contractUtxo = (await provider.getUtxos(issuanceFundContract.address)).find(u =>
@@ -79,7 +90,7 @@ describe('test contract functions', () => {
         },
       })
       .addOutput({
-        to: councilFundContract.tokenAddress,
+        to: councilMultisigContract.tokenAddress,
         amount: 1000n,
         token: {
           category: olandoCategory,
@@ -138,7 +149,18 @@ describe('test contract functions', () => {
   it('test issuance function, fake pools, authguard', async () => {
     const provider = new MockNetworkProvider();
 
-    const { issuanceFundContract, councilFundContract } = await deployContractFromAuthGuard(provider);
+    const councilMultisigContract = getCouncilMultisig2of3Contract(provider);
+    const adminMultisigContract = getAdminMultisig2of3Contract(provider);
+
+    await setupAuthGuard(provider);
+    const { issuanceFundContract } = await deployContractFromAuthGuard({
+      provider,
+      deployerAddress: aliceAddress,
+      deployerPriv: alicePriv,
+      councilContract: councilMultisigContract,
+      adminContract: adminMultisigContract,
+    });
+
     const { fakeCauldron: cauldron } = await setupFakeCauldronPools(provider);
 
     const contractUtxo = (await provider.getUtxos(issuanceFundContract.address)).find(u =>
@@ -207,7 +229,7 @@ describe('test contract functions', () => {
         },
       })
       .addOutput({
-        to: councilFundContract.tokenAddress,
+        to: councilMultisigContract.tokenAddress,
         amount: 1000n,
         token: {
           category: olandoCategory,
@@ -266,7 +288,17 @@ describe('test contract functions', () => {
   it('test issuance function, real pools, cauldron placeholder unlocker', async () => {
     const provider = new MockNetworkProvider();
 
-    const { issuanceFundContract, councilFundContract } = await deployContractFromAuthGuard(provider);
+    const councilMultisigContract = getCouncilMultisig2of3Contract(provider);
+    const adminMultisigContract = getAdminMultisig2of3Contract(provider);
+
+    await setupAuthGuard(provider);
+    const { issuanceFundContract } = await deployContractFromAuthGuard({
+      provider,
+      deployerAddress: aliceAddress,
+      deployerPriv: alicePriv,
+      councilContract: councilMultisigContract,
+      adminContract: adminMultisigContract,
+    });
 
     const contractUtxo = (await provider.getUtxos(issuanceFundContract.address)).find(u =>
       u.token?.category === olandoCategory &&
@@ -363,7 +395,7 @@ describe('test contract functions', () => {
         },
       })
       .addOutput({
-        to: councilFundContract.tokenAddress,
+        to: councilMultisigContract.tokenAddress,
         amount: 1000n,
         token: {
           category: olandoCategory,
