@@ -18,10 +18,6 @@ export default {
           type: "int"
         }
       ]
-    },
-    {
-      name: "exchange",
-      inputs: []
     }
   ],
   bytecode: "OP_2 <pubkeyC> <pubkeyB> <pubkeyA> OP_3 OP_CHECKMULTISIG",

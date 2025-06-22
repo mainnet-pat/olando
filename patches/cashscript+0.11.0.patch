@@ -1,3 +1,23 @@
+diff --git a/node_modules/cashscript/dist/Argument.js b/node_modules/cashscript/dist/Argument.js
+index ce77eae..a8d2a7f 100644
+--- a/node_modules/cashscript/dist/Argument.js
++++ b/node_modules/cashscript/dist/Argument.js
+@@ -34,10 +34,12 @@ export function encodeFunctionArgument(argument, typeStr) {
+     if (!(argument instanceof Uint8Array)) {
+         throw Error(`Value for type ${type} should be a Uint8Array or hex string`);
+     }
+-    // Redefine SIG as a bytes65 so it is included in the size checks below
+-    // Note that ONLY Schnorr signatures are accepted
++    // Redefine SIG as a bytes65 (Schnorr) or bytes71 (ECDSA)
+     if (type === PrimitiveType.SIG && argument.byteLength !== 0) {
+-        type = new BytesType(65);
++        if (argument.byteLength !== 65 && argument.byteLength !== 71) {
++            throw new TypeError(`bytes${argument.byteLength}`, type);
++        }
++        type = new BytesType(argument.byteLength);
+     }
+     // Redefine DATASIG as a bytes64 so it is included in the size checks below
+     // Note that ONLY Schnorr signatures are accepted
 diff --git a/node_modules/cashscript/dist/Contract.d.ts b/node_modules/cashscript/dist/Contract.d.ts
 index 614c558..7dbf4c1 100644
 --- a/node_modules/cashscript/dist/Contract.d.ts
@@ -120,6 +140,18 @@ index 040442f..8102b52 100644
          ? ['// function index in contract', `<function_index> // int = <${functionIndex}>`, '']
          : [];
      return {
+diff --git a/node_modules/cashscript/dist/debugging.js b/node_modules/cashscript/dist/debugging.js
+index f473f81..8948eaf 100644
+--- a/node_modules/cashscript/dist/debugging.js
++++ b/node_modules/cashscript/dist/debugging.js
+@@ -229,6 +229,7 @@ const verifyFullTransaction = (template) => {
+         transaction: program.transaction,
+     });
+     if (typeof verificationResult === 'string') {
++        console.log(verificationResult);
+         throw new FailedTransactionError(verificationResult, getBitauthUri(template));
+     }
+ };
 diff --git a/node_modules/cashscript/dist/interfaces.d.ts b/node_modules/cashscript/dist/interfaces.d.ts
 index c019fa4..b2a8dde 100644
 --- a/node_modules/cashscript/dist/interfaces.d.ts

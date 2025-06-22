@@ -1,4 +1,4 @@
-import { hexToBin, padMinimallyEncodedVmNumber, bigIntToVmNumber, vmNumberToBigInt, cashAddressToLockingBytecode, decodeCashAddress, encodeCashAddress, CashAddressType, binToHex } from "@bitauth/libauth";
+import { hexToBin, padMinimallyEncodedVmNumber, bigIntToVmNumber, vmNumberToBigInt, cashAddressToLockingBytecode, decodeCashAddress, encodeCashAddress, CashAddressType, binToHex, CashAddressNetworkPrefix } from "@bitauth/libauth";
 import { Artifact, FunctionArgument, encodeFunctionArgument, MockNetworkProvider, Contract } from "cashscript";
 import CauldronPoolArtifact from "../artifacts/CauldronPool.artifact.js";
 import { NetworkProvider } from "cashscript";
@@ -34,7 +34,7 @@ export const toCashAddress = (address: string) => {
 
   return encodeCashAddress({
     ...decoded,
-    prefix: 'bchtest',
+    prefix: address.split(':')[0] as CashAddressNetworkPrefix,
     type: decoded.type.replace('WithTokens', '') as CashAddressType,
   }).address;
 }
@@ -47,7 +47,7 @@ export const toTokenAddress = (address: string) => {
 
   return encodeCashAddress({
     ...decoded,
-    prefix: 'bchtest',
+    prefix: decoded.prefix,
     type: decoded.type + 'WithTokens' as CashAddressType,
   }).address;
 }

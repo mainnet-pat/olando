@@ -1,17 +1,23 @@
 import 'cashscript/jest';
-import { HashType, MockNetworkProvider, randomUtxo, SignatureAlgorithm, SignatureTemplate, TransactionBuilder } from "cashscript";
-import { deployContractFromAuthGuard, findAuthGuard, olandoCategory, toTokenAddress } from "../../src/index.js";
-import { aliceAddress, aliceSigTemplate, alicePriv, bobPriv, getAdminMultisig2of3Contract, getCouncilMultisig2of3Contract, setupAuthGuard } from "../shared.js";
+import { GenerateUnlockingBytecodeOptions, HashType, MockNetworkProvider, randomUtxo, SignatureAlgorithm, SignatureTemplate, TransactionBuilder, Utxo } from "cashscript";
+import { addMultisigSignature, deployContractFromAuthGuard, dissolveIssuanceFund, olandoCategory, toTokenAddress } from "../../src/index.js";
+import { aliceAddress, alicePriv, bobPriv, getAdminMultisig2of3Contract, getCouncilMultisig2of3Contract, setupAuthGuard } from "../shared.js";
+import { AuthenticationInstructionPush, AuthenticationInstructions, binToHex, CashAddressResult, decodeAuthenticationInstructions, decodeTransaction, encodeCashAddress, hexToBin, lockingBytecodeToCashAddress, Transaction } from '@bitauth/libauth';
+import { getNetworkPrefix } from 'cashscript/dist/utils.js';
 
 describe('Dissolving Contract', () => {
   it('test dissolving back into authguard', async () => {
     const provider = new MockNetworkProvider();
 
+    provider.addUtxo(aliceAddress, randomUtxo({
+      satoshis: BigInt(0.2 * 1e8),
+    }));
+
     const councilMultisigContract = getCouncilMultisig2of3Contract(provider);
     const adminMultisigContract = getAdminMultisig2of3Contract(provider);
 
     await setupAuthGuard(provider);
-    const { issuanceFundContract } = await deployContractFromAuthGuard({
+    await deployContractFromAuthGuard({
       provider,
       deployerAddress: aliceAddress,
       deployerPriv: alicePriv,
@@ -19,80 +25,60 @@ describe('Dissolving Contract', () => {
       adminContract: adminMultisigContract,
     });
 
-    const authGuard = await findAuthGuard({
-      predeployment: false,
-      provider,
-      authKeyHolderAddress: aliceAddress,
-      olandoCategory: olandoCategory,
-    });
-
-    if (!authGuard) {
-      throw new Error('No valid auth guard pair found in the wallet');
-    }
-
-    const contractUtxo = (await provider.getUtxos(issuanceFundContract.address)).find(u =>
-      u.token?.category === olandoCategory &&
-      u.token?.nft?.capability === 'mutable' &&
-      u.token.nft.commitment.length === 16
-    )!;
-
-    const adminUtxo = (await provider.getUtxos(adminMultisigContract.address)).find(u =>
-      u.satoshis === 1000n,
-    )!;
-
-    // funding + cauldron token-buy bch input
-    const fundingUtxo = randomUtxo({
-      satoshis: 100_000_000n, // 1 BCH
-    });
-    provider.addUtxo(aliceAddress, fundingUtxo);
-
     const sigA = new SignatureTemplate(alicePriv, HashType.SIGHASH_ALL, SignatureAlgorithm.ECDSA);
     const sigB = new SignatureTemplate(bobPriv, HashType.SIGHASH_ALL, SignatureAlgorithm.ECDSA);
 
-    const builder = new TransactionBuilder({ provider })
-      .addInput(authGuard.authGuardUtxo, authGuard.authGuardContract.unlock.unlockWithNft(true))
-      .addInput(authGuard.authKeyUtxo, aliceSigTemplate.unlockP2PKH())
-      .addInput(adminUtxo, adminMultisigContract.unlock.spend(sigA, sigB, 0n))
-      .addInput(contractUtxo, issuanceFundContract.unlock.dissolveIntoAuthguard())
-      .addInput(fundingUtxo, aliceSigTemplate.unlockP2PKH())
-      .addOutput({
-        to: authGuard.authGuardContract.tokenAddress,
-        amount: authGuard.authGuardUtxo.satoshis,
-        token: {
-          ...authGuard.authGuardUtxo.token!,
-          amount: authGuard.authGuardUtxo.token!.amount + contractUtxo.token!.amount,
-          nft: {
-            ...authGuard.authGuardUtxo.token!.nft,
-            capability: 'mutable',
-            commitment: '',
-          }
-        },
-      })
-      .addOutput({
-        to: toTokenAddress(aliceAddress),
-        amount: authGuard.authKeyUtxo.satoshis,
-        token: {
-          ...authGuard.authKeyUtxo.token!,
-        },
-      });
+    await dissolveIssuanceFund({
+      aliceAddress,
+      alicePriv,
+      provider,
+      olandoCategory,
+      councilMultisigContract,
+      adminMultisigContract,
+      signatures: [sigA, sigB],
+    });
+  });
 
-    const txSize = builder.build().length / 2;
-    const change = builder.inputs.reduce((sum, input) => sum + input.satoshis, 0n) -
-      builder.outputs.reduce((sum, output) => sum + (output.amount ?? 0n), 0n);
-    builder.addOutput({
-      to: aliceAddress,
-      amount: change - BigInt(txSize) - 100n, // BCH change
-      token: undefined,
+  it('test dissolving back into authguard, interactive', async () => {
+    const provider = new MockNetworkProvider();
+
+    provider.addUtxo(aliceAddress, randomUtxo({
+      satoshis: BigInt(0.2 * 1e8),
+    }));
+
+    const councilMultisigContract = getCouncilMultisig2of3Contract(provider);
+    const adminMultisigContract = getAdminMultisig2of3Contract(provider);
+
+    await setupAuthGuard(provider);
+    await deployContractFromAuthGuard({
+      provider,
+      deployerAddress: aliceAddress,
+      deployerPriv: alicePriv,
+      councilContract: councilMultisigContract,
+      adminContract: adminMultisigContract,
     });
 
-    const result = builder.send();
-    await expect(result).resolves.not.toThrow();
+    const sigA = new SignatureTemplate(alicePriv, HashType.SIGHASH_ALL, SignatureAlgorithm.ECDSA);
+    const sigB = Uint8Array.from(Array(71));
 
-    {
-      const txSize = builder.build().length / 2;
-      const change = builder.inputs.reduce((sum, input) => sum + input.satoshis, 0n) -
-        builder.outputs.reduce((sum, output) => sum + (output.amount ?? 0n), 0n);
-      console.log(`Transaction size: ${txSize} bytes, change: ${change} satoshis, fee/byte ${Number(change) / txSize}`);
-    }
+    const partiallySignedTxHex = await dissolveIssuanceFund({
+      aliceAddress,
+      alicePriv,
+      provider,
+      olandoCategory,
+      councilMultisigContract,
+      adminMultisigContract,
+      signatures: [sigA, sigB],
+      send: false,
+    });
+
+    await addMultisigSignature({
+      partiallySignedTxHex,
+      provider,
+      adminMultisigContract,
+      multisigInputIndex: 2,
+      privateKey: bobPriv,
+      send: true,
+    });
   });
 });
