@@ -1,9 +1,7 @@
+import { HashType, MockNetworkProvider, randomUtxo, SignatureAlgorithm, SignatureTemplate } from "cashscript";
 import 'cashscript/jest';
-import { GenerateUnlockingBytecodeOptions, HashType, MockNetworkProvider, randomUtxo, SignatureAlgorithm, SignatureTemplate, TransactionBuilder, Utxo } from "cashscript";
-import { addMultisigSignature, deployContractFromAuthGuard, dissolveIssuanceFund, olandoCategory, toTokenAddress } from "../../src/index.js";
+import { addMultisigSignature, deployContractFromAuthGuard, dissolveIssuanceFund, olandoCategory } from "../../src/index.js";
 import { aliceAddress, alicePriv, bobPriv, getAdminMultisig2of3Contract, getCouncilMultisig2of3Contract, setupAuthGuard } from "../shared.js";
-import { AuthenticationInstructionPush, AuthenticationInstructions, binToHex, CashAddressResult, decodeAuthenticationInstructions, decodeTransaction, encodeCashAddress, hexToBin, lockingBytecodeToCashAddress, Transaction } from '@bitauth/libauth';
-import { getNetworkPrefix } from 'cashscript/dist/utils.js';
 
 describe('Dissolving Contract', () => {
   it('test dissolving back into authguard', async () => {

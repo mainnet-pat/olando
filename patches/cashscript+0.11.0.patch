@@ -1,5 +1,5 @@
 diff --git a/node_modules/cashscript/dist/Argument.js b/node_modules/cashscript/dist/Argument.js
-index ce77eae..a8d2a7f 100644
+index ce77eae..a880a67 100644
 --- a/node_modules/cashscript/dist/Argument.js
 +++ b/node_modules/cashscript/dist/Argument.js
 @@ -34,10 +34,12 @@ export function encodeFunctionArgument(argument, typeStr) {
@@ -8,10 +8,10 @@ index ce77eae..a8d2a7f 100644
      }
 -    // Redefine SIG as a bytes65 so it is included in the size checks below
 -    // Note that ONLY Schnorr signatures are accepted
-+    // Redefine SIG as a bytes65 (Schnorr) or bytes71 (ECDSA)
++    // Redefine SIG as a bytes65 (Schnorr) or bytes71, bytes72 (ECDSA)
      if (type === PrimitiveType.SIG && argument.byteLength !== 0) {
 -        type = new BytesType(65);
-+        if (argument.byteLength !== 65 && argument.byteLength !== 71) {
++        if (![65, 71, 72].includes(argument.byteLength)) {
 +            throw new TypeError(`bytes${argument.byteLength}`, type);
 +        }
 +        type = new BytesType(argument.byteLength);
