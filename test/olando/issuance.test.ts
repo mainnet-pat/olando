@@ -1,10 +1,7 @@
+import { MockNetworkProvider, randomUtxo } from 'cashscript';
 import 'cashscript/jest';
-import { binToHex, hexToBin } from '@bitauth/libauth';
-import { MockNetworkProvider, TransactionBuilder, Utxo, randomUtxo } from 'cashscript';
-import { libauthOutputToCashScriptOutput, zip } from 'cashscript/dist/utils.js';
-import { aliceAddress, aliceSigTemplate, MockWallet, setupFakeCauldronPools, alicePriv, getAdminMultisig2of3Contract, getCouncilMultisig2of3Contract, setupAuthGuard } from '../shared.js';
-import { getCauldronPoolContractInstance, olandoCategory, padVmNumber, toTokenAddress, vmToBigInt, require, deployContractFromAuthGuard, investInIssuanceFund } from '../../src/index.js';
-import { buildSwapTransaction } from '../../src/swap.js';
+import { deployContractFromAuthGuard, investInIssuanceFund, olandoCategory } from '../../src/index.js';
+import { aliceAddress, alicePriv, getAdminMultisig2of3Contract, getCouncilMultisig2of3Contract, MockWallet, setupAuthGuard } from '../shared.js';
 
 describe('test contract functions', () => {
   it('test issuance function', async () => {

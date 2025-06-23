@@ -1,17 +1,22 @@
+import { MockNetworkProvider, randomUtxo } from "cashscript";
 import 'cashscript/jest';
-import { MockNetworkProvider, randomUtxo, TransactionBuilder } from "cashscript";
-import { deployContractFromAuthGuard, olandoCategory, toTokenAddress } from "../../src/index.js";
-import { aliceAddress, alicePriv, aliceSigTemplate, getAdminMultisig2of3Contract, getCouncilMultisig2of3Contract, setupAuthGuard } from "../shared.js";
+import { deployContractFromAuthGuard, donate, olandoCategory } from "../../src/index.js";
+import { aliceAddress, alicePriv, getAdminMultisig2of3Contract, getCouncilMultisig2of3Contract, MockWallet, setupAuthGuard } from "../shared.js";
 
 describe('Issuance Fund Contract Donation Tests', () => {
   it('test donation to contract, no token change', async () => {
     const provider = new MockNetworkProvider();
+    provider.reset();
+
+    provider.addUtxo(aliceAddress, randomUtxo({
+      satoshis: BigInt(0.12 * 1e8),
+    }));
 
     const councilMultisigContract = getCouncilMultisig2of3Contract(provider);
     const adminMultisigContract = getAdminMultisig2of3Contract(provider);
 
     await setupAuthGuard(provider);
-    const { issuanceFundContract } = await deployContractFromAuthGuard({
+    await deployContractFromAuthGuard({
       provider,
       deployerAddress: aliceAddress,
       deployerPriv: alicePriv,
@@ -19,14 +24,8 @@ describe('Issuance Fund Contract Donation Tests', () => {
       adminContract: adminMultisigContract,
     });
 
-    const contractUtxo = (await provider.getUtxos(issuanceFundContract.address)).find(u =>
-      u.token?.category === olandoCategory &&
-      u.token?.nft?.capability === 'mutable' &&
-      u.token.nft.commitment.length === 16
-    )!;
-
     const donationUtxo = randomUtxo({
-      satoshis: 1000n, // 1 BCH
+      satoshis: 1000n,
       token: {
         amount: 10_00n, // 2 decimals
         category: olandoCategory,
@@ -34,53 +33,31 @@ describe('Issuance Fund Contract Donation Tests', () => {
     });
     provider.addUtxo(aliceAddress, donationUtxo);
 
-    // funding + cauldron token-buy bch input
-    const fundingUtxo = randomUtxo({
-      satoshis: 100_000_000n, // 1 BCH
+    await donate({
+      aliceAddress,
+      alicePriv,
+      wallet: await MockWallet(provider),
+      provider,
+      olandoCategory,
+      councilMultisigContract,
+      adminMultisigContract,
+      donationTokenAmount: donationUtxo.token!.amount,
     });
-    provider.addUtxo(aliceAddress, fundingUtxo);
-
-    const builder = new TransactionBuilder({ provider })
-      .addInput(contractUtxo, issuanceFundContract.unlock.donate())
-      .addInput(donationUtxo, aliceSigTemplate.unlockP2PKH())
-      .addInput(fundingUtxo, aliceSigTemplate.unlockP2PKH())
-      .addOutput({
-        to: issuanceFundContract.tokenAddress,
-        amount: contractUtxo.satoshis,
-        token: {
-          ...contractUtxo.token!,
-          amount: contractUtxo.token!.amount + donationUtxo.token!.amount,
-        },
-      });
-
-    const txSize = builder.build().length / 2;
-    const change = builder.inputs.reduce((sum, input) => sum + input.satoshis, 0n) -
-      builder.outputs.reduce((sum, output) => sum + (output.amount ?? 0n), 0n);
-    builder.addOutput({
-      to: aliceAddress,
-      amount: change - BigInt(txSize) - 100n, // BCH change
-      token: undefined,
-    });
-
-    const result = builder.send();
-    await expect(result).resolves.not.toThrow();
-
-    {
-      const txSize = builder.build().length / 2;
-      const change = builder.inputs.reduce((sum, input) => sum + input.satoshis, 0n) -
-        builder.outputs.reduce((sum, output) => sum + (output.amount ?? 0n), 0n);
-      console.log(`Transaction size: ${txSize} bytes, change: ${change} satoshis, fee/byte ${Number(change) / txSize}`);
-    }
   });
 
   it('test donation to contract, with token change', async () => {
     const provider = new MockNetworkProvider();
+    provider.reset();
+
+    provider.addUtxo(aliceAddress, randomUtxo({
+      satoshis: BigInt(0.12 * 1e8),
+    }));
 
     const councilMultisigContract = getCouncilMultisig2of3Contract(provider);
     const adminMultisigContract = getAdminMultisig2of3Contract(provider);
 
     await setupAuthGuard(provider);
-    const { issuanceFundContract } = await deployContractFromAuthGuard({
+    await deployContractFromAuthGuard({
       provider,
       deployerAddress: aliceAddress,
       deployerPriv: alicePriv,
@@ -88,14 +65,8 @@ describe('Issuance Fund Contract Donation Tests', () => {
       adminContract: adminMultisigContract,
     });
 
-    const contractUtxo = (await provider.getUtxos(issuanceFundContract.address)).find(u =>
-      u.token?.category === olandoCategory &&
-      u.token?.nft?.capability === 'mutable' &&
-      u.token.nft.commitment.length === 16
-    )!;
-
     const donationUtxo = randomUtxo({
-      satoshis: 1000n, // 1 BCH
+      satoshis: 1000n,
       token: {
         amount: 10_00n, // 2 decimals
         category: olandoCategory,
@@ -103,61 +74,31 @@ describe('Issuance Fund Contract Donation Tests', () => {
     });
     provider.addUtxo(aliceAddress, donationUtxo);
 
-    // funding + cauldron token-buy bch input
-    const fundingUtxo = randomUtxo({
-      satoshis: 100_000_000n, // 1 BCH
+    await donate({
+      aliceAddress,
+      alicePriv,
+      wallet: await MockWallet(provider),
+      provider,
+      olandoCategory,
+      councilMultisigContract,
+      adminMultisigContract,
+      donationTokenAmount: donationUtxo.token!.amount - 10n,
     });
-    provider.addUtxo(aliceAddress, fundingUtxo);
-
-    const builder = new TransactionBuilder({ provider })
-      .addInput(contractUtxo, issuanceFundContract.unlock.donate())
-      .addInput(donationUtxo, aliceSigTemplate.unlockP2PKH())
-      .addInput(fundingUtxo, aliceSigTemplate.unlockP2PKH())
-      .addOutput({
-        to: issuanceFundContract.tokenAddress,
-        amount: contractUtxo.satoshis,
-        token: {
-          ...contractUtxo.token!,
-          amount: contractUtxo.token!.amount + donationUtxo.token!.amount - 2_00n,
-        },
-      })
-      .addOutput({
-        to: toTokenAddress(aliceAddress),
-        amount: 1000n,
-        token: {
-          ...donationUtxo.token!,
-          amount: 2_00n,
-        }
-      });
-
-    const txSize = builder.build().length / 2;
-    const change = builder.inputs.reduce((sum, input) => sum + input.satoshis, 0n) -
-      builder.outputs.reduce((sum, output) => sum + (output.amount ?? 0n), 0n);
-    builder.addOutput({
-      to: aliceAddress,
-      amount: change - BigInt(txSize) - 100n, // BCH change
-      token: undefined,
-    });
-
-    const result = builder.send();
-    await expect(result).resolves.not.toThrow();
-
-    {
-      const txSize = builder.build().length / 2;
-      const change = builder.inputs.reduce((sum, input) => sum + input.satoshis, 0n) -
-        builder.outputs.reduce((sum, output) => sum + (output.amount ?? 0n), 0n);
-      console.log(`Transaction size: ${txSize} bytes, change: ${change} satoshis, fee/byte ${Number(change) / txSize}`);
-    }
   });
 
-  it('test donation to contract, wrong token change', async () => {
+  it('test donation to contract, not enough tokens', async () => {
     const provider = new MockNetworkProvider();
+    provider.reset();
+
+    provider.addUtxo(aliceAddress, randomUtxo({
+      satoshis: BigInt(0.12 * 1e8),
+    }));
 
     const councilMultisigContract = getCouncilMultisig2of3Contract(provider);
     const adminMultisigContract = getAdminMultisig2of3Contract(provider);
 
     await setupAuthGuard(provider);
-    const { issuanceFundContract } = await deployContractFromAuthGuard({
+    await deployContractFromAuthGuard({
       provider,
       deployerAddress: aliceAddress,
       deployerPriv: alicePriv,
@@ -165,14 +106,8 @@ describe('Issuance Fund Contract Donation Tests', () => {
       adminContract: adminMultisigContract,
     });
 
-    const contractUtxo = (await provider.getUtxos(issuanceFundContract.address)).find(u =>
-      u.token?.category === olandoCategory &&
-      u.token?.nft?.capability === 'mutable' &&
-      u.token.nft.commitment.length === 16
-    )!;
-
     const donationUtxo = randomUtxo({
-      satoshis: 1000n, // 1 BCH
+      satoshis: 1000n,
       token: {
         amount: 10_00n, // 2 decimals
         category: olandoCategory,
@@ -180,61 +115,31 @@ describe('Issuance Fund Contract Donation Tests', () => {
     });
     provider.addUtxo(aliceAddress, donationUtxo);
 
-    // funding + cauldron token-buy bch input
-    const fundingUtxo = randomUtxo({
-      satoshis: 100_000_000n, // 1 BCH
-    });
-    provider.addUtxo(aliceAddress, fundingUtxo);
-
-    const builder = new TransactionBuilder({ provider })
-      .addInput(contractUtxo, issuanceFundContract.unlock.donate())
-      .addInput(donationUtxo, aliceSigTemplate.unlockP2PKH())
-      .addInput(fundingUtxo, aliceSigTemplate.unlockP2PKH())
-      .addOutput({
-        to: issuanceFundContract.tokenAddress,
-        amount: contractUtxo.satoshis,
-        token: {
-          ...contractUtxo.token!,
-          amount: contractUtxo.token!.amount + donationUtxo.token!.amount - 2_00n,
-        },
-      })
-      .addOutput({
-        to: toTokenAddress(aliceAddress),
-        amount: 1000n,
-        token: {
-          ...donationUtxo.token!,
-          amount: 1_00n,
-        }
-      });
-
-    const txSize = builder.build().length / 2;
-    const change = builder.inputs.reduce((sum, input) => sum + input.satoshis, 0n) -
-      builder.outputs.reduce((sum, output) => sum + (output.amount ?? 0n), 0n);
-    builder.addOutput({
-      to: aliceAddress,
-      amount: change - BigInt(txSize) - 100n, // BCH change
-      token: undefined,
-    });
-
-    const result = builder.send();
-    await expect(result).resolves.not.toThrow();
-
-    {
-      const txSize = builder.build().length / 2;
-      const change = builder.inputs.reduce((sum, input) => sum + input.satoshis, 0n) -
-        builder.outputs.reduce((sum, output) => sum + (output.amount ?? 0n), 0n);
-      console.log(`Transaction size: ${txSize} bytes, change: ${change} satoshis, fee/byte ${Number(change) / txSize}`);
-    }
+    await expect(donate({
+      aliceAddress,
+      alicePriv,
+      wallet: await MockWallet(provider),
+      provider,
+      olandoCategory,
+      councilMultisigContract,
+      adminMultisigContract,
+      donationTokenAmount: donationUtxo.token!.amount + 10n, // Not enough tokens
+    })).rejects.toThrow("Not enough");
   });
 
-  it('test donation to contract, no token amount change for issuance fund', async () => {
+  it('test donation to contract, 0 token amount', async () => {
     const provider = new MockNetworkProvider();
+    provider.reset();
+
+    provider.addUtxo(aliceAddress, randomUtxo({
+      satoshis: BigInt(0.12 * 1e8),
+    }));
 
     const councilMultisigContract = getCouncilMultisig2of3Contract(provider);
     const adminMultisigContract = getAdminMultisig2of3Contract(provider);
 
     await setupAuthGuard(provider);
-    const { issuanceFundContract } = await deployContractFromAuthGuard({
+    await deployContractFromAuthGuard({
       provider,
       deployerAddress: aliceAddress,
       deployerPriv: alicePriv,
@@ -242,65 +147,24 @@ describe('Issuance Fund Contract Donation Tests', () => {
       adminContract: adminMultisigContract,
     });
 
-    const contractUtxo = (await provider.getUtxos(issuanceFundContract.address)).find(u =>
-      u.token?.category === olandoCategory &&
-      u.token?.nft?.capability === 'mutable' &&
-      u.token.nft.commitment.length === 16
-    )!;
-
     const donationUtxo = randomUtxo({
-      satoshis: 1000n, // 1 BCH
+      satoshis: 1000n,
       token: {
-        amount: 10_00n, // 2 decimals
+        amount: 0n,
         category: olandoCategory,
       }
     });
     provider.addUtxo(aliceAddress, donationUtxo);
 
-    // funding + cauldron token-buy bch input
-    const fundingUtxo = randomUtxo({
-      satoshis: 100_000_000n, // 1 BCH
-    });
-    provider.addUtxo(aliceAddress, fundingUtxo);
-
-    const builder = new TransactionBuilder({ provider })
-      .addInput(contractUtxo, issuanceFundContract.unlock.donate())
-      .addInput(donationUtxo, aliceSigTemplate.unlockP2PKH())
-      .addInput(fundingUtxo, aliceSigTemplate.unlockP2PKH())
-      .addOutput({
-        to: issuanceFundContract.tokenAddress,
-        amount: contractUtxo.satoshis,
-        token: {
-          ...contractUtxo.token!,
-          amount: contractUtxo.token!.amount,
-        },
-      })
-      .addOutput({
-        to: toTokenAddress(aliceAddress),
-        amount: 1000n,
-        token: {
-          ...donationUtxo.token!,
-          amount: 10_00n,
-        }
-      });
-
-    const txSize = builder.build().length / 2;
-    const change = builder.inputs.reduce((sum, input) => sum + input.satoshis, 0n) -
-      builder.outputs.reduce((sum, output) => sum + (output.amount ?? 0n), 0n);
-    builder.addOutput({
-      to: aliceAddress,
-      amount: change - BigInt(txSize) - 100n, // BCH change
-      token: undefined,
-    });
-
-    const result = builder.send();
-    await expect(result).rejects.toThrow(/Token amount must increase/);
-
-    {
-      const txSize = builder.build().length / 2;
-      const change = builder.inputs.reduce((sum, input) => sum + input.satoshis, 0n) -
-        builder.outputs.reduce((sum, output) => sum + (output.amount ?? 0n), 0n);
-      console.log(`Transaction size: ${txSize} bytes, change: ${change} satoshis, fee/byte ${Number(change) / txSize}`);
-    }
+    await expect(donate({
+      aliceAddress,
+      alicePriv,
+      wallet: await MockWallet(provider),
+      provider,
+      olandoCategory,
+      councilMultisigContract,
+      adminMultisigContract,
+      donationTokenAmount: donationUtxo.token!.amount,
+    })).rejects.toThrow("Donation token amount must be greater than zero");
   });
 });
