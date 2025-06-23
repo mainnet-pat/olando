@@ -1,6 +1,6 @@
 import { MockNetworkProvider, randomUtxo } from "cashscript";
-import { aliceAddress, MockWallet } from "./shared.js";
 import { buildSwapTransaction } from "../src/swap.js";
+import { aliceAddress, MockWallet } from "./shared.js";
 
 describe('test mock swaps', () => {
   it('should mock a swap', async () => {

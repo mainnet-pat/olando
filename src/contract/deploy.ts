@@ -1,10 +1,10 @@
-import { Contract, NetworkProvider, SignatureTemplate, TransactionBuilder } from "cashscript";
 import { binToHex } from "@bitauth/libauth";
-import { olandoCategory, addressToLockScript, toTokenAddress, padVmNumber, findAuthGuard } from "../index.js";
-
+import { Contract, NetworkProvider, SignatureTemplate, TransactionBuilder } from "cashscript";
 import IssuanceFundArtifact from '../../artifacts/IssuanceFund.artifact.js';
 import Multisig_2of3Artifact from "../../artifacts/Multisig_2of3.artifact.js";
+import { addressToLockScript, findAuthGuard, olandoCategory, padVmNumber, toTokenAddress } from "../index.js";
 
+// Deploys the IssuanceFund contract, transfers the mutable authguarded NFT to the IssuanceFund contract.
 export const deployContractFromAuthGuard = async ({
   deployerAddress,
   deployerPriv,

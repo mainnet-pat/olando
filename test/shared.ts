@@ -1,9 +1,9 @@
-import { secp256k1, encodeCashAddress, hexToBin, hash160, encodePrivateKeyWif } from "@bitauth/libauth";
+import { encodeCashAddress, encodePrivateKeyWif, hash160, hexToBin, secp256k1 } from "@bitauth/libauth";
 import { Contract, MockNetworkProvider, randomNFT, randomUtxo, SignatureTemplate } from "cashscript";
 import { binToHex, TestNetWallet, TokenI, UtxoI } from "mainnet-js";
-import { getCauldronPoolContractInstance, olandoCategory, replaceArtifactPlaceholders } from "../src";
-import Multisig_2of3Artifact from "../artifacts/Multisig_2of3.artifact.js";
 import AuthGuardArtifact from "../artifacts/AuthGuard.artifact.js";
+import Multisig_2of3Artifact from "../artifacts/Multisig_2of3.artifact.js";
+import { getCauldronPoolContractInstance, olandoCategory, replaceArtifactPlaceholders } from "../src";
 
 export const alicePriv = hexToBin('1'.repeat(64));
 export const aliceSigTemplate = new SignatureTemplate(alicePriv);

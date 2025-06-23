@@ -1,8 +1,7 @@
-import { hexToBin, padMinimallyEncodedVmNumber, bigIntToVmNumber, vmNumberToBigInt, cashAddressToLockingBytecode, decodeCashAddress, encodeCashAddress, CashAddressType, binToHex, CashAddressNetworkPrefix } from "@bitauth/libauth";
-import { Artifact, FunctionArgument, encodeFunctionArgument, MockNetworkProvider, Contract } from "cashscript";
-import CauldronPoolArtifact from "../artifacts/CauldronPool.artifact.js";
-import { NetworkProvider } from "cashscript";
+import { bigIntToVmNumber, binToHex, CashAddressNetworkPrefix, cashAddressToLockingBytecode, CashAddressType, decodeCashAddress, encodeCashAddress, hexToBin, padMinimallyEncodedVmNumber, vmNumberToBigInt } from "@bitauth/libauth";
+import { Artifact, Contract, encodeFunctionArgument, FunctionArgument, MockNetworkProvider, NetworkProvider } from "cashscript";
 import AuthGuardArtifact from "../artifacts/AuthGuard.artifact.js";
+import CauldronPoolArtifact from "../artifacts/CauldronPool.artifact.js";
 
 export const min = (...args: bigint[]) => args.reduce((m, e) => e < m ? e : m);
 export const require = (predicate: boolean, message: string) => {

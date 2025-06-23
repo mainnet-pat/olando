@@ -1,6 +1,5 @@
-import { HashType, MockNetworkProvider, randomUtxo, SignatureAlgorithm, TransactionBuilder } from "cashscript";
-import { alicePriv, aliceAddress, bobPriv, getAdminMultisig2of3Contract } from "./shared.js";
-import { SignatureTemplate } from "cashscript";
+import { HashType, MockNetworkProvider, randomUtxo, SignatureAlgorithm, SignatureTemplate, TransactionBuilder } from "cashscript";
+import { aliceAddress, alicePriv, bobPriv, getAdminMultisig2of3Contract } from "./shared.js";
 
 describe("Multisig 2of3", () => {
   it("should create a multisig contract and spend from it", async () => {
