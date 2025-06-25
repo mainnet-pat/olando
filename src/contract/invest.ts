@@ -48,7 +48,7 @@ export const investInIssuanceFund = async ({
   const deploymentTime = vmToBigInt(contractUtxo.token!.nft!.commitment.slice(0, 8));
   const lastInteractionTime = vmToBigInt(contractUtxo.token!.nft!.commitment.slice(8, 16));
 
-  const userBchUtxos = userUtxos.filter(u => u.token === undefined);
+  let userBchUtxos = userUtxos.filter(u => u.token === undefined);
   if (userBchUtxos.length === 0) {
     throw new Error(`No BCH UTXOs found for ${aliceAddress}`);
   }
@@ -59,6 +59,8 @@ export const investInIssuanceFund = async ({
       unit: 'sat',
       value: 1000,
     }));
+    userUtxos = await provider.getUtxos(aliceAddress);
+    userBchUtxos = userUtxos.filter(u => u.token === undefined);
   }
 
   const balance = userBchUtxos.reduce((sum, u) => sum + u.satoshis, 0n);
