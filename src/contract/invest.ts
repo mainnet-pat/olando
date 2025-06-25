@@ -223,4 +223,6 @@ export const investInIssuanceFund = async ({
   //     builder.outputs.reduce((sum, output) => sum + (output.amount ?? 0n), 0n);
   //   console.log(`Transaction size: ${txSize} bytes, change: ${change} satoshis, fee/byte ${Number(change) / txSize}`);
   // }
+
+  return cauldronTradeAdjustedTokenAmount;
 };
