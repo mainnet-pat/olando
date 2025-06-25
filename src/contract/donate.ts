@@ -47,9 +47,9 @@ export const donate = async ({
   if (tokenUtxos.reduce((sum, u) => sum + (u.token?.category === olandoCategory ? u.token.amount : 0n), 0n) < donationTokenAmount) {
     throw new Error(`Not enough ${olandoCategory} tokens in wallet to donate ${donationTokenAmount}`);
   }
-  if (tokenUtxos.length > 1) {
+  if (!tokenUtxos.find(utxo => utxo.token!.amount > donationTokenAmount) && tokenUtxos.length > 1) {
     await wallet.send(new TokenSendRequest({
-      cashaddr: wallet.address!,
+      cashaddr: toTokenAddress(wallet.address!),
       tokenId: olandoCategory,
       amount: donationTokenAmount,
     }));
