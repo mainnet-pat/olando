@@ -2,7 +2,7 @@ import { binToHex } from "@bitauth/libauth";
 import { Contract, NetworkProvider, SignatureTemplate, TransactionBuilder } from "cashscript";
 import IssuanceFundArtifact from '../../artifacts/IssuanceFund.artifact.js';
 import Multisig_2of3Artifact from "../../artifacts/Multisig_2of3.artifact.js";
-import { addressToLockScript, findAuthGuard, olandoCategory, padVmNumber, toTokenAddress } from "../index.js";
+import { addressToLockScript, findAuthGuard, padVmNumber, toTokenAddress } from "../index.js";
 
 // Deploys the IssuanceFund contract, transfers the mutable authguarded NFT to the IssuanceFund contract.
 export const deployContractFromAuthGuard = async ({
@@ -11,12 +11,14 @@ export const deployContractFromAuthGuard = async ({
   provider,
   councilContract,
   adminContract,
+  olandoCategory,
 } : {
   deployerAddress: string,
   deployerPriv: Uint8Array,
   provider: NetworkProvider,
   councilContract: Contract<typeof Multisig_2of3Artifact>,
   adminContract: Contract<typeof Multisig_2of3Artifact>,
+  olandoCategory: string,
 }) => {
   const authGuard = await findAuthGuard({
     predeployment: true,
@@ -40,7 +42,7 @@ export const deployContractFromAuthGuard = async ({
 
   const fundingUtxo = utxos.find(utxo => utxo.token === undefined && utxo.satoshis >= 100000n)!;
 
-  const deploymentTransaction = await new TransactionBuilder({ provider })
+  const builder = new TransactionBuilder({ provider })
     .addInput(authGuard.authGuardUtxo, authGuard.authGuardContract.unlock.unlockWithNft(true))
     .addInput(authGuard.authKeyUtxo, new SignatureTemplate(deployerPriv).unlockP2PKH())
     .addInput(fundingUtxo, new SignatureTemplate(deployerPriv).unlockP2PKH())
@@ -86,8 +88,11 @@ export const deployContractFromAuthGuard = async ({
     .addOutput({
       to: deployerAddress,
       amount: fundingUtxo.satoshis - 3000n, // BCH change
-    })
-    .send();
+    });
+
+  // console.log(builder.build());
+
+  const deploymentTransaction = await builder.send();
 
   console.log(`Issuance fund deployed at ${issuanceFundContract.address} with txid ${deploymentTransaction.txid}`);
 

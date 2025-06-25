@@ -1,6 +1,6 @@
 import { HashType, MockNetworkProvider, randomUtxo, SignatureAlgorithm, SignatureTemplate } from "cashscript";
 import 'cashscript/jest';
-import { addMultisigSignature, deployContractFromAuthGuard, migrate } from "../../src/index.js";
+import { addMultisigSignature, deployContractFromAuthGuard, getIssuanceContract, migrate, olandoCategory } from "../../src/index.js";
 import { aliceAddress, alicePriv, bobPriv, getAdminMultisig2of3Contract, getCouncilMultisig2of3Contract, setupAuthGuard } from "../shared.js";
 
 describe('Migrating Contract', () => {
@@ -20,9 +20,15 @@ describe('Migrating Contract', () => {
       deployerPriv: alicePriv,
       councilContract: councilMultisigContract,
       adminContract: adminMultisigContract,
+      olandoCategory: olandoCategory,
     });
 
     const newCouncilContract = getAdminMultisig2of3Contract(provider); // set council contract same as admin multisig
+    const newIssuanceFundContract = getIssuanceContract({
+      provider: provider,
+      councilMultisigContract: newCouncilContract,
+      adminMultisigContract: adminMultisigContract,
+    });
 
     const sigA = new SignatureTemplate(alicePriv, HashType.SIGHASH_ALL, SignatureAlgorithm.ECDSA);
     const sigB = new SignatureTemplate(bobPriv, HashType.SIGHASH_ALL, SignatureAlgorithm.ECDSA);
@@ -33,9 +39,10 @@ describe('Migrating Contract', () => {
       alicePriv,
       councilMultisigContract,
       adminMultisigContract,
-      newAdminMultisigContract: councilMultisigContract,
-      newCouncilMultisigContract: newCouncilContract,
+      newAdminMultisigContractAddress: councilMultisigContract.address,
+      newIssuanceFundContractAddress: newIssuanceFundContract.address,
       signatures: [sigA, sigB],
+      olandoCategory: olandoCategory,
       send: true,
     });
 
@@ -58,9 +65,15 @@ describe('Migrating Contract', () => {
       deployerPriv: alicePriv,
       councilContract: councilMultisigContract,
       adminContract: adminMultisigContract,
+      olandoCategory: olandoCategory,
     });
 
     const newCouncilContract = getAdminMultisig2of3Contract(provider); // set council contract same as admin multisig
+    const newIssuanceFundContract = getIssuanceContract({
+      provider: provider,
+      councilMultisigContract: newCouncilContract,
+      adminMultisigContract: adminMultisigContract,
+    });
 
     const sigA = Uint8Array.from(Array(71));
     const sigB = new SignatureTemplate(bobPriv, HashType.SIGHASH_ALL, SignatureAlgorithm.ECDSA);
@@ -71,9 +84,10 @@ describe('Migrating Contract', () => {
       alicePriv,
       councilMultisigContract,
       adminMultisigContract,
-      newAdminMultisigContract: councilMultisigContract,
-      newCouncilMultisigContract: newCouncilContract,
+      newAdminMultisigContractAddress: councilMultisigContract.address,
+      newIssuanceFundContractAddress: newIssuanceFundContract.address,
       signatures: [sigA, sigB],
+      olandoCategory: olandoCategory,
       send: false,
     });
 
@@ -103,9 +117,15 @@ describe('Migrating Contract', () => {
       deployerPriv: alicePriv,
       councilContract: councilMultisigContract,
       adminContract: adminMultisigContract,
+      olandoCategory: olandoCategory,
     });
 
     const newCouncilContract = getAdminMultisig2of3Contract(provider); // set council contract same as admin multisig
+    const newIssuanceFundContract = getIssuanceContract({
+      provider: provider,
+      councilMultisigContract: newCouncilContract,
+      adminMultisigContract: adminMultisigContract,
+    });
 
     const sigA = new SignatureTemplate(alicePriv, HashType.SIGHASH_ALL, SignatureAlgorithm.ECDSA);
     const sigB = Uint8Array.from(Array(71));
@@ -116,9 +136,10 @@ describe('Migrating Contract', () => {
       alicePriv,
       councilMultisigContract,
       adminMultisigContract,
-      newAdminMultisigContract: councilMultisigContract,
-      newCouncilMultisigContract: newCouncilContract,
+      newAdminMultisigContractAddress: councilMultisigContract.address,
+      newIssuanceFundContractAddress: newIssuanceFundContract.address,
       signatures: [sigA, sigB],
+      olandoCategory: olandoCategory,
       send: false,
     });
 

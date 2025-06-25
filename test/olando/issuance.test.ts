@@ -26,6 +26,7 @@ describe('test contract functions', () => {
       deployerPriv: alicePriv,
       councilContract: councilMultisigContract,
       adminContract: adminMultisigContract,
+      olandoCategory: olandoCategory,
     });
 
     await investInIssuanceFund({
@@ -58,6 +59,7 @@ describe('test contract functions', () => {
       deployerPriv: alicePriv,
       councilContract: councilMultisigContract,
       adminContract: adminMultisigContract,
+      olandoCategory: olandoCategory,
     });
 
     await investInIssuanceFund({
@@ -90,6 +92,7 @@ describe('test contract functions', () => {
       deployerPriv: alicePriv,
       councilContract: councilMultisigContract,
       adminContract: adminMultisigContract,
+      olandoCategory: olandoCategory,
     });
 
     await expect(investInIssuanceFund({
@@ -126,6 +129,7 @@ describe('test contract functions', () => {
       deployerPriv: alicePriv,
       councilContract: councilMultisigContract,
       adminContract: adminMultisigContract,
+      olandoCategory: olandoCategory,
     });
 
     await expect(investInIssuanceFund({

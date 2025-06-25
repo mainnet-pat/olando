@@ -21,6 +21,7 @@ describe('Dissolving Contract', () => {
       deployerPriv: alicePriv,
       councilContract: councilMultisigContract,
       adminContract: adminMultisigContract,
+      olandoCategory: olandoCategory,
     });
 
     const sigA = new SignatureTemplate(alicePriv, HashType.SIGHASH_ALL, SignatureAlgorithm.ECDSA);
@@ -54,6 +55,7 @@ describe('Dissolving Contract', () => {
       deployerPriv: alicePriv,
       councilContract: councilMultisigContract,
       adminContract: adminMultisigContract,
+      olandoCategory: olandoCategory,
     });
 
     const sigA = new SignatureTemplate(alicePriv, HashType.SIGHASH_ALL, SignatureAlgorithm.ECDSA);

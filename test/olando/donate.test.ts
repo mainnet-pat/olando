@@ -22,6 +22,7 @@ describe('Issuance Fund Contract Donation Tests', () => {
       deployerPriv: alicePriv,
       councilContract: councilMultisigContract,
       adminContract: adminMultisigContract,
+      olandoCategory: olandoCategory,
     });
 
     const donationUtxo = randomUtxo({
@@ -63,6 +64,7 @@ describe('Issuance Fund Contract Donation Tests', () => {
       deployerPriv: alicePriv,
       councilContract: councilMultisigContract,
       adminContract: adminMultisigContract,
+      olandoCategory: olandoCategory,
     });
 
     const donationUtxo = randomUtxo({
@@ -104,6 +106,7 @@ describe('Issuance Fund Contract Donation Tests', () => {
       deployerPriv: alicePriv,
       councilContract: councilMultisigContract,
       adminContract: adminMultisigContract,
+      olandoCategory: olandoCategory,
     });
 
     const donationUtxo = randomUtxo({
@@ -145,6 +148,7 @@ describe('Issuance Fund Contract Donation Tests', () => {
       deployerPriv: alicePriv,
       councilContract: councilMultisigContract,
       adminContract: adminMultisigContract,
+      olandoCategory: olandoCategory,
     });
 
     const donationUtxo = randomUtxo({

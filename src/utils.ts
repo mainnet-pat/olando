@@ -2,6 +2,8 @@ import { bigIntToVmNumber, binToHex, CashAddressNetworkPrefix, cashAddressToLock
 import { Artifact, Contract, encodeFunctionArgument, FunctionArgument, MockNetworkProvider, NetworkProvider } from "cashscript";
 import AuthGuardArtifact from "../artifacts/AuthGuard.artifact.js";
 import CauldronPoolArtifact from "../artifacts/CauldronPool.artifact.js";
+import IssuanceFundArtifact from "../artifacts/IssuanceFund.artifact.js";
+import Multisig_2of3Artifact from "../artifacts/Multisig_2of3.artifact.js";
 
 export const min = (...args: bigint[]) => args.reduce((m, e) => e < m ? e : m);
 export const require = (predicate: boolean, message: string) => {
@@ -47,7 +49,7 @@ export const toTokenAddress = (address: string) => {
   return encodeCashAddress({
     ...decoded,
     prefix: decoded.prefix,
-    type: decoded.type + 'WithTokens' as CashAddressType,
+    type: decoded.type.replace('WithTokens', '') + 'WithTokens' as CashAddressType,
   }).address;
 }
 
@@ -118,3 +120,19 @@ export const findAuthGuard = async ({
     }
   };
 };
+
+export const getIssuanceContract = ({
+  provider,
+  councilMultisigContract,
+  adminMultisigContract,
+} : {
+  provider: NetworkProvider,
+  councilMultisigContract: Contract<typeof Multisig_2of3Artifact>,
+  adminMultisigContract: Contract<typeof Multisig_2of3Artifact>,
+}) => {
+  return new Contract(
+    IssuanceFundArtifact,
+    [addressToLockScript(councilMultisigContract.address), addressToLockScript(adminMultisigContract.address)],
+    { provider, addressType: 'p2sh20' }
+  );
+}

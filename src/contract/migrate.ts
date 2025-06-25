@@ -1,28 +1,30 @@
 import { Contract, NetworkProvider, SignatureTemplate, TransactionBuilder } from "cashscript";
 import IssuanceFundArtifact from "../../artifacts/IssuanceFund.artifact";
 import Multisig_2of3Artifact from "../../artifacts/Multisig_2of3.artifact";
-import { addressToLockScript, olandoCategory, toTokenAddress } from "../utils";
+import { addressToLockScript, toTokenAddress } from "../utils";
 
 // Migrates the IssuanceFund contract to a new instance, changes admin or council multisigs. Or does all actions at once.
 export const migrate = async ({
   provider,
   adminMultisigContract,
   councilMultisigContract,
-  newAdminMultisigContract,
-  newCouncilMultisigContract,
+  newAdminMultisigContractAddress,
+  newIssuanceFundContractAddress,
   aliceAddress,
   alicePriv,
   signatures,
+  olandoCategory,
   send = true,
 } : {
   provider: NetworkProvider,
   adminMultisigContract: Contract<typeof Multisig_2of3Artifact>,
   councilMultisigContract: Contract<typeof Multisig_2of3Artifact>,
-  newAdminMultisigContract: Contract<typeof Multisig_2of3Artifact>,
-  newCouncilMultisigContract: Contract<typeof Multisig_2of3Artifact>,
+  newAdminMultisigContractAddress: string,
+  newIssuanceFundContractAddress: string,
   aliceAddress: string,
   alicePriv: Uint8Array,
   signatures: [Uint8Array | SignatureTemplate, Uint8Array | SignatureTemplate],
+  olandoCategory: string,
   send?: boolean,
 }) => {
   const aliceSigTemplate = new SignatureTemplate(alicePriv);
@@ -30,12 +32,6 @@ export const migrate = async ({
   const issuanceFundContract = new Contract(
     IssuanceFundArtifact,
     [addressToLockScript(councilMultisigContract.address), addressToLockScript(adminMultisigContract.address)],
-    { provider, addressType: 'p2sh20' }
-  );
-
-  const newIssuanceFundContract = new Contract(
-    IssuanceFundArtifact,
-    [addressToLockScript(newCouncilMultisigContract.address), addressToLockScript(newAdminMultisigContract.address)],
     { provider, addressType: 'p2sh20' }
   );
 
@@ -59,16 +55,16 @@ export const migrate = async ({
   }
 
   const builder = new TransactionBuilder({ provider })
-    .addInput(contractUtxo, issuanceFundContract.unlock.migrate(addressToLockScript(newIssuanceFundContract.address), addressToLockScript(newAdminMultisigContract.address)))
+    .addInput(contractUtxo, issuanceFundContract.unlock.migrate(addressToLockScript(newIssuanceFundContractAddress), addressToLockScript(newAdminMultisigContractAddress)))
     .addInput(adminUtxo, adminMultisigContract.unlock.spend(...signatures, 0n))
     .addInput(fundingUtxo, aliceSigTemplate.unlockP2PKH())
     .addOutput({
-      to: toTokenAddress(newIssuanceFundContract.address),
+      to: toTokenAddress(newIssuanceFundContractAddress),
       amount: contractUtxo.satoshis,
       token: {...contractUtxo.token!},
     })
     .addOutput({
-      to: newAdminMultisigContract.address,
+      to: newAdminMultisigContractAddress,
       amount: 1000n,
     });
 

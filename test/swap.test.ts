@@ -1,6 +1,7 @@
 import { MockNetworkProvider, randomUtxo } from "cashscript";
 import { buildSwapTransaction } from "../src/swap.js";
 import { aliceAddress, MockWallet } from "./shared.js";
+import { olandoCategory } from "../src/utils.js";
 
 describe('test mock swaps', () => {
   it('should mock a swap', async () => {
@@ -10,7 +11,7 @@ describe('test mock swaps', () => {
     }));
 
     const wallet = await MockWallet(provider);
-    const { tradeTxList: proposedTxs } = await buildSwapTransaction(1000000n, wallet);
+    const { tradeTxList: proposedTxs } = await buildSwapTransaction(1000000n, wallet, olandoCategory);
 
     expect(proposedTxs.length).toBeGreaterThan(0);
   });

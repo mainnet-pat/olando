@@ -106,7 +106,7 @@ export const investInIssuanceFund = async ({
     throw new Error(`No council UTXO found for ${aliceAddress}`);
   }
 
-  const { tradeTxList: proposedTxs, pools } = (await buildSwapTransaction(BigInt(investAmountBch * 1e8), wallet));
+  const { tradeTxList: proposedTxs, pools } = (await buildSwapTransaction(BigInt(investAmountBch * 1e8), wallet, olandoCategory));
   const proposedTx = proposedTxs[0]!;
 
   const cauldronPoolUtxos: Utxo[] = zip(proposedTx.libauth_generated_transaction.inputs, proposedTx.libauth_source_outputs).map(([input, sourceOutput]) => ({

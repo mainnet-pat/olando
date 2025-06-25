@@ -1,7 +1,7 @@
 import { NetworkProvider, Contract, randomUtxo, TransactionBuilder, MockNetworkProvider, SignatureTemplate } from "cashscript";
 import IssuanceFundArtifact from "../../artifacts/IssuanceFund.artifact";
 import Multisig_2of3Artifact from "../../artifacts/Multisig_2of3.artifact";
-import { addressToLockScript, olandoCategory, toTokenAddress } from "../utils";
+import { addressToLockScript, toTokenAddress } from "../utils";
 import { TestNetWallet, TokenSendRequest, Wallet } from "mainnet-js";
 
 // Donates tokens to the IssuanceFund contract, changes are sent back to the donor
