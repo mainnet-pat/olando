@@ -35,8 +35,8 @@ describe('Migrating Contract', () => {
 
     const action = migrate({
       provider,
-      aliceAddress,
-      alicePriv,
+      address: aliceAddress,
+      privKey: alicePriv,
       councilMultisigContract,
       adminMultisigContract,
       newAdminMultisigContractAddress: councilMultisigContract.address,
@@ -80,8 +80,8 @@ describe('Migrating Contract', () => {
 
     const partiallySignedTxHex = await migrate({
       provider,
-      aliceAddress,
-      alicePriv,
+      address: aliceAddress,
+      privKey: alicePriv,
       councilMultisigContract,
       adminMultisigContract,
       newAdminMultisigContractAddress: councilMultisigContract.address,
@@ -132,8 +132,8 @@ describe('Migrating Contract', () => {
 
     const partiallySignedTxHex = await migrate({
       provider,
-      aliceAddress,
-      alicePriv,
+      address: aliceAddress,
+      privKey: alicePriv,
       councilMultisigContract,
       adminMultisigContract,
       newAdminMultisigContractAddress: councilMultisigContract.address,

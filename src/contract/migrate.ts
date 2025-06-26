@@ -10,8 +10,8 @@ export const migrate = async ({
   councilMultisigContract,
   newAdminMultisigContractAddress,
   newIssuanceFundContractAddress,
-  aliceAddress,
-  alicePriv,
+  address,
+  privKey,
   signatures,
   olandoCategory,
   send = true,
@@ -21,14 +21,14 @@ export const migrate = async ({
   councilMultisigContract: Contract<typeof Multisig_2of3Artifact>,
   newAdminMultisigContractAddress: string,
   newIssuanceFundContractAddress: string,
-  aliceAddress: string,
-  alicePriv: Uint8Array,
+  address: string,
+  privKey: Uint8Array,
   signatures: [Uint8Array | SignatureTemplate, Uint8Array | SignatureTemplate],
   olandoCategory: string,
   send?: boolean,
 }) => {
-  const aliceSigTemplate = new SignatureTemplate(alicePriv);
-  const userUtxos = await provider.getUtxos(aliceAddress);
+  const aliceSigTemplate = new SignatureTemplate(privKey);
+  const userUtxos = await provider.getUtxos(address);
   const issuanceFundContract = new Contract(
     IssuanceFundArtifact,
     [addressToLockScript(councilMultisigContract.address), addressToLockScript(adminMultisigContract.address)],
@@ -51,7 +51,7 @@ export const migrate = async ({
     u.satoshis >= 10_000n
   );
   if (!fundingUtxo) {
-    throw new Error(`No funding UTXO found for ${aliceAddress}`);
+    throw new Error(`No funding UTXO found for ${address}`);
   }
 
   const builder = new TransactionBuilder({ provider })
@@ -72,7 +72,7 @@ export const migrate = async ({
   const change = builder.inputs.reduce((sum, input) => sum + input.satoshis, 0n) -
     builder.outputs.reduce((sum, output) => sum + (output.amount ?? 0n), 0n);
   builder.addOutput({
-    to: aliceAddress,
+    to: address,
     amount: change - BigInt(txSize) - 100n, // BCH change
     token: undefined,
   });

@@ -11,8 +11,8 @@ import IssuanceFundArtifact from "../../artifacts/IssuanceFund.artifact";
 export const investInIssuanceFund = async ({
   investAmountBch,
   provider,
-  aliceAddress,
-  alicePriv,
+  address,
+  privKey,
   wallet,
   councilMultisigContract,
   adminMultisigContract,
@@ -20,15 +20,15 @@ export const investInIssuanceFund = async ({
 } : {
   investAmountBch: number,
   provider: NetworkProvider,
-  aliceAddress: string,
-  alicePriv: Uint8Array,
+  address: string,
+  privKey: Uint8Array,
   wallet: Wallet | TestNetWallet,
   councilMultisigContract: Contract<typeof Multisig_2of3Artifact>,
   adminMultisigContract: Contract<typeof Multisig_2of3Artifact>,
   olandoCategory: string,
 }) => {
-  const aliceSigTemplate = new SignatureTemplate(alicePriv);
-  let userUtxos = await provider.getUtxos(aliceAddress);
+  const aliceSigTemplate = new SignatureTemplate(privKey);
+  let userUtxos = await provider.getUtxos(address);
 
   const issuanceFundContract = new Contract(IssuanceFundArtifact, [
     addressToLockScript(councilMultisigContract.address),
@@ -50,7 +50,7 @@ export const investInIssuanceFund = async ({
 
   let userBchUtxos = userUtxos.filter(u => u.token === undefined);
   if (userBchUtxos.length === 0) {
-    throw new Error(`No BCH UTXOs found for ${aliceAddress}`);
+    throw new Error(`No BCH UTXOs found for ${address}`);
   }
 
   if (userBchUtxos.length === 1) {
@@ -59,7 +59,7 @@ export const investInIssuanceFund = async ({
       unit: 'sat',
       value: 1000,
     }));
-    userUtxos = await provider.getUtxos(aliceAddress);
+    userUtxos = await provider.getUtxos(address);
     userBchUtxos = userUtxos.filter(u => u.token === undefined);
   }
 
@@ -85,7 +85,7 @@ export const investInIssuanceFund = async ({
       value: 1000,
     })]);
 
-    userUtxos = await provider.getUtxos(aliceAddress);
+    userUtxos = await provider.getUtxos(address);
     investmentUtxo = userUtxos.find(u =>
       u.token === undefined &&
       u.satoshis >= BigInt(investAmountBch * 1e8) + 5000n
@@ -93,7 +93,7 @@ export const investInIssuanceFund = async ({
   }
 
   if (!investmentUtxo) {
-    throw new Error(`No funding UTXO found for ${aliceAddress}`);
+    throw new Error(`No funding UTXO found for ${address}`);
   }
 
   // a BCH-only utxo at index 1 to be used to balance the council output
@@ -105,7 +105,7 @@ export const investInIssuanceFund = async ({
   );
 
   if (!councilUtxo) {
-    throw new Error(`No council UTXO found for ${aliceAddress}`);
+    throw new Error(`No council UTXO found for ${address}`);
   }
 
   const { tradeTxList: proposedTxs, pools } = (await buildSwapTransaction(BigInt(investAmountBch * 1e8), wallet, olandoCategory));
@@ -168,7 +168,7 @@ export const investInIssuanceFund = async ({
       amount: contractUtxo.satoshis,
       token: {
         ...contractUtxo.token!,
-        amount: contractUtxo.token!.amount - cauldronTradeAdjustedTokenAmount - cauldronTradeAdjustedTokenAmount,
+        amount: contractUtxo.token!.amount - cauldronTradeAdjustedTokenAmount,
         nft: {
           capability: 'mutable',
           commitment: binToHex(Uint8Array.from([
@@ -210,12 +210,12 @@ export const investInIssuanceFund = async ({
     builder.outputs.reduce((sum, output) => sum + (output.amount ?? 0n), 0n);
 
   builder.addOutput({
-    to: aliceAddress,
+    to: address,
     amount: change - BigInt(txSize) - 200n, // BCH change
   });
 
   // console.log("investTx:");
-  // console.log(builder.build());
+  // console.log(builder.bitauthUri());
   // console.log(await builder.send());
   await builder.send();
 

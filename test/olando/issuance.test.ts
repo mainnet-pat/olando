@@ -32,8 +32,8 @@ describe('test contract functions', () => {
     await investInIssuanceFund({
       investAmountBch: 0.1,
       provider,
-      aliceAddress,
-      alicePriv,
+      address: aliceAddress,
+      privKey: alicePriv,
       wallet: await MockWallet(provider),
       councilMultisigContract,
       adminMultisigContract,
@@ -65,8 +65,8 @@ describe('test contract functions', () => {
     await investInIssuanceFund({
       investAmountBch: 0.1,
       provider,
-      aliceAddress,
-      alicePriv,
+      address: aliceAddress,
+      privKey: alicePriv,
       wallet: await MockWallet(provider),
       councilMultisigContract,
       adminMultisigContract,
@@ -98,8 +98,8 @@ describe('test contract functions', () => {
     await expect(investInIssuanceFund({
       investAmountBch: 0.2,
       provider,
-      aliceAddress,
-      alicePriv,
+      address: aliceAddress,
+      privKey: alicePriv,
       wallet: await MockWallet(provider),
       councilMultisigContract,
       adminMultisigContract,
@@ -135,8 +135,8 @@ describe('test contract functions', () => {
     await expect(investInIssuanceFund({
       investAmountBch: 0.21,
       provider,
-      aliceAddress,
-      alicePriv,
+      address: aliceAddress,
+      privKey: alicePriv,
       wallet: await MockWallet(provider),
       councilMultisigContract,
       adminMultisigContract,

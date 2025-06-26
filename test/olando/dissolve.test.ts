@@ -28,8 +28,8 @@ describe('Dissolving Contract', () => {
     const sigB = new SignatureTemplate(bobPriv, HashType.SIGHASH_ALL, SignatureAlgorithm.ECDSA);
 
     await dissolveIssuanceFund({
-      aliceAddress,
-      alicePriv,
+      address: aliceAddress,
+      privKey: alicePriv,
       provider,
       olandoCategory,
       councilMultisigContract,
@@ -62,8 +62,8 @@ describe('Dissolving Contract', () => {
     const sigB = Uint8Array.from(Array(71));
 
     const partiallySignedTxHex = await dissolveIssuanceFund({
-      aliceAddress,
-      alicePriv,
+      address: aliceAddress,
+      privKey: alicePriv,
       provider,
       olandoCategory,
       councilMultisigContract,

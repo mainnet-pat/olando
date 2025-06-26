@@ -7,8 +7,8 @@ import { addressToLockScript, findAuthGuard, toTokenAddress } from "../utils";
 // It is initiated by the user holding the auth key
 // It produces a partially signed multisig transaction that needs to be signed by other multisig members with `addMultisigSignature`
 export const dissolveIssuanceFund = async ({
-  aliceAddress,
-  alicePriv,
+  address,
+  privKey,
   provider,
   olandoCategory,
   councilMultisigContract,
@@ -16,8 +16,8 @@ export const dissolveIssuanceFund = async ({
   signatures,
   send = true,
 }: {
-  aliceAddress: string,
-  alicePriv: Uint8Array,
+  address: string,
+  privKey: Uint8Array,
   provider: NetworkProvider,
   olandoCategory: string,
   councilMultisigContract: Contract<typeof Multisig_2of3Artifact>,
@@ -25,9 +25,9 @@ export const dissolveIssuanceFund = async ({
   signatures: [Uint8Array | SignatureTemplate, Uint8Array | SignatureTemplate],
   send?: boolean,
 }) => {
-  const aliceSigTemplate = new SignatureTemplate(alicePriv);
+  const aliceSigTemplate = new SignatureTemplate(privKey);
 
-  const userUtxos = await provider.getUtxos(aliceAddress);
+  const userUtxos = await provider.getUtxos(address);
   const issuanceFundContract = new Contract(
     IssuanceFundArtifact,
     [addressToLockScript(councilMultisigContract.address), addressToLockScript(adminMultisigContract.address)],
@@ -37,7 +37,7 @@ export const dissolveIssuanceFund = async ({
   const authGuard = await findAuthGuard({
     predeployment: false,
     provider,
-    authKeyHolderAddress: aliceAddress,
+    authKeyHolderAddress: address,
     olandoCategory: olandoCategory,
   });
 
@@ -61,7 +61,7 @@ export const dissolveIssuanceFund = async ({
     u.satoshis >= 10_000n
   );
   if (!fundingUtxo) {
-    throw new Error(`No funding UTXO found for ${aliceAddress}`);
+    throw new Error(`No funding UTXO found for ${address}`);
   }
 
   const builder = new TransactionBuilder({ provider })
@@ -84,7 +84,7 @@ export const dissolveIssuanceFund = async ({
       },
     })
     .addOutput({
-      to: toTokenAddress(aliceAddress),
+      to: toTokenAddress(address),
       amount: authGuard.authKeyUtxo.satoshis,
       token: {
         ...authGuard.authKeyUtxo.token!,
@@ -95,7 +95,7 @@ export const dissolveIssuanceFund = async ({
   const change = builder.inputs.reduce((sum, input) => sum + input.satoshis, 0n) -
     builder.outputs.reduce((sum, output) => sum + (output.amount ?? 0n), 0n);
   builder.addOutput({
-    to: aliceAddress,
+    to: address,
     amount: change - BigInt(txSize) - 100n, // BCH change
     token: undefined,
   });

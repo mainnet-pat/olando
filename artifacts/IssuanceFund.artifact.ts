@@ -37,237 +37,237 @@ export default {
       inputs: []
     }
   ],
-  bytecode: "OP_2 OP_PICK OP_0 OP_NUMEQUAL OP_IF OP_TXINPUTCOUNT OP_4 OP_GREATERTHANOREQUAL OP_VERIFY OP_TXOUTPUTCOUNT OP_5 OP_GREATERTHANOREQUAL OP_VERIFY OP_INPUTINDEX OP_UTXOTOKENCOMMITMENT OP_4 OP_SPLIT OP_DROP OP_BIN2NUM OP_INPUTINDEX OP_UTXOTOKENCOMMITMENT OP_4 OP_SPLIT OP_NIP OP_BIN2NUM OP_TXLOCKTIME OP_LESSTHAN OP_VERIFY OP_TXINPUTCOUNT OP_1SUB OP_OUTPUTTOKENAMOUNT 388e7792702803 OP_DUP OP_INPUTINDEX OP_UTXOTOKENAMOUNT OP_SUB 00ca9a3b OP_TXLOCKTIME OP_5 OP_PICK OP_SUB OP_3 OP_2 OP_PICK OP_SWAP OP_ROT OP_MUL OP_ADD OP_DUP OP_MUL OP_OVER OP_DIV OP_3 OP_ROLL OP_2 OP_PICK OP_3 OP_PICK OP_4 OP_PICK OP_MUL OP_3 OP_ROLL OP_DIV OP_SUB OP_MUL OP_SWAP OP_DIV 64 OP_TXINPUTCOUNT OP_1SUB OP_OUTPUTTOKENAMOUNT OP_MUL 5f OP_DIV OP_9 OP_MUL OP_10 OP_DIV OP_SWAP OP_ROT OP_SUB OP_LESSTHANOREQUAL OP_VERIFY OP_INPUTINDEX OP_0 OP_NUMEQUALVERIFY OP_INPUTINDEX OP_OUTPUTTOKENAMOUNT OP_INPUTINDEX OP_UTXOTOKENAMOUNT OP_2 OP_PICK OP_SUB OP_2 OP_PICK OP_SUB OP_NUMEQUALVERIFY OP_INPUTINDEX OP_OUTPUTTOKENCATEGORY OP_INPUTINDEX OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_INPUTINDEX OP_OUTPUTBYTECODE OP_INPUTINDEX OP_UTXOBYTECODE OP_EQUALVERIFY OP_INPUTINDEX OP_OUTPUTTOKENCOMMITMENT OP_ROT OP_TXLOCKTIME OP_CAT OP_EQUALVERIFY OP_1 OP_OUTPUTTOKENCATEGORY OP_INPUTINDEX OP_UTXOTOKENCATEGORY 20 OP_SPLIT OP_DROP OP_EQUALVERIFY OP_1 OP_OUTPUTTOKENAMOUNT OP_OVER OP_NUMEQUALVERIFY OP_1 OP_OUTPUTBYTECODE OP_ROT OP_EQUALVERIFY OP_1 OP_OUTPUTVALUE e803 OP_NUMEQUALVERIFY OP_TXOUTPUTCOUNT OP_2 OP_SUB OP_DUP OP_OUTPUTTOKENCATEGORY OP_INPUTINDEX OP_UTXOTOKENCATEGORY 20 OP_SPLIT OP_DROP OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_ROT OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_1 OP_UTXOBYTECODE OP_EQUALVERIFY OP_OUTPUTVALUE e803 OP_NUMEQUALVERIFY 88ac67c0d1c0ce88c25288c0cdc0c788c0c6c0d095c0c6c0cc9490539502e80396c0cc7c94c0d3957ca268 1a OP_INPUTINDEX OP_1ADD OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE OP_3 OP_PICK OP_SPLIT OP_NIP OP_4 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE OP_4 OP_PICK OP_SPLIT OP_NIP OP_5 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE OP_5 OP_PICK OP_SPLIT OP_NIP OP_6 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE OP_6 OP_PICK OP_SPLIT OP_NIP OP_7 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE OP_7 OP_PICK OP_SPLIT OP_NIP OP_8 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE OP_8 OP_PICK OP_SPLIT OP_NIP OP_9 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE OP_9 OP_PICK OP_SPLIT OP_NIP OP_10 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE OP_10 OP_PICK OP_SPLIT OP_NIP OP_11 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE OP_11 OP_PICK OP_SPLIT OP_NIP OP_12 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE OP_12 OP_PICK OP_SPLIT OP_NIP OP_13 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE OP_13 OP_PICK OP_SPLIT OP_NIP OP_14 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE OP_14 OP_PICK OP_SPLIT OP_NIP OP_15 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE OP_15 OP_PICK OP_SPLIT OP_NIP OP_16 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE OP_16 OP_PICK OP_SPLIT OP_NIP 11 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE 11 OP_PICK OP_SPLIT OP_NIP 12 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE 12 OP_PICK OP_SPLIT OP_NIP 13 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE 13 OP_PICK OP_SPLIT OP_NIP 14 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE 14 OP_PICK OP_SPLIT OP_NIP 15 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE 15 OP_PICK OP_SPLIT OP_NIP 16 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE 16 OP_PICK OP_SPLIT OP_NIP 17 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE 17 OP_PICK OP_SPLIT OP_NIP 18 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_2DROP OP_2DROP OP_2DROP OP_2DROP OP_2DROP OP_2DROP OP_2DROP OP_2DROP OP_2DROP OP_2DROP OP_2DROP OP_2DROP OP_2DROP OP_1 OP_ELSE OP_2 OP_PICK OP_1 OP_NUMEQUAL OP_IF OP_INPUTINDEX OP_0 OP_NUMEQUALVERIFY OP_TXINPUTCOUNT OP_3 OP_NUMEQUALVERIFY OP_TXOUTPUTCOUNT OP_3 OP_NUMEQUALVERIFY OP_0 OP_OUTPUTBYTECODE OP_4 OP_ROLL OP_EQUALVERIFY OP_0 OP_OUTPUTTOKENCATEGORY OP_0 OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_0 OP_OUTPUTTOKENAMOUNT OP_0 OP_UTXOTOKENAMOUNT OP_NUMEQUALVERIFY OP_0 OP_OUTPUTTOKENCOMMITMENT OP_0 OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_0 OP_OUTPUTVALUE OP_0 OP_UTXOVALUE OP_NUMEQUALVERIFY OP_1 OP_UTXOBYTECODE OP_ROT OP_EQUALVERIFY OP_1 OP_OUTPUTBYTECODE OP_3 OP_ROLL OP_EQUALVERIFY OP_1 OP_OUTPUTVALUE OP_1 OP_UTXOVALUE OP_NUMEQUALVERIFY OP_1 OP_OUTPUTTOKENCATEGORY OP_1 OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_1 OP_OUTPUTTOKENAMOUNT OP_1 OP_UTXOTOKENAMOUNT OP_NUMEQUALVERIFY OP_1 OP_OUTPUTTOKENCOMMITMENT OP_1 OP_UTXOTOKENCOMMITMENT OP_EQUAL OP_NIP OP_NIP OP_ELSE OP_2 OP_PICK OP_2 OP_NUMEQUAL OP_IF OP_INPUTINDEX OP_3 OP_NUMEQUALVERIFY OP_TXINPUTCOUNT OP_5 OP_NUMEQUALVERIFY OP_TXOUTPUTCOUNT OP_3 OP_NUMEQUALVERIFY OP_0 OP_OUTPUTBYTECODE OP_0 OP_UTXOBYTECODE OP_EQUALVERIFY OP_0 OP_OUTPUTTOKENCATEGORY OP_0 OP_UTXOTOKENCATEGORY OP_1 OP_CAT OP_EQUALVERIFY OP_0 OP_OUTPUTTOKENAMOUNT OP_0 OP_UTXOTOKENAMOUNT OP_3 OP_UTXOTOKENAMOUNT OP_ADD OP_NUMEQUALVERIFY OP_0 OP_OUTPUTTOKENCOMMITMENT OP_0 OP_EQUALVERIFY OP_0 OP_OUTPUTVALUE OP_0 OP_UTXOVALUE OP_NUMEQUALVERIFY OP_1 OP_OUTPUTBYTECODE OP_1 OP_UTXOBYTECODE OP_EQUALVERIFY OP_1 OP_OUTPUTTOKENCATEGORY OP_1 OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_1 OP_OUTPUTTOKENAMOUNT OP_1 OP_UTXOTOKENAMOUNT OP_NUMEQUALVERIFY OP_1 OP_OUTPUTTOKENCOMMITMENT OP_1 OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_1 OP_OUTPUTVALUE OP_1 OP_UTXOVALUE OP_NUMEQUALVERIFY OP_2 OP_UTXOBYTECODE OP_ROT OP_EQUALVERIFY OP_0 OP_OUTPUTTOKENCATEGORY OP_3 OP_UTXOTOKENCATEGORY OP_EQUAL OP_NIP OP_NIP OP_ELSE OP_ROT OP_3 OP_NUMEQUALVERIFY OP_INPUTINDEX OP_0 OP_NUMEQUALVERIFY OP_TXINPUTCOUNT OP_3 OP_NUMEQUALVERIFY OP_TXOUTPUTCOUNT OP_1 OP_GREATERTHAN OP_VERIFY OP_TXOUTPUTCOUNT OP_4 OP_LESSTHAN OP_VERIFY OP_0 OP_OUTPUTBYTECODE OP_0 OP_UTXOBYTECODE OP_EQUALVERIFY OP_0 OP_OUTPUTTOKENCATEGORY OP_0 OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_0 OP_OUTPUTTOKENAMOUNT OP_0 OP_UTXOTOKENAMOUNT OP_GREATERTHAN OP_VERIFY OP_0 OP_OUTPUTTOKENCOMMITMENT OP_0 OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_0 OP_OUTPUTVALUE OP_0 OP_UTXOVALUE OP_NUMEQUAL OP_NIP OP_NIP OP_ENDIF OP_ENDIF OP_ENDIF",
-  source: "// Olando Community Issuance Fund Contract\n// Each time an investor buys tokens from the cauldron pool, the contract emits extra tokens to the council.\n// The contract is deployed with a fixed supply of 8,888,888,888.88 tokens.\n// The contract emits tokens based on the time since deployment and the amount of tokens bought so far.\n// The contract can be migrated to a new issuance or dissolved to release tokens to the admin.\n\n// NOTE: we are making use of nLocktime, which is MTP (Median Time Past) based.\n// We adjust the passed nLocktime by -2h to make the transactions immediately spendable.\ncontract IssuanceFund(bytes councilFundLockingBytecode, bytes adminLockingBytecode) {\n\n  // invest into Olando ecosystem by buying tokens from the cauldron pool\n  // tx layout:\n  //  inputs:\n  //   0: issuance fund input, NFT commitment: 4bytes deployment time + 4bytes last interaction time\n  //   1: investors BCH input to balance the council's OLA share payout\n  //   2..N: cauldron pool inputs\n  //   N+1: investment BCH, no tokens\n  //  outputs:\n  //   0: issuance fund output, NFT commitment: 4bytes deployment time + 4bytes new interaction time (tx.locktime)\n  //   1: council OLA share output, see notes for amounts\n  //   2..N: cauldron pool outputs, same properties as inputs but with reduced token amount\n  //   N+1: investors OLA share output, see notes for amounts\n  //   N+2: BCH change output\n  //\n  // Notes: if the issuance cap is not hit at the time of interaction, then ola bought from cauldron by investor\n  // are augmented with 90% of the tokens bought, the OLA amounts are added together and split in half.\n  // If the issuance cap is hit the contract execution fails, suggesting the investor to buy less tokens.\n  function issue() {\n    // first rough check for presence of a cauldron trade\n    require(tx.inputs.length >= 4, \"Issue transaction must have at least 4 inputs\");\n    require(tx.outputs.length >= 5, \"Issue transaction must have at least 5 outputs\");\n\n    int deploymentTime = int(tx.inputs[this.activeInputIndex].nftCommitment.split(4)[0]);\n    int lastInteractionTime = int(tx.inputs[this.activeInputIndex].nftCommitment.split(4)[1]);\n    require(tx.locktime > lastInteractionTime, \"Current time is before last interaction time\");\n\n    int cauldronTradeAdjustedTokenAmount = tx.outputs[tx.inputs.length - 1].tokenAmount; // 95% of the cauldron pool token-buy output\n\n    int intialSupply = 8888888888888_88; // with 2 decimals\n    int issued = intialSupply - tx.inputs[this.activeInputIndex].tokenAmount;\n\n    int SCALE = 1_000_000_000; // 1e9 for scaling\n    int t = tx.locktime - deploymentTime; // time in seconds since deploymentTime\n\n    int k = 3; // 3E-9 scaled by 1e9\n    int denom = SCALE + k * t; // (1 + 3E-9 * t) * 1e9\n    int denomSquared = denom * denom / SCALE; // (1 + 3E-9 * t)^2 * 1e9\n    int currentEmissionCap = intialSupply * (SCALE - SCALE * SCALE / denomSquared) / SCALE;\n\n    // use inputs.length to find the cauldron token-buy output, since last ouput could be a bch change\n    // here we already assume that the cauldron pool output got only 95% of the tokens bought, the other 5% are forwarded to council fund\n    int tokensBought = 100 * tx.outputs[tx.inputs.length - 1].tokenAmount / 95;\n    int issue = tokensBought * 9 / 10; // 90% of tokens bought\n\n    require(issue <= currentEmissionCap - issued, \"Issue amount exceeds current emission cap\");\n\n    // constrain the input 0 and output 0 to be the issuance fund\n    require(this.activeInputIndex == 0, \"Active input index must be 0 for issuance contract\");\n\n    require(tx.outputs[this.activeInputIndex].tokenAmount == (tx.inputs[this.activeInputIndex].tokenAmount - cauldronTradeAdjustedTokenAmount - cauldronTradeAdjustedTokenAmount), \"Wrong amount of tokens issued\");\n    require(tx.outputs[this.activeInputIndex].tokenCategory == tx.inputs[this.activeInputIndex].tokenCategory, \"Can not change token category\");\n    require(tx.outputs[this.activeInputIndex].lockingBytecode == tx.inputs[this.activeInputIndex].lockingBytecode, \"Can not change locking bytecode\");\n    require(tx.outputs[this.activeInputIndex].nftCommitment == bytes(deploymentTime) + bytes(tx.locktime), \"NFT commitment must be updated with current time\");\n\n    // constrain the output 1 to be the council fund share\n    require(tx.outputs[1].tokenCategory == tx.inputs[this.activeInputIndex].tokenCategory.split(32)[0], \"Council fund share must have the same token category, no nft\");\n    require(tx.outputs[1].tokenAmount == cauldronTradeAdjustedTokenAmount, \"Council fund share must match the calculated fund share\");\n    require(tx.outputs[1].lockingBytecode == councilFundLockingBytecode, \"Council fund share must have the correct locking bytecode\");\n    require(tx.outputs[1].value == 1000, \"Council fund share must have a value of 1000 satoshis\");\n\n    // constrain the output N+1 to be the investor's share\n    int investorShareIndex = tx.outputs.length - 2;\n    require(tx.outputs[investorShareIndex].tokenCategory == tx.inputs[this.activeInputIndex].tokenCategory.split(32)[0], \"Investor's share must have the same token category, no nft\");\n    require(tx.outputs[investorShareIndex].tokenAmount == cauldronTradeAdjustedTokenAmount, \"Investor's share must match the calculated share\");\n    require(tx.outputs[investorShareIndex].lockingBytecode == tx.inputs[1].lockingBytecode, \"Investor's share must have the correct locking bytecode\");\n    require(tx.outputs[investorShareIndex].value == 1000, \"Investor's share must have a value of 1000 satoshis\");\n\n\n    // constrain the cauldron inputs and outputs 2..N\n    bytes cauldronPoolContractSignature = 0x88ac67c0d1c0ce88c25288c0cdc0c788c0c6c0d095c0c6c0cc9490539502e80396c0cc7c94c0d3957ca268; // partial signature of cauldron pool contract\n    int cauldronPoolContractSignatureSplit = 26; // split the signature at this byte index\n\n    int index = this.activeInputIndex + 1;\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n// #region 20 more cauldron pool input-output checks\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n// #endregion\n  }\n\n  // migrate contract to a new instance of issuance fund contract or change admin locking bytecode\n  // tx layout:\n  //  inputs:\n  //   0: issuance fund input\n  //   1: admin input\n  //   2: funding input\n  //  outputs:\n  //   0: issuance fund output. all same properties but new locking bytecode\n  //   1: admin output, same as input\n  //   2: bch change output\n  function migrate(bytes newLockingBytecode, bytes newAdminLockingBytecode) {\n    // constrain the general transaction shape\n    require(this.activeInputIndex == 0, \"Active input index must be 0\");\n    require(tx.inputs.length == 3, \"Migration requires exactly 3 inputs\");\n    require(tx.outputs.length == 3, \"Migration requires exactly 3 outputs\");\n\n    // constrain the issuance fund input and output\n    require(tx.outputs[0].lockingBytecode == newLockingBytecode, \"New locking bytecode must be provided for the issuance fund output\");\n    require(tx.outputs[0].tokenCategory == tx.inputs[0].tokenCategory, \"Token category must remain the same\");\n    require(tx.outputs[0].tokenAmount == tx.inputs[0].tokenAmount, \"Token amount must remain the same\");\n    require(tx.outputs[0].nftCommitment == tx.inputs[0].nftCommitment, \"NFT commitment must remain the same\");\n    require(tx.outputs[0].value == tx.inputs[0].value, \"Output value must remain the same\");\n\n    // preserve admin input\n    require(tx.inputs[1].lockingBytecode == adminLockingBytecode, \"Admin input must have the correct locking bytecode\");\n    require(tx.outputs[1].lockingBytecode == newAdminLockingBytecode, \"New admin locking bytecode must be provided for the admin output\");\n    require(tx.outputs[1].value == tx.inputs[1].value, \"Output value must remain the same for admin output\");\n    require(tx.outputs[1].tokenCategory == tx.inputs[1].tokenCategory, \"Token category must remain the same for admin output\");\n    require(tx.outputs[1].tokenAmount == tx.inputs[1].tokenAmount, \"Token amount must remain the same for admin output\");\n    require(tx.outputs[1].nftCommitment == tx.inputs[1].nftCommitment, \"NFT commitment must remain the same for admin output\");\n\n    // bch change output is not burdened with any requirements and must be taken care of by the spender\n  }\n\n  // NOTE: excluded due to input size limitations of 1650 bytes\n  // // dissolve contract and release tokens to admin\n  // // tx layout:\n  // //  inputs:\n  // //   0: issuance fund input\n  // //   1: admin input\n  // //   2: funding input\n  // //  outputs:\n  // //   0: same properties as input 0 paid to admin locking bytecode\n  // //   1: bch change output\n  // function dissolve() {\n  //   // constrain the general transaction shape\n  //   require(this.activeInputIndex == 0, \"Active input index must be 0\");\n  //   require(tx.inputs.length == 3, \"Dissolve requires exactly 3 inputs\");\n  //   require(tx.outputs.length == 2, \"Dissolve requires exactly 2 outputs\");\n\n  //   // constrain the issuance fund input and output\n  //   require(tx.outputs[0].lockingBytecode == tx.inputs[1].lockingBytecode, \"Locking bytecode must be the same as admin input\");\n  //   require(tx.outputs[0].tokenCategory == tx.inputs[0].tokenCategory, \"Token category must remain the same\");\n  //   require(tx.outputs[0].tokenAmount == tx.inputs[0].tokenAmount, \"Token amount must remain the same\");\n  //   require(tx.outputs[0].nftCommitment == tx.inputs[0].nftCommitment, \"NFT commitment must remain the same\");\n  //   require(tx.outputs[0].value == tx.inputs[0].value, \"Output value must remain the same\");\n\n  //   // constrain the admin input, do not require it to be present in outputs\n  //   require(tx.inputs[1].lockingBytecode == adminLockingBytecode, \"Admin input must have the correct locking bytecode\");\n\n  //   // bch change output is not burdened with any requirements\n  // }\n\n  // dissolve contract and release tokens to admin\n  // tx layout:\n  //  inputs:\n  //   0: authguard\n  //   1: authkey\n  //   2: admin input\n  //   3: issuance fund input\n  //   4: funding input\n  //  outputs:\n  //   0: authguard output, receives mutable NFT from issuance fund input, commitment set to empty\n  //   1: authkey, no changes\n  //   2: bch change output\n  function dissolveIntoAuthguard() {\n    // constrain the general transaction shape\n    require(this.activeInputIndex == 3, \"Active input index must be 3\");\n    require(tx.inputs.length == 5, \"Dissolve requires exactly 5 inputs\");\n    require(tx.outputs.length == 3, \"Dissolve requires exactly 3 outputs\");\n\n    // constrain the authguard input and output\n    require(tx.outputs[0].lockingBytecode == tx.inputs[0].lockingBytecode, \"Locking bytecode must be the same as authguard input\");\n    require(tx.outputs[0].tokenCategory == (tx.inputs[0].tokenCategory + 0x01), \"Token category must remain the same, become mutable NFT\");\n    require(tx.outputs[0].tokenAmount == tx.inputs[0].tokenAmount + tx.inputs[3].tokenAmount, \"Token amount must be the sum of authguard and issuance fund inputs\");\n    require(tx.outputs[0].nftCommitment == 0x, \"NFT commitment must be empty for authguard output\");\n    require(tx.outputs[0].value == tx.inputs[0].value, \"Output value must remain the same for authguard output\");\n\n    // constrain the authkey input and output\n    require(tx.outputs[1].lockingBytecode == tx.inputs[1].lockingBytecode, \"Locking bytecode must be the same as authkey input\");\n    require(tx.outputs[1].tokenCategory == tx.inputs[1].tokenCategory, \"Token category must remain the same\");\n    require(tx.outputs[1].tokenAmount == tx.inputs[1].tokenAmount, \"Token amount must remain the same\");\n    require(tx.outputs[1].nftCommitment == tx.inputs[1].nftCommitment, \"NFT commitment must remain the same\");\n    require(tx.outputs[1].value == tx.inputs[1].value, \"Output value must remain the same\");\n\n    // constrain the admin input, do not require it to be present in outputs\n    require(tx.inputs[2].lockingBytecode == adminLockingBytecode, \"Admin input must have the correct locking bytecode\");\n\n    // constrain the issuance fund input and output\n    require(tx.outputs[0].tokenCategory == tx.inputs[3].tokenCategory, \"Token category must remain the same\");\n\n    // bch change output is not burdened with any requirements\n  }\n\n  // donate to the issuance fund\n  // tx layout:\n  //  inputs:\n  //   0: issuance fund input\n  //   1: donation token input, strictly FT\n  //   2: funding input\n  //  outputs:\n  //   0: issuance fund output, no changes\n  //   [1]: token change if any\n  //   [2]: bch change if any\n  function donate() {\n    // constrain the general transaction shape\n    require(this.activeInputIndex == 0, \"Active input index must be 0\");\n    require(tx.inputs.length == 3, \"Donation requires exactly 3 inputs\");\n    require(tx.outputs.length > 1, \"Donation requires more than 1 output\");\n    require(tx.outputs.length < 4, \"Donation requires less than 4 outputs\");\n\n    // constrain the issuance fund input and output\n    require(tx.outputs[0].lockingBytecode == tx.inputs[0].lockingBytecode, \"Locking bytecode must remain the same\");\n    require(tx.outputs[0].tokenCategory == tx.inputs[0].tokenCategory, \"Token category must remain the same\");\n    require(tx.outputs[0].tokenAmount > tx.inputs[0].tokenAmount, \"Token amount must increase\");\n    require(tx.outputs[0].nftCommitment == tx.inputs[0].nftCommitment, \"NFT commitment must remain the same\");\n    require(tx.outputs[0].value == tx.inputs[0].value, \"Output value must remain the same\");\n\n    // bch change output is not burdened with any requirements and must be taken care of by the spender\n  }\n}\n",
+  bytecode: "OP_2 OP_PICK OP_0 OP_NUMEQUAL OP_IF OP_TXINPUTCOUNT OP_4 OP_GREATERTHANOREQUAL OP_VERIFY OP_TXOUTPUTCOUNT OP_5 OP_GREATERTHANOREQUAL OP_VERIFY OP_TXOUTPUTCOUNT OP_TXINPUTCOUNT OP_1ADD OP_NUMEQUALVERIFY OP_INPUTINDEX OP_UTXOTOKENCOMMITMENT OP_4 OP_SPLIT OP_DROP OP_BIN2NUM OP_INPUTINDEX OP_UTXOTOKENCOMMITMENT OP_4 OP_SPLIT OP_NIP OP_BIN2NUM OP_TXLOCKTIME OP_LESSTHAN OP_VERIFY OP_TXINPUTCOUNT OP_1SUB OP_OUTPUTTOKENAMOUNT 388e7792702803 OP_DUP OP_INPUTINDEX OP_UTXOTOKENAMOUNT OP_SUB 00ca9a3b OP_TXLOCKTIME OP_5 OP_PICK OP_SUB OP_3 OP_2 OP_PICK OP_SWAP OP_ROT OP_MUL OP_ADD OP_DUP OP_MUL OP_OVER OP_DIV OP_3 OP_ROLL OP_2 OP_PICK OP_3 OP_PICK OP_4 OP_PICK OP_MUL OP_3 OP_ROLL OP_DIV OP_SUB OP_MUL OP_SWAP OP_DIV 64 OP_TXINPUTCOUNT OP_1SUB OP_OUTPUTTOKENAMOUNT OP_MUL 5f OP_DIV OP_9 OP_MUL OP_10 OP_DIV OP_SWAP OP_ROT OP_SUB OP_LESSTHANOREQUAL OP_VERIFY OP_INPUTINDEX OP_0 OP_NUMEQUALVERIFY OP_INPUTINDEX OP_OUTPUTTOKENAMOUNT OP_INPUTINDEX OP_UTXOTOKENAMOUNT OP_2 OP_PICK OP_SUB OP_NUMEQUALVERIFY OP_INPUTINDEX OP_OUTPUTTOKENCATEGORY OP_INPUTINDEX OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_INPUTINDEX OP_OUTPUTBYTECODE OP_INPUTINDEX OP_UTXOBYTECODE OP_EQUALVERIFY OP_INPUTINDEX OP_OUTPUTTOKENCOMMITMENT OP_ROT OP_TXLOCKTIME OP_CAT OP_EQUALVERIFY OP_1 OP_OUTPUTTOKENCATEGORY OP_INPUTINDEX OP_UTXOTOKENCATEGORY 20 OP_SPLIT OP_DROP OP_EQUALVERIFY OP_1 OP_OUTPUTTOKENAMOUNT OP_OVER OP_NUMEQUALVERIFY OP_1 OP_OUTPUTBYTECODE OP_ROT OP_EQUALVERIFY OP_1 OP_OUTPUTVALUE e803 OP_NUMEQUALVERIFY OP_TXOUTPUTCOUNT OP_2 OP_SUB OP_DUP OP_OUTPUTTOKENCATEGORY OP_INPUTINDEX OP_UTXOTOKENCATEGORY 20 OP_SPLIT OP_DROP OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_ROT OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_1 OP_UTXOBYTECODE OP_EQUALVERIFY OP_OUTPUTVALUE e803 OP_NUMEQUALVERIFY OP_TXOUTPUTCOUNT OP_1SUB OP_OUTPUTTOKENCATEGORY OP_0 OP_EQUALVERIFY 88ac67c0d1c0ce88c25288c0cdc0c788c0c6c0d095c0c6c0cc9490539502e80396c0cc7c94c0d3957ca268 1a OP_INPUTINDEX OP_1ADD OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE OP_3 OP_PICK OP_SPLIT OP_NIP OP_4 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE OP_4 OP_PICK OP_SPLIT OP_NIP OP_5 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE OP_5 OP_PICK OP_SPLIT OP_NIP OP_6 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE OP_6 OP_PICK OP_SPLIT OP_NIP OP_7 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE OP_7 OP_PICK OP_SPLIT OP_NIP OP_8 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE OP_8 OP_PICK OP_SPLIT OP_NIP OP_9 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE OP_9 OP_PICK OP_SPLIT OP_NIP OP_10 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE OP_10 OP_PICK OP_SPLIT OP_NIP OP_11 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE OP_11 OP_PICK OP_SPLIT OP_NIP OP_12 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE OP_12 OP_PICK OP_SPLIT OP_NIP OP_13 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE OP_13 OP_PICK OP_SPLIT OP_NIP OP_14 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE OP_14 OP_PICK OP_SPLIT OP_NIP OP_15 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE OP_15 OP_PICK OP_SPLIT OP_NIP OP_16 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE OP_16 OP_PICK OP_SPLIT OP_NIP 11 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE 11 OP_PICK OP_SPLIT OP_NIP 12 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE 12 OP_PICK OP_SPLIT OP_NIP 13 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE 13 OP_PICK OP_SPLIT OP_NIP 14 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE 14 OP_PICK OP_SPLIT OP_NIP 15 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE 15 OP_PICK OP_SPLIT OP_NIP 16 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE 16 OP_PICK OP_SPLIT OP_NIP 17 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_DUP OP_1ADD OP_DUP OP_1ADD OP_TXINPUTCOUNT OP_LESSTHAN OP_IF OP_DUP OP_INPUTBYTECODE 17 OP_PICK OP_SPLIT OP_NIP 18 OP_PICK OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCATEGORY OP_OVER OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_DUP OP_OUTPUTTOKENCOMMITMENT OP_OVER OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_DUP OP_OUTPUTBYTECODE OP_OVER OP_UTXOBYTECODE OP_EQUALVERIFY OP_DUP OP_INPUTBYTECODE OP_SIZE OP_NIP 45 OP_NUMEQUALVERIFY OP_DUP OP_OUTPUTTOKENAMOUNT OP_OVER OP_UTXOTOKENAMOUNT OP_LESSTHAN OP_VERIFY OP_DUP OP_OUTPUTVALUE OP_OVER OP_UTXOVALUE OP_GREATERTHAN OP_VERIFY OP_ENDIF OP_2DROP OP_2DROP OP_2DROP OP_2DROP OP_2DROP OP_2DROP OP_2DROP OP_2DROP OP_2DROP OP_2DROP OP_2DROP OP_2DROP OP_2DROP OP_1 OP_ELSE OP_2 OP_PICK OP_1 OP_NUMEQUAL OP_IF OP_INPUTINDEX OP_0 OP_NUMEQUALVERIFY OP_TXINPUTCOUNT OP_3 OP_NUMEQUALVERIFY OP_TXOUTPUTCOUNT OP_3 OP_NUMEQUALVERIFY OP_0 OP_OUTPUTBYTECODE OP_4 OP_ROLL OP_EQUALVERIFY OP_0 OP_OUTPUTTOKENCATEGORY OP_0 OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_0 OP_OUTPUTTOKENAMOUNT OP_0 OP_UTXOTOKENAMOUNT OP_NUMEQUALVERIFY OP_0 OP_OUTPUTTOKENCOMMITMENT OP_0 OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_0 OP_OUTPUTVALUE OP_0 OP_UTXOVALUE OP_NUMEQUALVERIFY OP_1 OP_UTXOBYTECODE OP_ROT OP_EQUALVERIFY OP_1 OP_OUTPUTBYTECODE OP_3 OP_ROLL OP_EQUALVERIFY OP_1 OP_OUTPUTVALUE OP_1 OP_UTXOVALUE OP_NUMEQUALVERIFY OP_1 OP_OUTPUTTOKENCATEGORY OP_1 OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_1 OP_OUTPUTTOKENAMOUNT OP_1 OP_UTXOTOKENAMOUNT OP_NUMEQUALVERIFY OP_1 OP_OUTPUTTOKENCOMMITMENT OP_1 OP_UTXOTOKENCOMMITMENT OP_EQUAL OP_NIP OP_NIP OP_ELSE OP_2 OP_PICK OP_2 OP_NUMEQUAL OP_IF OP_INPUTINDEX OP_3 OP_NUMEQUALVERIFY OP_TXINPUTCOUNT OP_5 OP_NUMEQUALVERIFY OP_TXOUTPUTCOUNT OP_3 OP_NUMEQUALVERIFY OP_0 OP_OUTPUTBYTECODE OP_0 OP_UTXOBYTECODE OP_EQUALVERIFY OP_0 OP_OUTPUTTOKENCATEGORY OP_0 OP_UTXOTOKENCATEGORY OP_1 OP_CAT OP_EQUALVERIFY OP_0 OP_OUTPUTTOKENAMOUNT OP_0 OP_UTXOTOKENAMOUNT OP_3 OP_UTXOTOKENAMOUNT OP_ADD OP_NUMEQUALVERIFY OP_0 OP_OUTPUTTOKENCOMMITMENT OP_0 OP_EQUALVERIFY OP_0 OP_OUTPUTVALUE OP_0 OP_UTXOVALUE OP_NUMEQUALVERIFY OP_1 OP_OUTPUTBYTECODE OP_1 OP_UTXOBYTECODE OP_EQUALVERIFY OP_1 OP_OUTPUTTOKENCATEGORY OP_1 OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_1 OP_OUTPUTTOKENAMOUNT OP_1 OP_UTXOTOKENAMOUNT OP_NUMEQUALVERIFY OP_1 OP_OUTPUTTOKENCOMMITMENT OP_1 OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_1 OP_OUTPUTVALUE OP_1 OP_UTXOVALUE OP_NUMEQUALVERIFY OP_2 OP_UTXOBYTECODE OP_ROT OP_EQUALVERIFY OP_0 OP_OUTPUTTOKENCATEGORY OP_3 OP_UTXOTOKENCATEGORY OP_EQUAL OP_NIP OP_NIP OP_ELSE OP_ROT OP_3 OP_NUMEQUALVERIFY OP_INPUTINDEX OP_0 OP_NUMEQUALVERIFY OP_TXINPUTCOUNT OP_3 OP_NUMEQUALVERIFY OP_TXOUTPUTCOUNT OP_1 OP_GREATERTHAN OP_VERIFY OP_TXOUTPUTCOUNT OP_4 OP_LESSTHAN OP_VERIFY OP_0 OP_OUTPUTBYTECODE OP_0 OP_UTXOBYTECODE OP_EQUALVERIFY OP_0 OP_OUTPUTTOKENCATEGORY OP_0 OP_UTXOTOKENCATEGORY OP_EQUALVERIFY OP_0 OP_OUTPUTTOKENAMOUNT OP_0 OP_UTXOTOKENAMOUNT OP_GREATERTHAN OP_VERIFY OP_0 OP_OUTPUTTOKENCOMMITMENT OP_0 OP_UTXOTOKENCOMMITMENT OP_EQUALVERIFY OP_0 OP_OUTPUTVALUE OP_0 OP_UTXOVALUE OP_NUMEQUALVERIFY OP_0 OP_OUTPUTTOKENAMOUNT 388e7792702803 OP_LESSTHANOREQUAL OP_NIP OP_NIP OP_ENDIF OP_ENDIF OP_ENDIF",
+  source: "// Olando Community Issuance Fund Contract\n// Each time an investor buys tokens from the cauldron pool, the contract emits extra tokens to the council.\n// The contract is deployed with a fixed supply of 8,888,888,888.88 tokens.\n// The contract emits tokens based on the time since deployment and the amount of tokens bought so far.\n// The contract can be migrated to a new issuance or dissolved to release tokens to the admin.\n\n// NOTE: we are making use of nLocktime, which is MTP (Median Time Past) based.\n// We adjust the passed nLocktime by -2h to make the transactions immediately spendable.\ncontract IssuanceFund(bytes councilFundLockingBytecode, bytes adminLockingBytecode) {\n\n  // invest into Olando ecosystem by buying tokens from the cauldron pool\n  // tx layout:\n  //  inputs:\n  //   0: issuance fund input, NFT commitment: 4bytes deployment time + 4bytes last interaction time\n  //   1: investors BCH input to balance the council's OLA share payout\n  //   2..N: cauldron pool inputs\n  //   N+1: investment BCH, no tokens\n  //  outputs:\n  //   0: issuance fund output, NFT commitment: 4bytes deployment time + 4bytes new interaction time (tx.locktime)\n  //   1: council OLA share output, see notes for amounts\n  //   2..N: cauldron pool outputs, same properties as inputs but with reduced token amount\n  //   N+1: investors OLA share output, see notes for amounts\n  //   N+2: BCH change output\n  //\n  // Notes: if the issuance cap is not hit at the time of interaction, then ola bought from cauldron by investor\n  // are augmented with 90% of the tokens bought, the OLA amounts are added together and split in half.\n  // If the issuance cap is hit the contract execution fails, suggesting the investor to buy less tokens.\n  function issue() {\n    // first rough check for presence of a cauldron trade\n    require(tx.inputs.length >= 4, \"Issue transaction must have at least 4 inputs\");\n    require(tx.outputs.length >= 5, \"Issue transaction must have at least 5 outputs\");\n    require(tx.outputs.length == tx.inputs.length + 1, \"Issue transaction must have one more output than inputs\");\n\n    int deploymentTime = int(tx.inputs[this.activeInputIndex].nftCommitment.split(4)[0]);\n    int lastInteractionTime = int(tx.inputs[this.activeInputIndex].nftCommitment.split(4)[1]);\n    require(tx.locktime > lastInteractionTime, \"Current time is before last interaction time\");\n\n    int cauldronTradeAdjustedTokenAmount = tx.outputs[tx.inputs.length - 1].tokenAmount; // 95% of the cauldron pool token-buy output\n\n    int intialSupply = 8888888888888_88; // with 2 decimals\n    int issued = intialSupply - tx.inputs[this.activeInputIndex].tokenAmount;\n\n    int SCALE = 1_000_000_000; // 1e9 for scaling\n    int t = tx.locktime - deploymentTime; // time in seconds since deploymentTime\n\n    int k = 3; // 3E-9 scaled by 1e9\n    int denom = SCALE + k * t; // (1 + 3E-9 * t) * 1e9\n    int denomSquared = denom * denom / SCALE; // (1 + 3E-9 * t)^2 * 1e9\n    int currentEmissionCap = intialSupply * (SCALE - SCALE * SCALE / denomSquared) / SCALE;\n\n    // use inputs.length to find the cauldron token-buy output, since last ouput could be a bch change\n    // here we already assume that the cauldron pool output got only 95% of the tokens bought, the other 5% are forwarded to council fund\n    int tokensBought = 100 * tx.outputs[tx.inputs.length - 1].tokenAmount / 95;\n    int issue = tokensBought * 9 / 10; // 90% of tokens bought\n\n    require(issue <= currentEmissionCap - issued, \"Issue amount exceeds current emission cap\");\n\n    // constrain the input 0 and output 0 to be the issuance fund\n    require(this.activeInputIndex == 0, \"Active input index must be 0 for issuance contract\");\n\n    require(tx.outputs[this.activeInputIndex].tokenAmount == (tx.inputs[this.activeInputIndex].tokenAmount - cauldronTradeAdjustedTokenAmount), \"Wrong amount of tokens issued\");\n    require(tx.outputs[this.activeInputIndex].tokenCategory == tx.inputs[this.activeInputIndex].tokenCategory, \"Can not change token category\");\n    require(tx.outputs[this.activeInputIndex].lockingBytecode == tx.inputs[this.activeInputIndex].lockingBytecode, \"Can not change locking bytecode\");\n    require(tx.outputs[this.activeInputIndex].nftCommitment == bytes(deploymentTime) + bytes(tx.locktime), \"NFT commitment must be updated with current time\");\n\n    // constrain the output 1 to be the council fund share\n    require(tx.outputs[1].tokenCategory == tx.inputs[this.activeInputIndex].tokenCategory.split(32)[0], \"Council fund share must have the same token category, no nft\");\n    require(tx.outputs[1].tokenAmount == cauldronTradeAdjustedTokenAmount, \"Council fund share must match the calculated fund share\");\n    require(tx.outputs[1].lockingBytecode == councilFundLockingBytecode, \"Council fund share must have the correct locking bytecode\");\n    require(tx.outputs[1].value == 1000, \"Council fund share must have a value of 1000 satoshis\");\n\n    // constrain the output N+1 to be the investor's share\n    int investorShareIndex = tx.outputs.length - 2;\n    require(tx.outputs[investorShareIndex].tokenCategory == tx.inputs[this.activeInputIndex].tokenCategory.split(32)[0], \"Investor's share must have the same token category, no nft\");\n    require(tx.outputs[investorShareIndex].tokenAmount == cauldronTradeAdjustedTokenAmount, \"Investor's share must match the calculated share\");\n    require(tx.outputs[investorShareIndex].lockingBytecode == tx.inputs[1].lockingBytecode, \"Investor's share must have the correct locking bytecode\");\n    require(tx.outputs[investorShareIndex].value == 1000, \"Investor's share must have a value of 1000 satoshis\");\n\n    // constrain the output N+2 (last output) to be pure bch change\n    int changeOutputIndex = tx.outputs.length - 1;\n    require(tx.outputs[changeOutputIndex].tokenCategory == 0x, \"Change output must have no token category\");\n\n    // constrain the cauldron inputs and outputs 2..N\n    bytes cauldronPoolContractSignature = 0x88ac67c0d1c0ce88c25288c0cdc0c788c0c6c0d095c0c6c0cc9490539502e80396c0cc7c94c0d3957ca268; // partial signature of cauldron pool contract\n    int cauldronPoolContractSignatureSplit = 26; // split the signature at this byte index\n\n    int index = this.activeInputIndex + 1;\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n// #region 20 more cauldron pool input-output checks\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n\n    index = index + 1; // cauldron pool token output\n    if (index + 1 < tx.inputs.length) {\n      console.log(\"Checking cauldron pool input and output at index\", index);\n      require(tx.inputs[index].unlockingBytecode.split(cauldronPoolContractSignatureSplit)[1] == cauldronPoolContractSignature, \"Cauldron pool contract signature must match\");\n\n      require(tx.outputs[index].tokenCategory == tx.inputs[index].tokenCategory, \"Cauldron pool token category must remain the same\");\n      require(tx.outputs[index].nftCommitment == tx.inputs[index].nftCommitment, \"Cauldron pool token commitment must remain the same\");\n      require(tx.outputs[index].lockingBytecode == tx.inputs[index].lockingBytecode, \"Cauldron pool token locking bytecode must remain the same\");\n      require(tx.inputs[index].unlockingBytecode.length == 69, \"Wrong unlocking bytecode length for cauldron pool input\");\n      require(tx.outputs[index].tokenAmount < tx.inputs[index].tokenAmount, \"Cauldron pool token amount must be less than input amount\");\n      require(tx.outputs[index].value > tx.inputs[index].value, \"Cauldron pool satoshi output value must be greater than input value\");\n    }\n// #endregion\n  }\n\n  // migrate contract to a new instance of issuance fund contract or change admin locking bytecode\n  // tx layout:\n  //  inputs:\n  //   0: issuance fund input\n  //   1: admin input\n  //   2: funding input\n  //  outputs:\n  //   0: issuance fund output. all same properties but new locking bytecode\n  //   1: admin output, same as input\n  //   2: bch change output\n  function migrate(bytes newLockingBytecode, bytes newAdminLockingBytecode) {\n    // constrain the general transaction shape\n    require(this.activeInputIndex == 0, \"Active input index must be 0\");\n    require(tx.inputs.length == 3, \"Migration requires exactly 3 inputs\");\n    require(tx.outputs.length == 3, \"Migration requires exactly 3 outputs\");\n\n    // constrain the issuance fund input and output\n    require(tx.outputs[0].lockingBytecode == newLockingBytecode, \"New locking bytecode must be provided for the issuance fund output\");\n    require(tx.outputs[0].tokenCategory == tx.inputs[0].tokenCategory, \"Token category must remain the same\");\n    require(tx.outputs[0].tokenAmount == tx.inputs[0].tokenAmount, \"Token amount must remain the same\");\n    require(tx.outputs[0].nftCommitment == tx.inputs[0].nftCommitment, \"NFT commitment must remain the same\");\n    require(tx.outputs[0].value == tx.inputs[0].value, \"Output value must remain the same\");\n\n    // preserve admin input\n    require(tx.inputs[1].lockingBytecode == adminLockingBytecode, \"Admin input must have the correct locking bytecode\");\n    require(tx.outputs[1].lockingBytecode == newAdminLockingBytecode, \"New admin locking bytecode must be provided for the admin output\");\n    require(tx.outputs[1].value == tx.inputs[1].value, \"Output value must remain the same for admin output\");\n    require(tx.outputs[1].tokenCategory == tx.inputs[1].tokenCategory, \"Token category must remain the same for admin output\");\n    require(tx.outputs[1].tokenAmount == tx.inputs[1].tokenAmount, \"Token amount must remain the same for admin output\");\n    require(tx.outputs[1].nftCommitment == tx.inputs[1].nftCommitment, \"NFT commitment must remain the same for admin output\");\n\n    // bch change output is not burdened with any requirements and must be taken care of by the spender\n  }\n\n  // NOTE: excluded due to input size limitations of 1650 bytes\n  // // dissolve contract and release tokens to admin\n  // // tx layout:\n  // //  inputs:\n  // //   0: issuance fund input\n  // //   1: admin input\n  // //   2: funding input\n  // //  outputs:\n  // //   0: same properties as input 0 paid to admin locking bytecode\n  // //   1: bch change output\n  // function dissolve() {\n  //   // constrain the general transaction shape\n  //   require(this.activeInputIndex == 0, \"Active input index must be 0\");\n  //   require(tx.inputs.length == 3, \"Dissolve requires exactly 3 inputs\");\n  //   require(tx.outputs.length == 2, \"Dissolve requires exactly 2 outputs\");\n\n  //   // constrain the issuance fund input and output\n  //   require(tx.outputs[0].lockingBytecode == tx.inputs[1].lockingBytecode, \"Locking bytecode must be the same as admin input\");\n  //   require(tx.outputs[0].tokenCategory == tx.inputs[0].tokenCategory, \"Token category must remain the same\");\n  //   require(tx.outputs[0].tokenAmount == tx.inputs[0].tokenAmount, \"Token amount must remain the same\");\n  //   require(tx.outputs[0].nftCommitment == tx.inputs[0].nftCommitment, \"NFT commitment must remain the same\");\n  //   require(tx.outputs[0].value == tx.inputs[0].value, \"Output value must remain the same\");\n\n  //   // constrain the admin input, do not require it to be present in outputs\n  //   require(tx.inputs[1].lockingBytecode == adminLockingBytecode, \"Admin input must have the correct locking bytecode\");\n\n  //   // bch change output is not burdened with any requirements\n  // }\n\n  // dissolve contract and release tokens to admin\n  // tx layout:\n  //  inputs:\n  //   0: authguard\n  //   1: authkey\n  //   2: admin input\n  //   3: issuance fund input\n  //   4: funding input\n  //  outputs:\n  //   0: authguard output, receives mutable NFT from issuance fund input, commitment set to empty\n  //   1: authkey, no changes\n  //   2: bch change output\n  function dissolveIntoAuthguard() {\n    // constrain the general transaction shape\n    require(this.activeInputIndex == 3, \"Active input index must be 3\");\n    require(tx.inputs.length == 5, \"Dissolve requires exactly 5 inputs\");\n    require(tx.outputs.length == 3, \"Dissolve requires exactly 3 outputs\");\n\n    // constrain the authguard input and output\n    require(tx.outputs[0].lockingBytecode == tx.inputs[0].lockingBytecode, \"Locking bytecode must be the same as authguard input\");\n    require(tx.outputs[0].tokenCategory == (tx.inputs[0].tokenCategory + 0x01), \"Token category must remain the same, become mutable NFT\");\n    require(tx.outputs[0].tokenAmount == tx.inputs[0].tokenAmount + tx.inputs[3].tokenAmount, \"Token amount must be the sum of authguard and issuance fund inputs\");\n    require(tx.outputs[0].nftCommitment == 0x, \"NFT commitment must be empty for authguard output\");\n    require(tx.outputs[0].value == tx.inputs[0].value, \"Output value must remain the same for authguard output\");\n\n    // constrain the authkey input and output\n    require(tx.outputs[1].lockingBytecode == tx.inputs[1].lockingBytecode, \"Locking bytecode must be the same as authkey input\");\n    require(tx.outputs[1].tokenCategory == tx.inputs[1].tokenCategory, \"Token category must remain the same\");\n    require(tx.outputs[1].tokenAmount == tx.inputs[1].tokenAmount, \"Token amount must remain the same\");\n    require(tx.outputs[1].nftCommitment == tx.inputs[1].nftCommitment, \"NFT commitment must remain the same\");\n    require(tx.outputs[1].value == tx.inputs[1].value, \"Output value must remain the same\");\n\n    // constrain the admin input, do not require it to be present in outputs\n    require(tx.inputs[2].lockingBytecode == adminLockingBytecode, \"Admin input must have the correct locking bytecode\");\n\n    // constrain the issuance fund input and output\n    require(tx.outputs[0].tokenCategory == tx.inputs[3].tokenCategory, \"Token category must remain the same\");\n\n    // bch change output is not burdened with any requirements\n  }\n\n  // donate to the issuance fund\n  // tx layout:\n  //  inputs:\n  //   0: issuance fund input\n  //   1: donation token input, strictly FT\n  //   2: funding input\n  //  outputs:\n  //   0: issuance fund output, no changes\n  //   [1]: token change if any\n  //   [2]: bch change if any\n  function donate() {\n    // constrain the general transaction shape\n    require(this.activeInputIndex == 0, \"Active input index must be 0\");\n    require(tx.inputs.length == 3, \"Donation requires exactly 3 inputs\");\n    require(tx.outputs.length > 1, \"Donation requires more than 1 output\");\n    require(tx.outputs.length < 4, \"Donation requires less than 4 outputs\");\n\n    // constrain the issuance fund input and output\n    require(tx.outputs[0].lockingBytecode == tx.inputs[0].lockingBytecode, \"Locking bytecode must remain the same\");\n    require(tx.outputs[0].tokenCategory == tx.inputs[0].tokenCategory, \"Token category must remain the same\");\n    require(tx.outputs[0].tokenAmount > tx.inputs[0].tokenAmount, \"Token amount must increase\");\n    require(tx.outputs[0].nftCommitment == tx.inputs[0].nftCommitment, \"NFT commitment must remain the same\");\n    require(tx.outputs[0].value == tx.inputs[0].value, \"Output value must remain the same\");\n\n    // prevent donation to overflow the max supply\n    require(tx.outputs[0].tokenAmount <= 8888888888888_88, \"Can not donate to exceed the max supply\");\n\n    // bch change output is not burdened with any requirements and must be taken care of by the spender\n  }\n}\n",
   debug: {
-    bytecode: "5279009c63c354a269c455a269c0cf547f7581c0cf547f7781c59f69c38cd307388e779270280376c0d0940400ca9a3bc55579945352797c7b959376957896537a52795379547995537a9694957c960164c38cd395015f9659955a967c7b94a169c0009dc0d3c0d05279945279949dc0d1c0ce88c0cdc0c788c0d27bc57e8851d1c0ce01207f758851d3789d51cd7b8851cc02e8039dc4529476d1c0ce01207f758876d37b9d76cd51c788cc02e8039d2b88ac67c0d1c0ce88c25288c0cdc0c788c0c6c0d095c0c6c0cc9490539502e80396c0cc7c94c0d3957ca268011ac08b768b768bc39f6376ca53797f7754798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca54797f7755798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca55797f7756798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca56797f7757798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca57797f7758798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca58797f7759798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca59797f775a798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca5a797f775b798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca5b797f775c798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca5c797f775d798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca5d797f775e798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca5e797f775f798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca5f797f7760798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca60797f770111798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca0111797f770112798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca0112797f770113798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca0113797f770114798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca0114797f770115798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca0115797f770116798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca0116797f770117798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca0117797f770118798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a069686d6d6d6d6d6d6d6d6d6d6d6d6d51675279519c63c0009dc3539dc4539d00cd547a8800d100ce8800d300d09d00d200cf8800cc00c69d51c77b8851cd537a8851cc51c69d51d151ce8851d351d09d51d251cf877777675279529c63c0539dc3559dc4539d00cd00c78800d100ce517e8800d300d053d0939d00d2008800cc00c69d51cd51c78851d151ce8851d351d09d51d251cf8851cc51c69d52c77b8800d153ce877777677b539dc0009dc3539dc451a069c4549f6900cd00c78800d100ce8800d300d0a06900d200cf8800cc00c69c7777686868",
-    sourceMap: "28:2:356:3;;;;;30:12:30:28;:32::33;:12:::1;:4::84;31:12:31:29:0;:33::34;:12:::1;:4::86;33:39:33:60:0;:29::75:1;:82::83:0;:29::84:1;:::87;:25::88;34:44:34:65:0;:34::80:1;:87::88:0;:34::89:1;:::92;:30::93;35:12:35:23:0;:::45:1;:4::95;37:54:37:70:0;:::74:1;:43::87;39:23:39:39:0;40:17:40:29;:42::63;:32::76:1;:17;42:16:42:29:0;43:12:43:23;:26::40;;:12:::1;45::45:13:0;46:16:46:21;;:24::25;:28::29;:24:::1;:16;47:23:47:36:0;::::1;:39::44:0;:23:::1;48:29:48:41:0;;:45::50;;:53::58;;:61::66;;:53:::1;:69::81:0;;:53:::1;:45;:29::82;:85::90:0;:29:::1;52:23:52:26:0;:40::56;:::60:1;:29::73;:23;:76::78:0;:23:::1;53:31:53:32:0;:16:::1;:35::37:0;:16:::1;55:21:55:39:0;:42::48;:21:::1;:12;:4::95;58:12:58:33:0;:37::38;:4::94:1;60:23:60:44:0;:12::57:1;:72::93:0;:62::106:1;:109::141:0;;:62:::1;:144::176:0;;:62:::1;:4::212;61:23:61:44:0;:12::59:1;:73::94:0;:63::109:1;:4::144;62:23:62:44:0;:12::61:1;:75::96:0;:65::113:1;:4::150;63:23:63:44:0;:12::59:1;:69::83:0;:93::104;:63::105:1;:4::159;66:23:66:24:0;:12::39:1;:53::74:0;:43::89:1;:96::98:0;:43::99:1;:::102;:4::168;67:23:67:24:0;:12::37:1;:41::73:0;:4::134:1;68:23:68:24:0;:12::41:1;:45::71:0;:4::134:1;69:23:69:24:0;:12::31:1;:35::39:0;:4::98:1;72:29:72:46:0;:49::50;:29:::1;73:23:73:41:0;:12::56:1;:70::91:0;:60::106:1;:113::115:0;:60::116:1;:::119;:4::183;74:23:74:41:0;:12::54:1;:58::90:0;:4::144:1;75:23:75:41:0;:12::58:1;:72::73:0;:62::90:1;:4::151;76:12:76:48;:52::56:0;:4::113:1;80:42:80:130:0;81:45:81:47;83:16:83:37;:::41:1;84:12:84:17:0;:::21:1;85:8:85:13:0;:::17:1;:20::36:0;:8:::1;:38:94:5:0;86:24:86:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;88:25:88:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;89:25:89:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;90:25:90:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;91:24:91:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;92:25:92:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;93:25:93:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;85:38:94:5;97:12:97:17:0;:::21:1;98:8:98:13:0;:::17:1;:20::36:0;:8:::1;:38:107:5:0;99:24:99:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;101:25:101:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;102:25:102:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;103:25:103:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;104:24:104:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;105:25:105:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;106:25:106:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;98:38:107:5;109:12:109:17:0;:::21:1;110:8:110:13:0;:::17:1;:20::36:0;:8:::1;:38:120:5:0;112:24:112:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;114:25:114:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;115:25:115:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;116:25:116:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;117:24:117:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;118:25:118:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;119:25:119:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;110:38:120:5;122:12:122:17:0;:::21:1;123:8:123:13:0;:::17:1;:20::36:0;:8:::1;:38:133:5:0;125:24:125:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;127:25:127:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;128:25:128:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;129:25:129:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;130:24:130:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;131:25:131:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;132:25:132:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;123:38:133:5;135:12:135:17:0;:::21:1;136:8:136:13:0;:::17:1;:20::36:0;:8:::1;:38:146:5:0;138:24:138:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;140:25:140:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;141:25:141:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;142:25:142:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;143:24:143:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;144:25:144:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;145:25:145:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;136:38:146:5;148:12:148:17:0;:::21:1;149:8:149:13:0;:::17:1;:20::36:0;:8:::1;:38:159:5:0;151:24:151:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;153:25:153:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;154:25:154:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;155:25:155:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;156:24:156:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;157:25:157:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;158:25:158:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;149:38:159:5;161:12:161:17:0;:::21:1;162:8:162:13:0;:::17:1;:20::36:0;:8:::1;:38:172:5:0;164:24:164:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;166:25:166:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;167:25:167:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;168:25:168:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;169:24:169:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;170:25:170:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;171:25:171:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;162:38:172:5;174:12:174:17:0;:::21:1;175:8:175:13:0;:::17:1;:20::36:0;:8:::1;:38:185:5:0;177:24:177:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;179:25:179:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;180:25:180:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;181:25:181:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;182:24:182:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;183:25:183:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;184:25:184:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;175:38:185:5;187:12:187:17:0;:::21:1;188:8:188:13:0;:::17:1;:20::36:0;:8:::1;:38:198:5:0;190:24:190:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;192:25:192:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;193:25:193:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;194:25:194:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;195:24:195:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;196:25:196:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;197:25:197:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;188:38:198:5;200:12:200:17:0;:::21:1;201:8:201:13:0;:::17:1;:20::36:0;:8:::1;:38:211:5:0;203:24:203:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;205:25:205:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;206:25:206:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;207:25:207:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;208:24:208:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;209:25:209:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;210:25:210:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;201:38:211:5;213:12:213:17:0;:::21:1;214:8:214:13:0;:::17:1;:20::36:0;:8:::1;:38:224:5:0;216:24:216:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;218:25:218:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;219:25:219:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;220:25:220:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;221:24:221:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;222:25:222:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;223:25:223:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;214:38:224:5;226:12:226:17:0;:::21:1;227:8:227:13:0;:::17:1;:20::36:0;:8:::1;:38:237:5:0;229:24:229:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;231:25:231:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;232:25:232:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;233:25:233:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;234:24:234:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;235:25:235:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;236:25:236:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;227:38:237:5;239:12:239:17:0;:::21:1;240:8:240:13:0;:::17:1;:20::36:0;:8:::1;:38:250:5:0;242:24:242:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;244:25:244:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;245:25:245:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;246:25:246:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;247:24:247:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;248:25:248:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;249:25:249:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;240:38:250:5;252:12:252:17:0;:::21:1;253:8:253:13:0;:::17:1;:20::36:0;:8:::1;:38:263:5:0;255:24:255:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;257:25:257:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;258:25:258:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;259:25:259:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;260:24:260:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;261:25:261:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;262:25:262:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;253:38:263:5;265:12:265:17:0;:::21:1;266:8:266:13:0;:::17:1;:20::36:0;:8:::1;:38:276:5:0;268:24:268:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;270:25:270:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;271:25:271:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;272:25:272:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;273:24:273:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;274:25:274:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;275:25:275:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;266:38:276:5;278:12:278:17:0;:::21:1;279:8:279:13:0;:::17:1;:20::36:0;:8:::1;:38:289:5:0;281:24:281:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;283:25:283:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;284:25:284:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;285:25:285:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;286:24:286:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;287:25:287:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;288:25:288:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;279:38:289:5;291:12:291:17:0;:::21:1;292:8:292:13:0;:::17:1;:20::36:0;:8:::1;:38:302:5:0;294:24:294:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;296:25:296:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;297:25:297:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;298:25:298:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;299:24:299:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;300:25:300:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;301:25:301:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;292:38:302:5;304:12:304:17:0;:::21:1;305:8:305:13:0;:::17:1;:20::36:0;:8:::1;:38:315:5:0;307:24:307:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;309:25:309:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;310:25:310:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;311:25:311:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;312:24:312:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;313:25:313:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;314:25:314:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;305:38:315:5;317:12:317:17:0;:::21:1;318:8:318:13:0;:::17:1;:20::36:0;:8:::1;:38:328:5:0;320:24:320:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;322:25:322:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;323:25:323:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;324:25:324:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;325:24:325:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;326:25:326:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;327:25:327:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;318:38:328:5;330:12:330:17:0;:::21:1;331:8:331:13:0;:::17:1;:20::36:0;:8:::1;:38:341:5:0;333:24:333:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;335:25:335:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;336:25:336:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;337:25:337:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;338:24:338:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;339:25:339:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;340:25:340:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;331:38:341:5;343:12:343:17:0;:::21:1;344:8:344:13:0;:::17:1;:20::36:0;:8:::1;:38:354:5:0;346:24:346:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;348:25:348:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;349:25:349:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;350:25:350:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;351:24:351:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;352:25:352:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;353:25:353:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;344:38:354:5;28:2:356:3;;;;;;;;;;;;;;;368::390::0;;;;;370:12:370:33;:37::38;:4::72:1;371:12:371:28:0;:32::33;:4::74:1;372:12:372:29:0;:33::34;:4::76:1;375:23:375:24:0;:12::41:1;:45::63:0;;:4::135:1;376:23:376:24:0;:12::39:1;:53::54:0;:43::69:1;:4::110;377:23:377:24:0;:12::37:1;:51::52:0;:41::65:1;:4::104;378:23:378:24:0;:12::39:1;:53::54:0;:43::69:1;:4::110;379:23:379:24:0;:12::31:1;:45::46:0;:35::53:1;:4::92;382:22:382:23:0;:12::40:1;:44::64:0;:4::120:1;383:23:383:24:0;:12::41:1;:45::68:0;;:4::138:1;384:23:384:24:0;:12::31:1;:45::46:0;:35::53:1;:4::109;385:23:385:24:0;:12::39:1;:53::54:0;:43::69:1;:4::127;386:23:386:24:0;:12::37:1;:51::52:0;:41::65:1;:4::121;387:23:387:24:0;:12::39:1;:53::54:0;:43::69:1;:4::127;368:2:390:3;;;433::460::0;;;;;435:12:435:33;:37::38;:4::72:1;436:12:436:28:0;:32::33;:4::73:1;437:12:437:29:0;:33::34;:4::75:1;440:23:440:24:0;:12::41:1;:55::56:0;:45::73:1;:4::131;441:23:441:24:0;:12::39:1;:54::55:0;:44::70:1;:73::77:0;:44:::1;:4::139;442:23:442:24:0;:12::37:1;:51::52:0;:41::65:1;:78::79:0;:68::92:1;:41;:4::164;443:23:443:24:0;:12::39:1;:43::45:0;:4::100:1;444:23:444:24:0;:12::31:1;:45::46:0;:35::53:1;:4::113;447:23:447:24:0;:12::41:1;:55::56:0;:45::73:1;:4::129;448:23:448:24:0;:12::39:1;:53::54:0;:43::69:1;:4::110;449:23:449:24:0;:12::37:1;:51::52:0;:41::65:1;:4::104;450:23:450:24:0;:12::39:1;:53::54:0;:43::69:1;:4::110;451:23:451:24:0;:12::31:1;:45::46:0;:35::53:1;:4::92;454:22:454:23:0;:12::40:1;:44::64:0;:4::120:1;457:23:457:24:0;:12::39:1;:53::54:0;:43::69:1;:4::110;433:2:460:3;;;472::487::0;;;474:12:474:33;:37::38;:4::72:1;475:12:475:28:0;:32::33;:4::73:1;476:12:476:29:0;:32::33;:12:::1;:4::75;477:12:477:29:0;:32::33;:12:::1;:4::76;480:23:480:24:0;:12::41:1;:55::56:0;:45::73:1;:4::116;481:23:481:24:0;:12::39:1;:53::54:0;:43::69:1;:4::110;482:23:482:24:0;:12::37:1;:50::51:0;:40::64:1;:12;:4::96;483:23:483:24:0;:12::39:1;:53::54:0;:43::69:1;:4::110;484:23:484:24:0;:12::31:1;:45::46:0;:35::53:1;:4::92;472:2:487:3;;9:0:488:1;;",
+    bytecode: "5279009c63c354a269c455a269c4c38b9dc0cf547f7581c0cf547f7781c59f69c38cd307388e779270280376c0d0940400ca9a3bc55579945352797c7b959376957896537a52795379547995537a9694957c960164c38cd395015f9659955a967c7b94a169c0009dc0d3c0d05279949dc0d1c0ce88c0cdc0c788c0d27bc57e8851d1c0ce01207f758851d3789d51cd7b8851cc02e8039dc4529476d1c0ce01207f758876d37b9d76cd51c788cc02e8039dc48cd100882b88ac67c0d1c0ce88c25288c0cdc0c788c0c6c0d095c0c6c0cc9490539502e80396c0cc7c94c0d3957ca268011ac08b768b768bc39f6376ca53797f7754798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca54797f7755798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca55797f7756798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca56797f7757798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca57797f7758798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca58797f7759798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca59797f775a798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca5a797f775b798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca5b797f775c798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca5c797f775d798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca5d797f775e798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca5e797f775f798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca5f797f7760798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca60797f770111798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca0111797f770112798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca0112797f770113798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca0113797f770114798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca0114797f770115798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca0115797f770116798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca0116797f770117798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a06968768b768bc39f6376ca0117797f770118798876d178ce8876d278cf8876cd78c78876ca827701459d76d378d09f6976cc78c6a069686d6d6d6d6d6d6d6d6d6d6d6d6d51675279519c63c0009dc3539dc4539d00cd547a8800d100ce8800d300d09d00d200cf8800cc00c69d51c77b8851cd537a8851cc51c69d51d151ce8851d351d09d51d251cf877777675279529c63c0539dc3559dc4539d00cd00c78800d100ce517e8800d300d053d0939d00d2008800cc00c69d51cd51c78851d151ce8851d351d09d51d251cf8851cc51c69d52c77b8800d153ce877777677b539dc0009dc3539dc451a069c4549f6900cd00c78800d100ce8800d300d0a06900d200cf8800cc00c69d00d307388e7792702803a17777686868",
+    sourceMap: "28:2:360:3;;;;;30:12:30:28;:32::33;:12:::1;:4::84;31:12:31:29:0;:33::34;:12:::1;:4::86;32:12:32:29:0;:33::49;:::53:1;:4::114;34:39:34:60:0;:29::75:1;:82::83:0;:29::84:1;:::87;:25::88;35:44:35:65:0;:34::80:1;:87::88:0;:34::89:1;:::92;:30::93;36:12:36:23:0;:::45:1;:4::95;38:54:38:70:0;:::74:1;:43::87;40:23:40:39:0;41:17:41:29;:42::63;:32::76:1;:17;43:16:43:29:0;44:12:44:23;:26::40;;:12:::1;46::46:13:0;47:16:47:21;;:24::25;:28::29;:24:::1;:16;48:23:48:36:0;::::1;:39::44:0;:23:::1;49:29:49:41:0;;:45::50;;:53::58;;:61::66;;:53:::1;:69::81:0;;:53:::1;:45;:29::82;:85::90:0;:29:::1;53:23:53:26:0;:40::56;:::60:1;:29::73;:23;:76::78:0;:23:::1;54:31:54:32:0;:16:::1;:35::37:0;:16:::1;56:21:56:39:0;:42::48;:21:::1;:12;:4::95;59:12:59:33:0;:37::38;:4::94:1;61:23:61:44:0;:12::57:1;:72::93:0;:62::106:1;:109::141:0;;:62:::1;:4::177;62:23:62:44:0;:12::59:1;:73::94:0;:63::109:1;:4::144;63:23:63:44:0;:12::61:1;:75::96:0;:65::113:1;:4::150;64:23:64:44:0;:12::59:1;:69::83:0;:93::104;:63::105:1;:4::159;67:23:67:24:0;:12::39:1;:53::74:0;:43::89:1;:96::98:0;:43::99:1;:::102;:4::168;68:23:68:24:0;:12::37:1;:41::73:0;:4::134:1;69:23:69:24:0;:12::41:1;:45::71:0;:4::134:1;70:23:70:24:0;:12::31:1;:35::39:0;:4::98:1;73:29:73:46:0;:49::50;:29:::1;74:23:74:41:0;:12::56:1;:70::91:0;:60::106:1;:113::115:0;:60::116:1;:::119;:4::183;75:23:75:41:0;:12::54:1;:58::90:0;:4::144:1;76:23:76:41:0;:12::58:1;:72::73:0;:62::90:1;:4::151;77:12:77:48;:52::56:0;:4::113:1;80:28:80:45:0;:::49:1;81:12:81:55;:59::61:0;:4::108:1;84:42:84:130:0;85:45:85:47;87:16:87:37;:::41:1;88:12:88:17:0;:::21:1;89:8:89:13:0;:::17:1;:20::36:0;:8:::1;:38:98:5:0;90:24:90:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;92:25:92:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;93:25:93:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;94:25:94:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;95:24:95:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;96:25:96:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;97:25:97:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;89:38:98:5;101:12:101:17:0;:::21:1;102:8:102:13:0;:::17:1;:20::36:0;:8:::1;:38:111:5:0;103:24:103:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;105:25:105:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;106:25:106:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;107:25:107:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;108:24:108:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;109:25:109:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;110:25:110:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;102:38:111:5;113:12:113:17:0;:::21:1;114:8:114:13:0;:::17:1;:20::36:0;:8:::1;:38:124:5:0;116:24:116:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;118:25:118:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;119:25:119:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;120:25:120:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;121:24:121:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;122:25:122:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;123:25:123:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;114:38:124:5;126:12:126:17:0;:::21:1;127:8:127:13:0;:::17:1;:20::36:0;:8:::1;:38:137:5:0;129:24:129:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;131:25:131:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;132:25:132:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;133:25:133:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;134:24:134:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;135:25:135:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;136:25:136:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;127:38:137:5;139:12:139:17:0;:::21:1;140:8:140:13:0;:::17:1;:20::36:0;:8:::1;:38:150:5:0;142:24:142:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;144:25:144:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;145:25:145:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;146:25:146:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;147:24:147:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;148:25:148:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;149:25:149:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;140:38:150:5;152:12:152:17:0;:::21:1;153:8:153:13:0;:::17:1;:20::36:0;:8:::1;:38:163:5:0;155:24:155:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;157:25:157:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;158:25:158:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;159:25:159:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;160:24:160:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;161:25:161:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;162:25:162:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;153:38:163:5;165:12:165:17:0;:::21:1;166:8:166:13:0;:::17:1;:20::36:0;:8:::1;:38:176:5:0;168:24:168:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;170:25:170:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;171:25:171:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;172:25:172:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;173:24:173:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;174:25:174:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;175:25:175:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;166:38:176:5;178:12:178:17:0;:::21:1;179:8:179:13:0;:::17:1;:20::36:0;:8:::1;:38:189:5:0;181:24:181:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;183:25:183:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;184:25:184:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;185:25:185:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;186:24:186:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;187:25:187:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;188:25:188:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;179:38:189:5;191:12:191:17:0;:::21:1;192:8:192:13:0;:::17:1;:20::36:0;:8:::1;:38:202:5:0;194:24:194:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;196:25:196:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;197:25:197:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;198:25:198:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;199:24:199:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;200:25:200:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;201:25:201:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;192:38:202:5;204:12:204:17:0;:::21:1;205:8:205:13:0;:::17:1;:20::36:0;:8:::1;:38:215:5:0;207:24:207:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;209:25:209:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;210:25:210:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;211:25:211:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;212:24:212:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;213:25:213:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;214:25:214:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;205:38:215:5;217:12:217:17:0;:::21:1;218:8:218:13:0;:::17:1;:20::36:0;:8:::1;:38:228:5:0;220:24:220:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;222:25:222:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;223:25:223:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;224:25:224:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;225:24:225:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;226:25:226:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;227:25:227:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;218:38:228:5;230:12:230:17:0;:::21:1;231:8:231:13:0;:::17:1;:20::36:0;:8:::1;:38:241:5:0;233:24:233:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;235:25:235:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;236:25:236:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;237:25:237:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;238:24:238:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;239:25:239:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;240:25:240:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;231:38:241:5;243:12:243:17:0;:::21:1;244:8:244:13:0;:::17:1;:20::36:0;:8:::1;:38:254:5:0;246:24:246:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;248:25:248:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;249:25:249:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;250:25:250:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;251:24:251:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;252:25:252:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;253:25:253:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;244:38:254:5;256:12:256:17:0;:::21:1;257:8:257:13:0;:::17:1;:20::36:0;:8:::1;:38:267:5:0;259:24:259:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;261:25:261:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;262:25:262:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;263:25:263:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;264:24:264:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;265:25:265:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;266:25:266:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;257:38:267:5;269:12:269:17:0;:::21:1;270:8:270:13:0;:::17:1;:20::36:0;:8:::1;:38:280:5:0;272:24:272:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;274:25:274:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;275:25:275:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;276:25:276:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;277:24:277:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;278:25:278:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;279:25:279:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;270:38:280:5;282:12:282:17:0;:::21:1;283:8:283:13:0;:::17:1;:20::36:0;:8:::1;:38:293:5:0;285:24:285:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;287:25:287:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;288:25:288:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;289:25:289:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;290:24:290:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;291:25:291:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;292:25:292:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;283:38:293:5;295:12:295:17:0;:::21:1;296:8:296:13:0;:::17:1;:20::36:0;:8:::1;:38:306:5:0;298:24:298:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;300:25:300:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;301:25:301:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;302:25:302:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;303:24:303:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;304:25:304:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;305:25:305:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;296:38:306:5;308:12:308:17:0;:::21:1;309:8:309:13:0;:::17:1;:20::36:0;:8:::1;:38:319:5:0;311:24:311:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;313:25:313:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;314:25:314:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;315:25:315:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;316:24:316:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;317:25:317:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;318:25:318:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;309:38:319:5;321:12:321:17:0;:::21:1;322:8:322:13:0;:::17:1;:20::36:0;:8:::1;:38:332:5:0;324:24:324:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;326:25:326:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;327:25:327:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;328:25:328:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;329:24:329:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;330:25:330:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;331:25:331:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;322:38:332:5;334:12:334:17:0;:::21:1;335:8:335:13:0;:::17:1;:20::36:0;:8:::1;:38:345:5:0;337:24:337:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;339:25:339:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;340:25:340:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;341:25:341:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;342:24:342:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;343:25:343:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;344:25:344:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;335:38:345:5;347:12:347:17:0;:::21:1;348:8:348:13:0;:::17:1;:20::36:0;:8:::1;:38:358:5:0;350:24:350:29;:14::48:1;:55::89:0;;:14::90:1;:::93;:97::126:0;;:6::175:1;352:25:352:30:0;:14::45:1;:59::64:0;:49::79:1;:6::134;353:25:353:30:0;:14::45:1;:59::64:0;:49::79:1;:6::136;354:25:354:30:0;:14::47:1;:61::66:0;:51::83:1;:6::146;355:24:355:29:0;:14::48:1;:::55;;:59::61:0;:6::122:1;356:25:356:30:0;:14::43:1;:56::61:0;:46::74:1;:14;:6::137;357:25:357:30:0;:14::37:1;:50::55:0;:40::62:1;:14;:6::135;348:38:358:5;28:2:360:3;;;;;;;;;;;;;;;372::394::0;;;;;374:12:374:33;:37::38;:4::72:1;375:12:375:28:0;:32::33;:4::74:1;376:12:376:29:0;:33::34;:4::76:1;379:23:379:24:0;:12::41:1;:45::63:0;;:4::135:1;380:23:380:24:0;:12::39:1;:53::54:0;:43::69:1;:4::110;381:23:381:24:0;:12::37:1;:51::52:0;:41::65:1;:4::104;382:23:382:24:0;:12::39:1;:53::54:0;:43::69:1;:4::110;383:23:383:24:0;:12::31:1;:45::46:0;:35::53:1;:4::92;386:22:386:23:0;:12::40:1;:44::64:0;:4::120:1;387:23:387:24:0;:12::41:1;:45::68:0;;:4::138:1;388:23:388:24:0;:12::31:1;:45::46:0;:35::53:1;:4::109;389:23:389:24:0;:12::39:1;:53::54:0;:43::69:1;:4::127;390:23:390:24:0;:12::37:1;:51::52:0;:41::65:1;:4::121;391:23:391:24:0;:12::39:1;:53::54:0;:43::69:1;:4::127;372:2:394:3;;;437::464::0;;;;;439:12:439:33;:37::38;:4::72:1;440:12:440:28:0;:32::33;:4::73:1;441:12:441:29:0;:33::34;:4::75:1;444:23:444:24:0;:12::41:1;:55::56:0;:45::73:1;:4::131;445:23:445:24:0;:12::39:1;:54::55:0;:44::70:1;:73::77:0;:44:::1;:4::139;446:23:446:24:0;:12::37:1;:51::52:0;:41::65:1;:78::79:0;:68::92:1;:41;:4::164;447:23:447:24:0;:12::39:1;:43::45:0;:4::100:1;448:23:448:24:0;:12::31:1;:45::46:0;:35::53:1;:4::113;451:23:451:24:0;:12::41:1;:55::56:0;:45::73:1;:4::129;452:23:452:24:0;:12::39:1;:53::54:0;:43::69:1;:4::110;453:23:453:24:0;:12::37:1;:51::52:0;:41::65:1;:4::104;454:23:454:24:0;:12::39:1;:53::54:0;:43::69:1;:4::110;455:23:455:24:0;:12::31:1;:45::46:0;:35::53:1;:4::92;458:22:458:23:0;:12::40:1;:44::64:0;:4::120:1;461:23:461:24:0;:12::39:1;:53::54:0;:43::69:1;:4::110;437:2:464:3;;;476::494::0;;;478:12:478:33;:37::38;:4::72:1;479:12:479:28:0;:32::33;:4::73:1;480:12:480:29:0;:32::33;:12:::1;:4::75;481:12:481:29:0;:32::33;:12:::1;:4::76;484:23:484:24:0;:12::41:1;:55::56:0;:45::73:1;:4::116;485:23:485:24:0;:12::39:1;:53::54:0;:43::69:1;:4::110;486:23:486:24:0;:12::37:1;:50::51:0;:40::64:1;:12;:4::96;487:23:487:24:0;:12::39:1;:53::54:0;:43::69:1;:4::110;488:23:488:24:0;:12::31:1;:45::46:0;:35::53:1;:4::92;491:23:491:24:0;:12::37:1;:41::57:0;:4::102:1;476:2:494:3;;9:0:495:1;;",
     logs: [
       {
-        ip: 270,
-        line: 111,
+        ip: 276,
+        line: 115,
         data: [
           "Checking cauldron pool input and output at index",
           {
             stackIndex: 0,
             type: "int",
-            ip: 270
+            ip: 276
           }
         ]
       },
       {
-        ip: 320,
-        line: 124,
+        ip: 326,
+        line: 128,
         data: [
           "Checking cauldron pool input and output at index",
           {
             stackIndex: 0,
             type: "int",
-            ip: 320
+            ip: 326
           }
         ]
       },
       {
-        ip: 370,
-        line: 137,
+        ip: 376,
+        line: 141,
         data: [
           "Checking cauldron pool input and output at index",
           {
             stackIndex: 0,
             type: "int",
-            ip: 370
+            ip: 376
           }
         ]
       },
       {
-        ip: 420,
-        line: 150,
+        ip: 426,
+        line: 154,
         data: [
           "Checking cauldron pool input and output at index",
           {
             stackIndex: 0,
             type: "int",
-            ip: 420
+            ip: 426
           }
         ]
       },
       {
-        ip: 470,
-        line: 163,
+        ip: 476,
+        line: 167,
         data: [
           "Checking cauldron pool input and output at index",
           {
             stackIndex: 0,
             type: "int",
-            ip: 470
+            ip: 476
           }
         ]
       },
       {
-        ip: 520,
-        line: 176,
+        ip: 526,
+        line: 180,
         data: [
           "Checking cauldron pool input and output at index",
           {
             stackIndex: 0,
             type: "int",
-            ip: 520
+            ip: 526
           }
         ]
       },
       {
-        ip: 570,
-        line: 189,
+        ip: 576,
+        line: 193,
         data: [
           "Checking cauldron pool input and output at index",
           {
             stackIndex: 0,
             type: "int",
-            ip: 570
+            ip: 576
           }
         ]
       },
       {
-        ip: 620,
-        line: 202,
+        ip: 626,
+        line: 206,
         data: [
           "Checking cauldron pool input and output at index",
           {
             stackIndex: 0,
             type: "int",
-            ip: 620
+            ip: 626
           }
         ]
       },
       {
-        ip: 670,
-        line: 215,
+        ip: 676,
+        line: 219,
         data: [
           "Checking cauldron pool input and output at index",
           {
             stackIndex: 0,
             type: "int",
-            ip: 670
+            ip: 676
           }
         ]
       },
       {
-        ip: 720,
-        line: 228,
+        ip: 726,
+        line: 232,
         data: [
           "Checking cauldron pool input and output at index",
           {
             stackIndex: 0,
             type: "int",
-            ip: 720
+            ip: 726
           }
         ]
       },
       {
-        ip: 770,
-        line: 241,
+        ip: 776,
+        line: 245,
         data: [
           "Checking cauldron pool input and output at index",
           {
             stackIndex: 0,
             type: "int",
-            ip: 770
+            ip: 776
           }
         ]
       },
       {
-        ip: 820,
-        line: 254,
+        ip: 826,
+        line: 258,
         data: [
           "Checking cauldron pool input and output at index",
           {
             stackIndex: 0,
             type: "int",
-            ip: 820
+            ip: 826
           }
         ]
       },
       {
-        ip: 870,
-        line: 267,
+        ip: 876,
+        line: 271,
         data: [
           "Checking cauldron pool input and output at index",
           {
             stackIndex: 0,
             type: "int",
-            ip: 870
+            ip: 876
           }
         ]
       },
       {
-        ip: 920,
-        line: 280,
+        ip: 926,
+        line: 284,
         data: [
           "Checking cauldron pool input and output at index",
           {
             stackIndex: 0,
             type: "int",
-            ip: 920
+            ip: 926
           }
         ]
       },
       {
-        ip: 970,
-        line: 293,
+        ip: 976,
+        line: 297,
         data: [
           "Checking cauldron pool input and output at index",
           {
             stackIndex: 0,
             type: "int",
-            ip: 970
+            ip: 976
           }
         ]
       },
       {
-        ip: 1020,
-        line: 306,
+        ip: 1026,
+        line: 310,
         data: [
           "Checking cauldron pool input and output at index",
           {
             stackIndex: 0,
             type: "int",
-            ip: 1020
+            ip: 1026
           }
         ]
       },
       {
-        ip: 1070,
-        line: 319,
+        ip: 1076,
+        line: 323,
         data: [
           "Checking cauldron pool input and output at index",
           {
             stackIndex: 0,
             type: "int",
-            ip: 1070
+            ip: 1076
           }
         ]
       },
       {
-        ip: 1120,
-        line: 332,
+        ip: 1126,
+        line: 336,
         data: [
           "Checking cauldron pool input and output at index",
           {
             stackIndex: 0,
             type: "int",
-            ip: 1120
+            ip: 1126
           }
         ]
       },
       {
-        ip: 1170,
-        line: 345,
+        ip: 1176,
+        line: 349,
         data: [
           "Checking cauldron pool input and output at index",
           {
             stackIndex: 0,
             type: "int",
-            ip: 1170
+            ip: 1176
           }
         ]
       }
@@ -284,1004 +284,1019 @@ export default {
         message: "Issue transaction must have at least 5 outputs"
       },
       {
-        ip: 29,
-        line: 35,
+        ip: 18,
+        line: 32,
+        message: "Issue transaction must have one more output than inputs"
+      },
+      {
+        ip: 33,
+        line: 36,
         message: "Current time is before last interaction time"
       },
       {
-        ip: 85,
-        line: 55,
+        ip: 89,
+        line: 56,
         message: "Issue amount exceeds current emission cap"
       },
       {
-        ip: 88,
-        line: 58,
+        ip: 92,
+        line: 59,
         message: "Active input index must be 0 for issuance contract"
       },
       {
-        ip: 99,
-        line: 60,
+        ip: 100,
+        line: 61,
         message: "Wrong amount of tokens issued"
       },
       {
-        ip: 104,
-        line: 61,
+        ip: 105,
+        line: 62,
         message: "Can not change token category"
       },
       {
-        ip: 109,
-        line: 62,
+        ip: 110,
+        line: 63,
         message: "Can not change locking bytecode"
       },
       {
-        ip: 115,
-        line: 63,
+        ip: 116,
+        line: 64,
         message: "NFT commitment must be updated with current time"
       },
       {
-        ip: 123,
-        line: 66,
+        ip: 124,
+        line: 67,
         message: "Council fund share must have the same token category, no nft"
       },
       {
-        ip: 127,
-        line: 67,
+        ip: 128,
+        line: 68,
         message: "Council fund share must match the calculated fund share"
       },
       {
-        ip: 131,
-        line: 68,
+        ip: 132,
+        line: 69,
         message: "Council fund share must have the correct locking bytecode"
       },
       {
-        ip: 135,
-        line: 69,
+        ip: 136,
+        line: 70,
         message: "Council fund share must have a value of 1000 satoshis"
       },
       {
-        ip: 146,
-        line: 73,
+        ip: 147,
+        line: 74,
         message: "Investor's share must have the same token category, no nft"
       },
       {
-        ip: 150,
-        line: 74,
+        ip: 151,
+        line: 75,
         message: "Investor's share must match the calculated share"
       },
       {
-        ip: 155,
-        line: 75,
+        ip: 156,
+        line: 76,
         message: "Investor's share must have the correct locking bytecode"
       },
       {
-        ip: 158,
-        line: 76,
+        ip: 159,
+        line: 77,
         message: "Investor's share must have a value of 1000 satoshis"
       },
       {
-        ip: 178,
-        line: 86,
+        ip: 164,
+        line: 81,
+        message: "Change output must have no token category"
+      },
+      {
+        ip: 184,
+        line: 90,
         message: "Cauldron pool contract signature must match"
       },
       {
-        ip: 183,
-        line: 88,
+        ip: 189,
+        line: 92,
         message: "Cauldron pool token category must remain the same"
       },
       {
-        ip: 188,
-        line: 89,
+        ip: 194,
+        line: 93,
         message: "Cauldron pool token commitment must remain the same"
-      },
-      {
-        ip: 193,
-        line: 90,
-        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 199,
-        line: 91,
-        message: "Wrong unlocking bytecode length for cauldron pool input"
+        line: 94,
+        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 205,
-        line: 92,
-        message: "Cauldron pool token amount must be less than input amount"
+        line: 95,
+        message: "Wrong unlocking bytecode length for cauldron pool input"
       },
       {
         ip: 211,
-        line: 93,
+        line: 96,
+        message: "Cauldron pool token amount must be less than input amount"
+      },
+      {
+        ip: 217,
+        line: 97,
         message: "Cauldron pool satoshi output value must be greater than input value"
       },
       {
-        ip: 228,
-        line: 99,
+        ip: 234,
+        line: 103,
         message: "Cauldron pool contract signature must match"
       },
       {
-        ip: 233,
-        line: 101,
+        ip: 239,
+        line: 105,
         message: "Cauldron pool token category must remain the same"
       },
       {
-        ip: 238,
-        line: 102,
+        ip: 244,
+        line: 106,
         message: "Cauldron pool token commitment must remain the same"
-      },
-      {
-        ip: 243,
-        line: 103,
-        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 249,
-        line: 104,
-        message: "Wrong unlocking bytecode length for cauldron pool input"
+        line: 107,
+        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 255,
-        line: 105,
-        message: "Cauldron pool token amount must be less than input amount"
+        line: 108,
+        message: "Wrong unlocking bytecode length for cauldron pool input"
       },
       {
         ip: 261,
-        line: 106,
+        line: 109,
+        message: "Cauldron pool token amount must be less than input amount"
+      },
+      {
+        ip: 267,
+        line: 110,
         message: "Cauldron pool satoshi output value must be greater than input value"
       },
       {
-        ip: 278,
-        line: 112,
+        ip: 284,
+        line: 116,
         message: "Cauldron pool contract signature must match"
       },
       {
-        ip: 283,
-        line: 114,
+        ip: 289,
+        line: 118,
         message: "Cauldron pool token category must remain the same"
       },
       {
-        ip: 288,
-        line: 115,
+        ip: 294,
+        line: 119,
         message: "Cauldron pool token commitment must remain the same"
-      },
-      {
-        ip: 293,
-        line: 116,
-        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 299,
-        line: 117,
-        message: "Wrong unlocking bytecode length for cauldron pool input"
+        line: 120,
+        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 305,
-        line: 118,
-        message: "Cauldron pool token amount must be less than input amount"
+        line: 121,
+        message: "Wrong unlocking bytecode length for cauldron pool input"
       },
       {
         ip: 311,
-        line: 119,
+        line: 122,
+        message: "Cauldron pool token amount must be less than input amount"
+      },
+      {
+        ip: 317,
+        line: 123,
         message: "Cauldron pool satoshi output value must be greater than input value"
       },
       {
-        ip: 328,
-        line: 125,
+        ip: 334,
+        line: 129,
         message: "Cauldron pool contract signature must match"
       },
       {
-        ip: 333,
-        line: 127,
+        ip: 339,
+        line: 131,
         message: "Cauldron pool token category must remain the same"
       },
       {
-        ip: 338,
-        line: 128,
+        ip: 344,
+        line: 132,
         message: "Cauldron pool token commitment must remain the same"
-      },
-      {
-        ip: 343,
-        line: 129,
-        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 349,
-        line: 130,
-        message: "Wrong unlocking bytecode length for cauldron pool input"
+        line: 133,
+        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 355,
-        line: 131,
-        message: "Cauldron pool token amount must be less than input amount"
+        line: 134,
+        message: "Wrong unlocking bytecode length for cauldron pool input"
       },
       {
         ip: 361,
-        line: 132,
+        line: 135,
+        message: "Cauldron pool token amount must be less than input amount"
+      },
+      {
+        ip: 367,
+        line: 136,
         message: "Cauldron pool satoshi output value must be greater than input value"
       },
       {
-        ip: 378,
-        line: 138,
+        ip: 384,
+        line: 142,
         message: "Cauldron pool contract signature must match"
       },
       {
-        ip: 383,
-        line: 140,
+        ip: 389,
+        line: 144,
         message: "Cauldron pool token category must remain the same"
       },
       {
-        ip: 388,
-        line: 141,
+        ip: 394,
+        line: 145,
         message: "Cauldron pool token commitment must remain the same"
-      },
-      {
-        ip: 393,
-        line: 142,
-        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 399,
-        line: 143,
-        message: "Wrong unlocking bytecode length for cauldron pool input"
+        line: 146,
+        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 405,
-        line: 144,
-        message: "Cauldron pool token amount must be less than input amount"
+        line: 147,
+        message: "Wrong unlocking bytecode length for cauldron pool input"
       },
       {
         ip: 411,
-        line: 145,
+        line: 148,
+        message: "Cauldron pool token amount must be less than input amount"
+      },
+      {
+        ip: 417,
+        line: 149,
         message: "Cauldron pool satoshi output value must be greater than input value"
       },
       {
-        ip: 428,
-        line: 151,
+        ip: 434,
+        line: 155,
         message: "Cauldron pool contract signature must match"
       },
       {
-        ip: 433,
-        line: 153,
+        ip: 439,
+        line: 157,
         message: "Cauldron pool token category must remain the same"
       },
       {
-        ip: 438,
-        line: 154,
+        ip: 444,
+        line: 158,
         message: "Cauldron pool token commitment must remain the same"
-      },
-      {
-        ip: 443,
-        line: 155,
-        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 449,
-        line: 156,
-        message: "Wrong unlocking bytecode length for cauldron pool input"
+        line: 159,
+        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 455,
-        line: 157,
-        message: "Cauldron pool token amount must be less than input amount"
+        line: 160,
+        message: "Wrong unlocking bytecode length for cauldron pool input"
       },
       {
         ip: 461,
-        line: 158,
+        line: 161,
+        message: "Cauldron pool token amount must be less than input amount"
+      },
+      {
+        ip: 467,
+        line: 162,
         message: "Cauldron pool satoshi output value must be greater than input value"
       },
       {
-        ip: 478,
-        line: 164,
+        ip: 484,
+        line: 168,
         message: "Cauldron pool contract signature must match"
       },
       {
-        ip: 483,
-        line: 166,
+        ip: 489,
+        line: 170,
         message: "Cauldron pool token category must remain the same"
       },
       {
-        ip: 488,
-        line: 167,
+        ip: 494,
+        line: 171,
         message: "Cauldron pool token commitment must remain the same"
-      },
-      {
-        ip: 493,
-        line: 168,
-        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 499,
-        line: 169,
-        message: "Wrong unlocking bytecode length for cauldron pool input"
+        line: 172,
+        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 505,
-        line: 170,
-        message: "Cauldron pool token amount must be less than input amount"
+        line: 173,
+        message: "Wrong unlocking bytecode length for cauldron pool input"
       },
       {
         ip: 511,
-        line: 171,
+        line: 174,
+        message: "Cauldron pool token amount must be less than input amount"
+      },
+      {
+        ip: 517,
+        line: 175,
         message: "Cauldron pool satoshi output value must be greater than input value"
       },
       {
-        ip: 528,
-        line: 177,
+        ip: 534,
+        line: 181,
         message: "Cauldron pool contract signature must match"
       },
       {
-        ip: 533,
-        line: 179,
+        ip: 539,
+        line: 183,
         message: "Cauldron pool token category must remain the same"
       },
       {
-        ip: 538,
-        line: 180,
+        ip: 544,
+        line: 184,
         message: "Cauldron pool token commitment must remain the same"
-      },
-      {
-        ip: 543,
-        line: 181,
-        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 549,
-        line: 182,
-        message: "Wrong unlocking bytecode length for cauldron pool input"
+        line: 185,
+        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 555,
-        line: 183,
-        message: "Cauldron pool token amount must be less than input amount"
+        line: 186,
+        message: "Wrong unlocking bytecode length for cauldron pool input"
       },
       {
         ip: 561,
-        line: 184,
+        line: 187,
+        message: "Cauldron pool token amount must be less than input amount"
+      },
+      {
+        ip: 567,
+        line: 188,
         message: "Cauldron pool satoshi output value must be greater than input value"
       },
       {
-        ip: 578,
-        line: 190,
+        ip: 584,
+        line: 194,
         message: "Cauldron pool contract signature must match"
       },
       {
-        ip: 583,
-        line: 192,
+        ip: 589,
+        line: 196,
         message: "Cauldron pool token category must remain the same"
       },
       {
-        ip: 588,
-        line: 193,
+        ip: 594,
+        line: 197,
         message: "Cauldron pool token commitment must remain the same"
-      },
-      {
-        ip: 593,
-        line: 194,
-        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 599,
-        line: 195,
-        message: "Wrong unlocking bytecode length for cauldron pool input"
+        line: 198,
+        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 605,
-        line: 196,
-        message: "Cauldron pool token amount must be less than input amount"
+        line: 199,
+        message: "Wrong unlocking bytecode length for cauldron pool input"
       },
       {
         ip: 611,
-        line: 197,
+        line: 200,
+        message: "Cauldron pool token amount must be less than input amount"
+      },
+      {
+        ip: 617,
+        line: 201,
         message: "Cauldron pool satoshi output value must be greater than input value"
       },
       {
-        ip: 628,
-        line: 203,
+        ip: 634,
+        line: 207,
         message: "Cauldron pool contract signature must match"
       },
       {
-        ip: 633,
-        line: 205,
+        ip: 639,
+        line: 209,
         message: "Cauldron pool token category must remain the same"
       },
       {
-        ip: 638,
-        line: 206,
+        ip: 644,
+        line: 210,
         message: "Cauldron pool token commitment must remain the same"
-      },
-      {
-        ip: 643,
-        line: 207,
-        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 649,
-        line: 208,
-        message: "Wrong unlocking bytecode length for cauldron pool input"
+        line: 211,
+        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 655,
-        line: 209,
-        message: "Cauldron pool token amount must be less than input amount"
+        line: 212,
+        message: "Wrong unlocking bytecode length for cauldron pool input"
       },
       {
         ip: 661,
-        line: 210,
+        line: 213,
+        message: "Cauldron pool token amount must be less than input amount"
+      },
+      {
+        ip: 667,
+        line: 214,
         message: "Cauldron pool satoshi output value must be greater than input value"
       },
       {
-        ip: 678,
-        line: 216,
+        ip: 684,
+        line: 220,
         message: "Cauldron pool contract signature must match"
       },
       {
-        ip: 683,
-        line: 218,
+        ip: 689,
+        line: 222,
         message: "Cauldron pool token category must remain the same"
       },
       {
-        ip: 688,
-        line: 219,
+        ip: 694,
+        line: 223,
         message: "Cauldron pool token commitment must remain the same"
-      },
-      {
-        ip: 693,
-        line: 220,
-        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 699,
-        line: 221,
-        message: "Wrong unlocking bytecode length for cauldron pool input"
+        line: 224,
+        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 705,
-        line: 222,
-        message: "Cauldron pool token amount must be less than input amount"
+        line: 225,
+        message: "Wrong unlocking bytecode length for cauldron pool input"
       },
       {
         ip: 711,
-        line: 223,
+        line: 226,
+        message: "Cauldron pool token amount must be less than input amount"
+      },
+      {
+        ip: 717,
+        line: 227,
         message: "Cauldron pool satoshi output value must be greater than input value"
       },
       {
-        ip: 728,
-        line: 229,
+        ip: 734,
+        line: 233,
         message: "Cauldron pool contract signature must match"
       },
       {
-        ip: 733,
-        line: 231,
+        ip: 739,
+        line: 235,
         message: "Cauldron pool token category must remain the same"
       },
       {
-        ip: 738,
-        line: 232,
+        ip: 744,
+        line: 236,
         message: "Cauldron pool token commitment must remain the same"
-      },
-      {
-        ip: 743,
-        line: 233,
-        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 749,
-        line: 234,
-        message: "Wrong unlocking bytecode length for cauldron pool input"
+        line: 237,
+        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 755,
-        line: 235,
-        message: "Cauldron pool token amount must be less than input amount"
+        line: 238,
+        message: "Wrong unlocking bytecode length for cauldron pool input"
       },
       {
         ip: 761,
-        line: 236,
+        line: 239,
+        message: "Cauldron pool token amount must be less than input amount"
+      },
+      {
+        ip: 767,
+        line: 240,
         message: "Cauldron pool satoshi output value must be greater than input value"
       },
       {
-        ip: 778,
-        line: 242,
+        ip: 784,
+        line: 246,
         message: "Cauldron pool contract signature must match"
       },
       {
-        ip: 783,
-        line: 244,
+        ip: 789,
+        line: 248,
         message: "Cauldron pool token category must remain the same"
       },
       {
-        ip: 788,
-        line: 245,
+        ip: 794,
+        line: 249,
         message: "Cauldron pool token commitment must remain the same"
-      },
-      {
-        ip: 793,
-        line: 246,
-        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 799,
-        line: 247,
-        message: "Wrong unlocking bytecode length for cauldron pool input"
+        line: 250,
+        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 805,
-        line: 248,
-        message: "Cauldron pool token amount must be less than input amount"
+        line: 251,
+        message: "Wrong unlocking bytecode length for cauldron pool input"
       },
       {
         ip: 811,
-        line: 249,
+        line: 252,
+        message: "Cauldron pool token amount must be less than input amount"
+      },
+      {
+        ip: 817,
+        line: 253,
         message: "Cauldron pool satoshi output value must be greater than input value"
       },
       {
-        ip: 828,
-        line: 255,
+        ip: 834,
+        line: 259,
         message: "Cauldron pool contract signature must match"
       },
       {
-        ip: 833,
-        line: 257,
+        ip: 839,
+        line: 261,
         message: "Cauldron pool token category must remain the same"
       },
       {
-        ip: 838,
-        line: 258,
+        ip: 844,
+        line: 262,
         message: "Cauldron pool token commitment must remain the same"
-      },
-      {
-        ip: 843,
-        line: 259,
-        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 849,
-        line: 260,
-        message: "Wrong unlocking bytecode length for cauldron pool input"
+        line: 263,
+        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 855,
-        line: 261,
-        message: "Cauldron pool token amount must be less than input amount"
+        line: 264,
+        message: "Wrong unlocking bytecode length for cauldron pool input"
       },
       {
         ip: 861,
-        line: 262,
+        line: 265,
+        message: "Cauldron pool token amount must be less than input amount"
+      },
+      {
+        ip: 867,
+        line: 266,
         message: "Cauldron pool satoshi output value must be greater than input value"
       },
       {
-        ip: 878,
-        line: 268,
+        ip: 884,
+        line: 272,
         message: "Cauldron pool contract signature must match"
       },
       {
-        ip: 883,
-        line: 270,
+        ip: 889,
+        line: 274,
         message: "Cauldron pool token category must remain the same"
       },
       {
-        ip: 888,
-        line: 271,
+        ip: 894,
+        line: 275,
         message: "Cauldron pool token commitment must remain the same"
-      },
-      {
-        ip: 893,
-        line: 272,
-        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 899,
-        line: 273,
-        message: "Wrong unlocking bytecode length for cauldron pool input"
+        line: 276,
+        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 905,
-        line: 274,
-        message: "Cauldron pool token amount must be less than input amount"
+        line: 277,
+        message: "Wrong unlocking bytecode length for cauldron pool input"
       },
       {
         ip: 911,
-        line: 275,
+        line: 278,
+        message: "Cauldron pool token amount must be less than input amount"
+      },
+      {
+        ip: 917,
+        line: 279,
         message: "Cauldron pool satoshi output value must be greater than input value"
       },
       {
-        ip: 928,
-        line: 281,
+        ip: 934,
+        line: 285,
         message: "Cauldron pool contract signature must match"
       },
       {
-        ip: 933,
-        line: 283,
+        ip: 939,
+        line: 287,
         message: "Cauldron pool token category must remain the same"
       },
       {
-        ip: 938,
-        line: 284,
+        ip: 944,
+        line: 288,
         message: "Cauldron pool token commitment must remain the same"
-      },
-      {
-        ip: 943,
-        line: 285,
-        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 949,
-        line: 286,
-        message: "Wrong unlocking bytecode length for cauldron pool input"
+        line: 289,
+        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 955,
-        line: 287,
-        message: "Cauldron pool token amount must be less than input amount"
+        line: 290,
+        message: "Wrong unlocking bytecode length for cauldron pool input"
       },
       {
         ip: 961,
-        line: 288,
+        line: 291,
+        message: "Cauldron pool token amount must be less than input amount"
+      },
+      {
+        ip: 967,
+        line: 292,
         message: "Cauldron pool satoshi output value must be greater than input value"
       },
       {
-        ip: 978,
-        line: 294,
+        ip: 984,
+        line: 298,
         message: "Cauldron pool contract signature must match"
       },
       {
-        ip: 983,
-        line: 296,
+        ip: 989,
+        line: 300,
         message: "Cauldron pool token category must remain the same"
       },
       {
-        ip: 988,
-        line: 297,
+        ip: 994,
+        line: 301,
         message: "Cauldron pool token commitment must remain the same"
-      },
-      {
-        ip: 993,
-        line: 298,
-        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 999,
-        line: 299,
-        message: "Wrong unlocking bytecode length for cauldron pool input"
+        line: 302,
+        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 1005,
-        line: 300,
-        message: "Cauldron pool token amount must be less than input amount"
+        line: 303,
+        message: "Wrong unlocking bytecode length for cauldron pool input"
       },
       {
         ip: 1011,
-        line: 301,
+        line: 304,
+        message: "Cauldron pool token amount must be less than input amount"
+      },
+      {
+        ip: 1017,
+        line: 305,
         message: "Cauldron pool satoshi output value must be greater than input value"
       },
       {
-        ip: 1028,
-        line: 307,
+        ip: 1034,
+        line: 311,
         message: "Cauldron pool contract signature must match"
       },
       {
-        ip: 1033,
-        line: 309,
+        ip: 1039,
+        line: 313,
         message: "Cauldron pool token category must remain the same"
       },
       {
-        ip: 1038,
-        line: 310,
+        ip: 1044,
+        line: 314,
         message: "Cauldron pool token commitment must remain the same"
-      },
-      {
-        ip: 1043,
-        line: 311,
-        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 1049,
-        line: 312,
-        message: "Wrong unlocking bytecode length for cauldron pool input"
+        line: 315,
+        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 1055,
-        line: 313,
-        message: "Cauldron pool token amount must be less than input amount"
+        line: 316,
+        message: "Wrong unlocking bytecode length for cauldron pool input"
       },
       {
         ip: 1061,
-        line: 314,
+        line: 317,
+        message: "Cauldron pool token amount must be less than input amount"
+      },
+      {
+        ip: 1067,
+        line: 318,
         message: "Cauldron pool satoshi output value must be greater than input value"
       },
       {
-        ip: 1078,
-        line: 320,
+        ip: 1084,
+        line: 324,
         message: "Cauldron pool contract signature must match"
       },
       {
-        ip: 1083,
-        line: 322,
+        ip: 1089,
+        line: 326,
         message: "Cauldron pool token category must remain the same"
       },
       {
-        ip: 1088,
-        line: 323,
+        ip: 1094,
+        line: 327,
         message: "Cauldron pool token commitment must remain the same"
-      },
-      {
-        ip: 1093,
-        line: 324,
-        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 1099,
-        line: 325,
-        message: "Wrong unlocking bytecode length for cauldron pool input"
+        line: 328,
+        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 1105,
-        line: 326,
-        message: "Cauldron pool token amount must be less than input amount"
+        line: 329,
+        message: "Wrong unlocking bytecode length for cauldron pool input"
       },
       {
         ip: 1111,
-        line: 327,
+        line: 330,
+        message: "Cauldron pool token amount must be less than input amount"
+      },
+      {
+        ip: 1117,
+        line: 331,
         message: "Cauldron pool satoshi output value must be greater than input value"
       },
       {
-        ip: 1128,
-        line: 333,
+        ip: 1134,
+        line: 337,
         message: "Cauldron pool contract signature must match"
       },
       {
-        ip: 1133,
-        line: 335,
+        ip: 1139,
+        line: 339,
         message: "Cauldron pool token category must remain the same"
       },
       {
-        ip: 1138,
-        line: 336,
+        ip: 1144,
+        line: 340,
         message: "Cauldron pool token commitment must remain the same"
-      },
-      {
-        ip: 1143,
-        line: 337,
-        message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
         ip: 1149,
-        line: 338,
-        message: "Wrong unlocking bytecode length for cauldron pool input"
-      },
-      {
-        ip: 1155,
-        line: 339,
-        message: "Cauldron pool token amount must be less than input amount"
-      },
-      {
-        ip: 1161,
-        line: 340,
-        message: "Cauldron pool satoshi output value must be greater than input value"
-      },
-      {
-        ip: 1178,
-        line: 346,
-        message: "Cauldron pool contract signature must match"
-      },
-      {
-        ip: 1183,
-        line: 348,
-        message: "Cauldron pool token category must remain the same"
-      },
-      {
-        ip: 1188,
-        line: 349,
-        message: "Cauldron pool token commitment must remain the same"
-      },
-      {
-        ip: 1193,
-        line: 350,
+        line: 341,
         message: "Cauldron pool token locking bytecode must remain the same"
       },
       {
-        ip: 1199,
-        line: 351,
+        ip: 1155,
+        line: 342,
         message: "Wrong unlocking bytecode length for cauldron pool input"
       },
       {
-        ip: 1205,
-        line: 352,
+        ip: 1161,
+        line: 343,
         message: "Cauldron pool token amount must be less than input amount"
       },
       {
-        ip: 1211,
-        line: 353,
+        ip: 1167,
+        line: 344,
         message: "Cauldron pool satoshi output value must be greater than input value"
       },
       {
-        ip: 1235,
-        line: 370,
-        message: "Active input index must be 0"
+        ip: 1184,
+        line: 350,
+        message: "Cauldron pool contract signature must match"
       },
       {
-        ip: 1238,
-        line: 371,
-        message: "Migration requires exactly 3 inputs"
+        ip: 1189,
+        line: 352,
+        message: "Cauldron pool token category must remain the same"
+      },
+      {
+        ip: 1194,
+        line: 353,
+        message: "Cauldron pool token commitment must remain the same"
+      },
+      {
+        ip: 1199,
+        line: 354,
+        message: "Cauldron pool token locking bytecode must remain the same"
+      },
+      {
+        ip: 1205,
+        line: 355,
+        message: "Wrong unlocking bytecode length for cauldron pool input"
+      },
+      {
+        ip: 1211,
+        line: 356,
+        message: "Cauldron pool token amount must be less than input amount"
+      },
+      {
+        ip: 1217,
+        line: 357,
+        message: "Cauldron pool satoshi output value must be greater than input value"
       },
       {
         ip: 1241,
-        line: 372,
-        message: "Migration requires exactly 3 outputs"
-      },
-      {
-        ip: 1246,
-        line: 375,
-        message: "New locking bytecode must be provided for the issuance fund output"
-      },
-      {
-        ip: 1251,
-        line: 376,
-        message: "Token category must remain the same"
-      },
-      {
-        ip: 1256,
-        line: 377,
-        message: "Token amount must remain the same"
-      },
-      {
-        ip: 1261,
-        line: 378,
-        message: "NFT commitment must remain the same"
-      },
-      {
-        ip: 1266,
-        line: 379,
-        message: "Output value must remain the same"
-      },
-      {
-        ip: 1270,
-        line: 382,
-        message: "Admin input must have the correct locking bytecode"
-      },
-      {
-        ip: 1275,
-        line: 383,
-        message: "New admin locking bytecode must be provided for the admin output"
-      },
-      {
-        ip: 1280,
-        line: 384,
-        message: "Output value must remain the same for admin output"
-      },
-      {
-        ip: 1285,
-        line: 385,
-        message: "Token category must remain the same for admin output"
-      },
-      {
-        ip: 1290,
-        line: 386,
-        message: "Token amount must remain the same for admin output"
-      },
-      {
-        ip: 1296,
-        line: 387,
-        message: "NFT commitment must remain the same for admin output"
-      },
-      {
-        ip: 1306,
-        line: 435,
-        message: "Active input index must be 3"
-      },
-      {
-        ip: 1309,
-        line: 436,
-        message: "Dissolve requires exactly 5 inputs"
-      },
-      {
-        ip: 1312,
-        line: 437,
-        message: "Dissolve requires exactly 3 outputs"
-      },
-      {
-        ip: 1317,
-        line: 440,
-        message: "Locking bytecode must be the same as authguard input"
-      },
-      {
-        ip: 1324,
-        line: 441,
-        message: "Token category must remain the same, become mutable NFT"
-      },
-      {
-        ip: 1332,
-        line: 442,
-        message: "Token amount must be the sum of authguard and issuance fund inputs"
-      },
-      {
-        ip: 1336,
-        line: 443,
-        message: "NFT commitment must be empty for authguard output"
-      },
-      {
-        ip: 1341,
-        line: 444,
-        message: "Output value must remain the same for authguard output"
-      },
-      {
-        ip: 1346,
-        line: 447,
-        message: "Locking bytecode must be the same as authkey input"
-      },
-      {
-        ip: 1351,
-        line: 448,
-        message: "Token category must remain the same"
-      },
-      {
-        ip: 1356,
-        line: 449,
-        message: "Token amount must remain the same"
-      },
-      {
-        ip: 1361,
-        line: 450,
-        message: "NFT commitment must remain the same"
-      },
-      {
-        ip: 1366,
-        line: 451,
-        message: "Output value must remain the same"
-      },
-      {
-        ip: 1370,
-        line: 454,
-        message: "Admin input must have the correct locking bytecode"
-      },
-      {
-        ip: 1376,
-        line: 457,
-        message: "Token category must remain the same"
-      },
-      {
-        ip: 1384,
-        line: 474,
+        line: 374,
         message: "Active input index must be 0"
       },
       {
-        ip: 1387,
-        line: 475,
-        message: "Donation requires exactly 3 inputs"
+        ip: 1244,
+        line: 375,
+        message: "Migration requires exactly 3 inputs"
       },
       {
-        ip: 1391,
-        line: 476,
-        message: "Donation requires more than 1 output"
+        ip: 1247,
+        line: 376,
+        message: "Migration requires exactly 3 outputs"
       },
       {
-        ip: 1395,
-        line: 477,
-        message: "Donation requires less than 4 outputs"
+        ip: 1252,
+        line: 379,
+        message: "New locking bytecode must be provided for the issuance fund output"
       },
       {
-        ip: 1400,
-        line: 480,
-        message: "Locking bytecode must remain the same"
-      },
-      {
-        ip: 1405,
-        line: 481,
+        ip: 1257,
+        line: 380,
         message: "Token category must remain the same"
       },
       {
-        ip: 1411,
-        line: 482,
-        message: "Token amount must increase"
+        ip: 1262,
+        line: 381,
+        message: "Token amount must remain the same"
       },
       {
-        ip: 1416,
-        line: 483,
+        ip: 1267,
+        line: 382,
         message: "NFT commitment must remain the same"
       },
       {
-        ip: 1422,
-        line: 484,
+        ip: 1272,
+        line: 383,
         message: "Output value must remain the same"
+      },
+      {
+        ip: 1276,
+        line: 386,
+        message: "Admin input must have the correct locking bytecode"
+      },
+      {
+        ip: 1281,
+        line: 387,
+        message: "New admin locking bytecode must be provided for the admin output"
+      },
+      {
+        ip: 1286,
+        line: 388,
+        message: "Output value must remain the same for admin output"
+      },
+      {
+        ip: 1291,
+        line: 389,
+        message: "Token category must remain the same for admin output"
+      },
+      {
+        ip: 1296,
+        line: 390,
+        message: "Token amount must remain the same for admin output"
+      },
+      {
+        ip: 1302,
+        line: 391,
+        message: "NFT commitment must remain the same for admin output"
+      },
+      {
+        ip: 1312,
+        line: 439,
+        message: "Active input index must be 3"
+      },
+      {
+        ip: 1315,
+        line: 440,
+        message: "Dissolve requires exactly 5 inputs"
+      },
+      {
+        ip: 1318,
+        line: 441,
+        message: "Dissolve requires exactly 3 outputs"
+      },
+      {
+        ip: 1323,
+        line: 444,
+        message: "Locking bytecode must be the same as authguard input"
+      },
+      {
+        ip: 1330,
+        line: 445,
+        message: "Token category must remain the same, become mutable NFT"
+      },
+      {
+        ip: 1338,
+        line: 446,
+        message: "Token amount must be the sum of authguard and issuance fund inputs"
+      },
+      {
+        ip: 1342,
+        line: 447,
+        message: "NFT commitment must be empty for authguard output"
+      },
+      {
+        ip: 1347,
+        line: 448,
+        message: "Output value must remain the same for authguard output"
+      },
+      {
+        ip: 1352,
+        line: 451,
+        message: "Locking bytecode must be the same as authkey input"
+      },
+      {
+        ip: 1357,
+        line: 452,
+        message: "Token category must remain the same"
+      },
+      {
+        ip: 1362,
+        line: 453,
+        message: "Token amount must remain the same"
+      },
+      {
+        ip: 1367,
+        line: 454,
+        message: "NFT commitment must remain the same"
+      },
+      {
+        ip: 1372,
+        line: 455,
+        message: "Output value must remain the same"
+      },
+      {
+        ip: 1376,
+        line: 458,
+        message: "Admin input must have the correct locking bytecode"
+      },
+      {
+        ip: 1382,
+        line: 461,
+        message: "Token category must remain the same"
+      },
+      {
+        ip: 1390,
+        line: 478,
+        message: "Active input index must be 0"
+      },
+      {
+        ip: 1393,
+        line: 479,
+        message: "Donation requires exactly 3 inputs"
+      },
+      {
+        ip: 1397,
+        line: 480,
+        message: "Donation requires more than 1 output"
+      },
+      {
+        ip: 1401,
+        line: 481,
+        message: "Donation requires less than 4 outputs"
+      },
+      {
+        ip: 1406,
+        line: 484,
+        message: "Locking bytecode must remain the same"
+      },
+      {
+        ip: 1411,
+        line: 485,
+        message: "Token category must remain the same"
+      },
+      {
+        ip: 1417,
+        line: 486,
+        message: "Token amount must increase"
+      },
+      {
+        ip: 1422,
+        line: 487,
+        message: "NFT commitment must remain the same"
+      },
+      {
+        ip: 1427,
+        line: 488,
+        message: "Output value must remain the same"
+      },
+      {
+        ip: 1432,
+        line: 491,
+        message: "Can not donate to exceed the max supply"
       }
     ]
   },
@@ -1289,5 +1304,5 @@ export default {
     name: "cashc",
     version: "0.11.0"
   },
-  updatedAt: "2025-06-20T13:59:09.019Z"
+  updatedAt: "2025-06-26T15:07:38.493Z"
 } as const;
