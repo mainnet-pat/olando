@@ -24,6 +24,7 @@ export const addMultisigSignature = async ({
     throw new Error(`Failed to decode transaction: ${partiallySignedTx}`);
   }
 
+  const ourSigTemplate = new SignatureTemplate(privateKey, HashType.SIGHASH_ALL, SignatureAlgorithm.ECDSA);
   let signature: Uint8Array;
   const instructions = decodeAuthenticationInstructions(partiallySignedTx.inputs[multisigInputIndex].unlockingBytecode) as AuthenticationInstructions;
   if ((instructions[1] as AuthenticationInstructionPush).data.every((byte) => byte === 0)) {
@@ -64,8 +65,7 @@ export const addMultisigSignature = async ({
     };
 
     if (index === multisigInputIndex) {
-      const bobSigTemplate = new SignatureTemplate(privateKey, HashType.SIGHASH_ALL, SignatureAlgorithm.ECDSA);
-      builder.addInput(utxo, adminMultisigContract.unlock.spend(signature, bobSigTemplate, 0n));
+      builder.addInput(utxo, adminMultisigContract.unlock.spend(signature, ourSigTemplate, 0n));
     } else {
       // raw unlocker
       builder.addInput(utxo, {
@@ -97,8 +97,17 @@ export const addMultisigSignature = async ({
   }
 
   if (send) {
-    const result = await builder.send();
-    return result.hex;
+    try {
+      const result = await builder.send();
+      return result.hex;
+    } catch (error) {
+      // swap signatures if the validation fails with NULLFAIL
+      if (error instanceof Error && error.message.includes("NULLFAIL")) {
+        builder.inputs[multisigInputIndex].unlocker = adminMultisigContract.unlock.spend(ourSigTemplate, signature, 0n);
+        const result = await builder.send();
+        return result.hex;
+      }
+    }
   }
 
   return builder.build();

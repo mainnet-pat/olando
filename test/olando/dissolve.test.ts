@@ -38,6 +38,40 @@ describe('Dissolving Contract', () => {
     });
   });
 
+  it('test dissolving back into authguard, wrong order of signatures', async () => {
+    const provider = new MockNetworkProvider();
+
+    provider.addUtxo(aliceAddress, randomUtxo({
+      satoshis: BigInt(0.2 * 1e8),
+    }));
+
+    const councilMultisigContract = getCouncilMultisig2of3Contract(provider);
+    const adminMultisigContract = getAdminMultisig2of3Contract(provider);
+
+    await setupAuthGuard(provider);
+    await deployContractFromAuthGuard({
+      provider,
+      deployerAddress: aliceAddress,
+      deployerPriv: alicePriv,
+      councilContract: councilMultisigContract,
+      adminContract: adminMultisigContract,
+      olandoCategory: olandoCategory,
+    });
+
+    const sigA = new SignatureTemplate(alicePriv, HashType.SIGHASH_ALL, SignatureAlgorithm.ECDSA);
+    const sigB = new SignatureTemplate(bobPriv, HashType.SIGHASH_ALL, SignatureAlgorithm.ECDSA);
+
+    await expect(dissolveIssuanceFund({
+      address: aliceAddress,
+      privKey: alicePriv,
+      provider,
+      olandoCategory,
+      councilMultisigContract,
+      adminMultisigContract,
+      signatures: [sigB, sigA],
+    })).rejects.toThrow();
+  });
+
   it('test dissolving back into authguard, interactive', async () => {
     const provider = new MockNetworkProvider();
 
@@ -69,6 +103,50 @@ describe('Dissolving Contract', () => {
       councilMultisigContract,
       adminMultisigContract,
       signatures: [sigA, sigB],
+      send: false,
+    });
+
+    await addMultisigSignature({
+      partiallySignedTxHex,
+      provider,
+      adminMultisigContract,
+      multisigInputIndex: 2,
+      privateKey: bobPriv,
+      send: true,
+    });
+  });
+
+  it('test dissolving back into authguard, interactive, wrong order of signatures', async () => {
+    const provider = new MockNetworkProvider();
+
+    provider.addUtxo(aliceAddress, randomUtxo({
+      satoshis: BigInt(0.2 * 1e8),
+    }));
+
+    const councilMultisigContract = getCouncilMultisig2of3Contract(provider);
+    const adminMultisigContract = getAdminMultisig2of3Contract(provider);
+
+    await setupAuthGuard(provider);
+    await deployContractFromAuthGuard({
+      provider,
+      deployerAddress: aliceAddress,
+      deployerPriv: alicePriv,
+      councilContract: councilMultisigContract,
+      adminContract: adminMultisigContract,
+      olandoCategory: olandoCategory,
+    });
+
+    const sigA = new SignatureTemplate(alicePriv, HashType.SIGHASH_ALL, SignatureAlgorithm.ECDSA);
+    const sigB = Uint8Array.from(Array(71));
+
+    const partiallySignedTxHex = await dissolveIssuanceFund({
+      address: aliceAddress,
+      privKey: alicePriv,
+      provider,
+      olandoCategory,
+      councilMultisigContract,
+      adminMultisigContract,
+      signatures: [sigB, sigA],
       send: false,
     });
 
