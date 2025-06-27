@@ -168,7 +168,7 @@ export const investInIssuanceFund = async ({
       amount: contractUtxo.satoshis,
       token: {
         ...contractUtxo.token!,
-        amount: contractUtxo.token!.amount - cauldronTradeAdjustedTokenAmount,
+        amount: contractUtxo.token!.amount - issue,
         nft: {
           capability: 'mutable',
           commitment: binToHex(Uint8Array.from([

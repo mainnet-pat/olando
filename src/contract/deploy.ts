@@ -12,6 +12,7 @@ export const deployContractFromAuthGuard = async ({
   councilContract,
   adminContract,
   olandoCategory,
+  deploymentMtp,
 } : {
   deployerAddress: string,
   deployerPriv: Uint8Array,
@@ -19,6 +20,7 @@ export const deployContractFromAuthGuard = async ({
   councilContract: Contract<typeof Multisig_2of3Artifact>,
   adminContract: Contract<typeof Multisig_2of3Artifact>,
   olandoCategory: string,
+  deploymentMtp?: bigint,
 }) => {
   const authGuard = await findAuthGuard({
     predeployment: true,
@@ -35,7 +37,7 @@ export const deployContractFromAuthGuard = async ({
   const councilFundContract = councilContract;
 
   const issuanceFundContract = new Contract(IssuanceFundArtifact, [addressToLockScript(councilFundContract.address), addressToLockScript(adminMultisig.address)], { provider, addressType: 'p2sh20' });
-  const deploymentTime = BigInt(Math.floor(Date.now() / 1000) - 2 * 60 * 60); // Current time in seconds since epoch - 2h
+  const deploymentTime = deploymentMtp ?? BigInt(Math.floor(Date.now() / 1000) - 2 * 60 * 60); // Current time in seconds since epoch - 2h
   const lastInteractionTime = deploymentTime;
 
   const utxos = await provider.getUtxos(deployerAddress);
