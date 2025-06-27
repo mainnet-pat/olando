@@ -17,6 +17,7 @@ export const investInIssuanceFund = async ({
   councilMultisigContract,
   adminMultisigContract,
   olandoCategory,
+  send = true,
 } : {
   investAmountBch: number,
   provider: NetworkProvider,
@@ -26,6 +27,7 @@ export const investInIssuanceFund = async ({
   councilMultisigContract: Contract<typeof Multisig_2of3Artifact>,
   adminMultisigContract: Contract<typeof Multisig_2of3Artifact>,
   olandoCategory: string,
+  send?: boolean,
 }) => {
   const aliceSigTemplate = new SignatureTemplate(privKey);
   let userUtxos = await provider.getUtxos(address);
@@ -217,7 +219,12 @@ export const investInIssuanceFund = async ({
   // console.log("investTx:");
   // console.log(builder.bitauthUri());
   // console.log(await builder.send());
-  await builder.send();
+  if (send) {
+    await builder.send();
+  } else {
+    // ensure we get an exception if the transaction is invalid
+    builder.debug();
+  }
 
   // {
   //   const txSize = builder.build().length / 2;
