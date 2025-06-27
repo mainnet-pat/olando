@@ -3,7 +3,7 @@ import { libauthOutputToCashScriptOutput, zip } from "cashscript/dist/utils";
 import { SendRequest, TestNetWallet, Wallet } from "mainnet-js";
 import { binToHex, hexToBin } from "@bitauth/libauth";
 import { buildSwapTransaction } from "../swap";
-import { vmToBigInt, getCauldronPoolContractInstance, toTokenAddress, padVmNumber, addressToLockScript, require } from "../utils";
+import { vmToBigInt, getCauldronPoolContractInstance, toTokenAddress, padVmNumber, addressToLockScript, require, MaxTokenSupply } from "../utils";
 import { Contract } from "cashscript";
 import Multisig_2of3Artifact from "../../artifacts/Multisig_2of3.artifact";
 import IssuanceFundArtifact from "../../artifacts/IssuanceFund.artifact";
@@ -130,7 +130,7 @@ export const investInIssuanceFund = async ({
 
   const currentTime = BigInt(Math.floor(Date.now() / 1000) - 2 * 60 * 60); // Current time in seconds since epoch - 2h
 
-  const intialSupply = 8888888888888_88n; // with 2 decimals
+  const intialSupply = MaxTokenSupply; // with 2 decimals
   const issued = intialSupply - contractUtxo.token!.amount;
 
   const SCALE = 1_000_000_000n; // 1e9 for scaling

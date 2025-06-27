@@ -5,6 +5,8 @@ import CauldronPoolArtifact from "../artifacts/CauldronPool.artifact.js";
 import IssuanceFundArtifact from "../artifacts/IssuanceFund.artifact.js";
 import Multisig_2of3Artifact from "../artifacts/Multisig_2of3.artifact.js";
 
+export const MaxTokenSupply = 8888888888888_88n;
+
 export const min = (...args: bigint[]) => args.reduce((m, e) => e < m ? e : m);
 export const require = (predicate: boolean, message: string) => {
   if (!predicate) {

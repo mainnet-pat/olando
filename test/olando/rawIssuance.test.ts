@@ -3,7 +3,7 @@ import { addressToLockScript, zip, libauthOutputToCashScriptOutput } from "cashs
 import { Wallet, TestNetWallet, SendRequest, binToHex, hexToBin } from "mainnet-js";
 import IssuanceFundArtifact from "../../artifacts/IssuanceFund.artifact";
 import Multisig_2of3Artifact from "../../artifacts/Multisig_2of3.artifact";
-import { deployContractFromAuthGuard, olandoCategory, vmToBigInt, getCauldronPoolContractInstance, toTokenAddress, padVmNumber, require } from "../../src";
+import { deployContractFromAuthGuard, olandoCategory, vmToBigInt, getCauldronPoolContractInstance, toTokenAddress, padVmNumber, require, MaxTokenSupply } from "../../src";
 import { buildSwapTransaction } from "../../src/swap";
 import { aliceAddress, getCouncilMultisig2of3Contract, getAdminMultisig2of3Contract, setupAuthGuard, alicePriv, MockWallet } from "../shared";
 
@@ -244,7 +244,7 @@ export const investInIssuanceFundExtraOutput = async ({
 
   const currentTime = BigInt(Math.floor(Date.now() / 1000) - 2 * 60 * 60); // Current time in seconds since epoch - 2h
 
-  const intialSupply = 8888888888888_88n; // with 2 decimals
+  const intialSupply = MaxTokenSupply; // with 2 decimals
   const issued = intialSupply - contractUtxo.token!.amount;
 
   const SCALE = 1_000_000_000n; // 1e9 for scaling
@@ -488,7 +488,7 @@ export const investInIssuanceFundSmallerCauldronOutputTokenAmount = async ({
 
   const currentTime = BigInt(Math.floor(Date.now() / 1000) - 2 * 60 * 60); // Current time in seconds since epoch - 2h
 
-  const intialSupply = 8888888888888_88n; // with 2 decimals
+  const intialSupply = MaxTokenSupply; // with 2 decimals
   const issued = intialSupply - contractUtxo.token!.amount;
 
   const SCALE = 1_000_000_000n; // 1e9 for scaling
@@ -712,7 +712,7 @@ export const investInIssuanceFundGreaterCauldronOutputTokenAmount = async ({
 
   const currentTime = BigInt(Math.floor(Date.now() / 1000) - 2 * 60 * 60); // Current time in seconds since epoch - 2h
 
-  const intialSupply = 8888888888888_88n; // with 2 decimals
+  const intialSupply = MaxTokenSupply; // with 2 decimals
   const issued = intialSupply - contractUtxo.token!.amount;
 
   const SCALE = 1_000_000_000n; // 1e9 for scaling
