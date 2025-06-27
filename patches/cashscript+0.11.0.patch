@@ -140,18 +140,6 @@ index 040442f..8102b52 100644
          ? ['// function index in contract', `<function_index> // int = <${functionIndex}>`, '']
          : [];
      return {
-diff --git a/node_modules/cashscript/dist/debugging.js b/node_modules/cashscript/dist/debugging.js
-index f473f81..8948eaf 100644
---- a/node_modules/cashscript/dist/debugging.js
-+++ b/node_modules/cashscript/dist/debugging.js
-@@ -229,6 +229,7 @@ const verifyFullTransaction = (template) => {
-         transaction: program.transaction,
-     });
-     if (typeof verificationResult === 'string') {
-+        console.log(verificationResult);
-         throw new FailedTransactionError(verificationResult, getBitauthUri(template));
-     }
- };
 diff --git a/node_modules/cashscript/dist/interfaces.d.ts b/node_modules/cashscript/dist/interfaces.d.ts
 index c019fa4..b2a8dde 100644
 --- a/node_modules/cashscript/dist/interfaces.d.ts
