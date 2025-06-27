@@ -100,9 +100,9 @@ export const addMultisigSignature = async ({
     try {
       const result = await builder.send();
       return result.hex;
-    } catch (error) {
-      // swap signatures if the validation fails with NULLFAIL
-      if (error instanceof Error && ["failed CHECK(MULTI)SIG", "failed a signature verification"].includes(error.message)) {
+    } catch (error: any) {
+      // swap signatures if the validation fails multisig check
+      if (error.message.includes("failed CHECK(MULTI)SIG") || error.message.includes("failed a signature verification")) {
         builder.inputs[multisigInputIndex].unlocker = adminMultisigContract.unlock.spend(ourSigTemplate, signature, 0n);
         const result = await builder.send();
         return result.hex;
