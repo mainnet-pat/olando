@@ -78,6 +78,9 @@ export const proposeTrade = async ({
     indexedPools = activePools;
   }
 
+  // limit the number of pools to 10 most liquid
+  indexedPools.active = indexedPools.active.sort((a, b) => b.sats - a.sats).filter((_, index) => index < 10);
+
   const inputPools: PoolV0[] = [];
   for (const indexedPool of indexedPools.active) {
     const poolParams: PoolV0Parameters = {
