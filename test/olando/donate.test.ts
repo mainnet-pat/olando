@@ -27,7 +27,7 @@ describe('Issuance Fund Contract Donation Tests', () => {
 
     // reduce the amount of tokens in the contract to test donation
     await investInIssuanceFund({
-      investAmountBch: 0.1,
+      investAmountBch: 0.001,
       provider,
       address: aliceAddress,
       privKey: alicePriv,
@@ -40,7 +40,7 @@ describe('Issuance Fund Contract Donation Tests', () => {
     const donationUtxo = randomUtxo({
       satoshis: 1000n,
       token: {
-        amount: 10_00n, // 2 decimals
+        amount: 1_00n, // 2 decimals
         category: olandoCategory,
       }
     });
@@ -81,7 +81,7 @@ describe('Issuance Fund Contract Donation Tests', () => {
 
     // reduce the amount of tokens in the contract to test donation
     await investInIssuanceFund({
-      investAmountBch: 0.1,
+      investAmountBch: 0.001,
       provider,
       address: aliceAddress,
       privKey: alicePriv,
@@ -94,7 +94,7 @@ describe('Issuance Fund Contract Donation Tests', () => {
     const donationUtxo = randomUtxo({
       satoshis: 1000n,
       token: {
-        amount: 10_00n, // 2 decimals
+        amount: 1_00n, // 2 decimals
         category: olandoCategory,
       }
     });
@@ -135,7 +135,7 @@ describe('Issuance Fund Contract Donation Tests', () => {
 
     // reduce the amount of tokens in the contract to test donation
     await investInIssuanceFund({
-      investAmountBch: 0.1,
+      investAmountBch: 0.001,
       provider,
       address: aliceAddress,
       privKey: alicePriv,
@@ -148,7 +148,7 @@ describe('Issuance Fund Contract Donation Tests', () => {
     const donationUtxo = randomUtxo({
       satoshis: 1000n,
       token: {
-        amount: 10_00n, // 2 decimals
+        amount: 1_00n, // 2 decimals
         category: olandoCategory,
       }
     });
@@ -189,7 +189,7 @@ describe('Issuance Fund Contract Donation Tests', () => {
 
     // reduce the amount of tokens in the contract to test donation
     await investInIssuanceFund({
-      investAmountBch: 0.1,
+      investAmountBch: 0.001,
       provider,
       address: aliceAddress,
       privKey: alicePriv,
@@ -244,7 +244,7 @@ describe('Issuance Fund Contract Donation Tests', () => {
     const donationUtxo = randomUtxo({
       satoshis: 1000n,
       token: {
-        amount: 10_00n, // 2 decimals
+        amount: 1_00n, // 2 decimals
         category: olandoCategory,
       }
     });

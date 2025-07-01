@@ -3,7 +3,7 @@ import { Contract, MockNetworkProvider, randomNFT, randomUtxo, SignatureTemplate
 import { binToHex, TestNetWallet, TokenI, UtxoI } from "mainnet-js";
 import AuthGuardArtifact from "../artifacts/AuthGuard.artifact.js";
 import Multisig_2of3Artifact from "../artifacts/Multisig_2of3.artifact.js";
-import { getCauldronPoolContractInstance, olandoCategory, replaceArtifactPlaceholders } from "../src";
+import { AuthGuardInitialSupply, getCauldronPoolContractInstance, olandoCategory, replaceArtifactPlaceholders } from "../src";
 
 export const alicePriv = hexToBin('1'.repeat(64));
 export const aliceSigTemplate = new SignatureTemplate(alicePriv);
@@ -72,7 +72,7 @@ export const setupAuthGuard = async (provider: MockNetworkProvider) => {
   provider.addUtxo(authGuardContract.address, randomUtxo({
     satoshis: 1000n,
     token: {
-      amount: 8_888_888_888_888_888_88n, // 2 decimals
+      amount: AuthGuardInitialSupply, // 2 decimals
       category: olandoCategory,
       nft: {
         capability: 'mutable',

@@ -146,7 +146,7 @@ export const investInIssuanceFund = async ({
 
   // use inputs.length to find the cauldron token-buy output, since last ouput could be a bch change
   const tokensBought = 100n * cauldronTradeAdjustedTokenAmount / 95n;
-  const issue = tokensBought * 9n / 10n; // 90% of tokens bought
+  const issue = tokensBought * 9n / 10n + 1n; // 90% of tokens bought
 
   require(issue <= currentEmissionCap - issued, "Issue amount exceeds current emission cap");
 

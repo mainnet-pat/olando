@@ -30,7 +30,7 @@ describe('test contract functions', () => {
     });
 
     await investInIssuanceFund({
-      investAmountBch: 0.1,
+      investAmountBch: 0.001,
       provider,
       address: aliceAddress,
       privKey: alicePriv,
@@ -63,7 +63,7 @@ describe('test contract functions', () => {
     });
 
     await investInIssuanceFund({
-      investAmountBch: 0.1,
+      investAmountBch: 0.001,
       provider,
       address: aliceAddress,
       privKey: alicePriv,
@@ -133,7 +133,7 @@ describe('test contract functions', () => {
     });
 
     await expect(investInIssuanceFund({
-      investAmountBch: 0.21,
+      investAmountBch: 0.001,
       provider,
       address: aliceAddress,
       privKey: alicePriv,

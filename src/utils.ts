@@ -5,8 +5,8 @@ import CauldronPoolArtifact from "../artifacts/CauldronPool.artifact.js";
 import IssuanceFundArtifact from "../artifacts/IssuanceFund.artifact.js";
 import Multisig_2of3Artifact from "../artifacts/Multisig_2of3.artifact.js";
 
-export const MaxTokenSupply = 8888888888888_88n;
-
+export const MaxTokenSupply = 8888888888_88n; // 8888 millions as per v0.3 whitepaper
+export const AuthGuardInitialSupply = 8888888888888888_88n; // OLA genesis supply
 export const min = (...args: bigint[]) => args.reduce((m, e) => e < m ? e : m);
 export const require = (predicate: boolean, message: string) => {
   if (!predicate) {
@@ -110,7 +110,7 @@ export const findAuthGuard = async ({
     const authGuardCandidate = contractUtxos.find(contractUtxo =>
       contractUtxo.token &&
       contractUtxo.token.category === olandoCategory &&
-      contractUtxo.token.amount >= 8_888_888_888_888_88n && // 2 decimals
+      contractUtxo.token.amount >= MaxTokenSupply && // 2 decimals
       predeployment ? (
         contractUtxo.token.nft?.capability === 'mutable' &&
         contractUtxo.token.nft?.commitment === ''

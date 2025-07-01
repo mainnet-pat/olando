@@ -38,7 +38,7 @@ contract IssuanceFund(bytes councilFundLockingBytecode, bytes adminLockingByteco
     int cauldronTradeAdjustedTokenAmount = tx.outputs[tx.inputs.length - 1].tokenAmount; // 95% of the cauldron pool token-buy output
 
     // the issuance formula is: min_stash_amount(t) = 1 - 1 / (1 + 3E-9 * t)² * max_supply
-    int intialSupply = 8888888888888_88; // with 2 decimals
+    int intialSupply = 8888888888_88; // 8888 millions as per v0.3 whitepaper
     int issued = intialSupply - tx.inputs[this.activeInputIndex].tokenAmount;
 
     int SCALE = 1_000_000_000; // 1e9 for scaling
@@ -52,7 +52,7 @@ contract IssuanceFund(bytes councilFundLockingBytecode, bytes adminLockingByteco
     // use inputs.length to find the cauldron token-buy output, since last ouput could be a bch change
     // here we already assume that the cauldron pool output got only 95% of the tokens bought, the other 5% are forwarded to council fund
     int tokensBought = 100 * tx.outputs[tx.inputs.length - 1].tokenAmount / 95;
-    int issue = tokensBought * 9 / 10; // 90% of tokens bought
+    int issue = tokensBought * 9 / 10 + 1; // 90% of tokens bought
 
     require(issue <= currentEmissionCap - issued, "Issue amount exceeds current emission cap");
 
@@ -359,8 +359,7 @@ contract IssuanceFund(bytes councilFundLockingBytecode, bytes adminLockingByteco
     require(tx.outputs[0].value == tx.inputs[0].value, "Output value must remain the same");
 
     // prevent donation to overflow the max supply
-    require(tx.outputs[0].tokenAmount <= 8888888888888_88, "Can not donate to exceed the max supply");
-
+    require(tx.outputs[0].tokenAmount <= 8888888888_88, "Can not donate to exceed the max supply");
     // bch change output is not burdened with any requirements and must be taken care of by the spender
   }
 }

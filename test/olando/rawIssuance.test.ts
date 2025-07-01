@@ -34,7 +34,7 @@ describe('issuance raw tests', () => {
     });
 
     await expect(investInIssuanceFundExtraOutput({
-      investAmountBch: 0.1,
+      investAmountBch: 0.001,
       provider,
       address: aliceAddress,
       privKey: alicePriv,
@@ -71,7 +71,7 @@ describe('issuance raw tests', () => {
     });
 
     await expect(investInIssuanceFundSmallerCauldronOutputTokenAmount({
-      investAmountBch: 0.1,
+      investAmountBch: 0.001,
       provider,
       address: aliceAddress,
       privKey: alicePriv,
@@ -109,7 +109,7 @@ describe('issuance raw tests', () => {
     });
 
     await expect(investInIssuanceFundGreaterCauldronOutputTokenAmount({
-      investAmountBch: 0.1,
+      investAmountBch: 0.001,
       provider,
       address: aliceAddress,
       privKey: alicePriv,
@@ -258,7 +258,7 @@ export const investInIssuanceFundExtraOutput = async ({
 
   // use inputs.length to find the cauldron token-buy output, since last ouput could be a bch change
   const tokensBought = 100n * cauldronTradeAdjustedTokenAmount / 95n;
-  const issue = tokensBought * 9n / 10n; // 90% of tokens bought
+  const issue = tokensBought * 9n / 10n + 1n; // 90% of tokens bought
 
   require(issue <= currentEmissionCap - issued, "Issue amount exceeds current emission cap");
 
@@ -502,7 +502,7 @@ export const investInIssuanceFundSmallerCauldronOutputTokenAmount = async ({
 
   // use inputs.length to find the cauldron token-buy output, since last ouput could be a bch change
   const tokensBought = 100n * cauldronTradeAdjustedTokenAmount / 95n;
-  const issue = tokensBought * 9n / 10n; // 90% of tokens bought
+  const issue = tokensBought * 9n / 10n + 1n; // 90% of tokens bought
 
   require(issue <= currentEmissionCap - issued, "Issue amount exceeds current emission cap");
 
@@ -726,7 +726,7 @@ export const investInIssuanceFundGreaterCauldronOutputTokenAmount = async ({
 
   // use inputs.length to find the cauldron token-buy output, since last ouput could be a bch change
   const tokensBought = 100n * cauldronTradeAdjustedTokenAmount / 95n;
-  const issue = tokensBought * 9n / 10n; // 90% of tokens bought
+  const issue = tokensBought * 9n / 10n + 1n; // 90% of tokens bought
 
   require(issue <= currentEmissionCap - issued, "Issue amount exceeds current emission cap");
 

@@ -2,7 +2,7 @@ import { binToHex } from "@bitauth/libauth";
 import { Contract, NetworkProvider, SignatureTemplate, TransactionBuilder } from "cashscript";
 import IssuanceFundArtifact from '../../artifacts/IssuanceFund.artifact.js';
 import Multisig_2of3Artifact from "../../artifacts/Multisig_2of3.artifact.js";
-import { addressToLockScript, findAuthGuard, padVmNumber, toTokenAddress } from "../index.js";
+import { addressToLockScript, findAuthGuard, MaxTokenSupply, padVmNumber, toTokenAddress } from "../index.js";
 
 // Deploys the IssuanceFund contract, transfers the mutable authguarded NFT to the IssuanceFund contract.
 export const deployContractFromAuthGuard = async ({
@@ -53,7 +53,7 @@ export const deployContractFromAuthGuard = async ({
       amount: authGuard.authGuardUtxo.satoshis,
       token: {
         category: olandoCategory,
-        amount: authGuard.authGuardUtxo.token!.amount - 8_888_888_888_888_88n, // 2 decimals
+        amount: authGuard.authGuardUtxo.token!.amount - MaxTokenSupply, // 2 decimals
       }
     })
     .addOutput(
@@ -72,7 +72,7 @@ export const deployContractFromAuthGuard = async ({
       to: toTokenAddress(issuanceFundContract.address),
       amount: 1000n,
       token: {
-        amount: 8_888_888_888_888_88n, // 2 decimals
+        amount: MaxTokenSupply, // 2 decimals
         category: olandoCategory,
         nft: {
           capability: 'mutable',
