@@ -111,10 +111,10 @@ export const findAuthGuard = async ({
       contractUtxo.token &&
       contractUtxo.token.category === olandoCategory &&
       contractUtxo.token.amount >= MaxTokenSupply && // 2 decimals
-      predeployment ? (
+      (predeployment ? (
         contractUtxo.token.nft?.capability === 'mutable' &&
         contractUtxo.token.nft?.commitment === ''
-      ) : true
+      ) : true)
     );
 
     if (authGuardCandidate) {
