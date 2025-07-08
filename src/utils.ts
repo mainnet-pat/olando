@@ -55,7 +55,7 @@ export const toTokenAddress = (address: string) => {
   }).address;
 }
 
-export const olandoCategory = '7fa887fd4eac015478b95392c4984721fbe3060223c30b342d43cc06817f07f6';
+export const olandoCategory = 'd4c0b80d9ea541b8671b266c4b02abd4379b490378ffdd96bbcc18990032faf7';
 
 let contractIndex = 0; // Used to differentiate contract names in tests
 export const replaceArtifactPlaceholders = <T extends Artifact>(artifact: T, parameters: Record<string, FunctionArgument>): T => {
