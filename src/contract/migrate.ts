@@ -87,6 +87,11 @@ export const migrate = async ({
   if (send) {
     const result = await builder.send();
     return result.hex;
+  } else {
+    console.log("not sending tx")
+    // ensure we get an exception if the transaction is invalid
+    builder.debug();
+    console.log(builder.build());
   }
 
   return builder.build();

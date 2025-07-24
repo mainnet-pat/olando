@@ -143,6 +143,12 @@ export const investInIssuanceFund = async ({
   const denomSquared = denom * denom / SCALE; // (1 + 3E-9 * t)^2 * 1e9
   const currentEmissionCap = intialSupply * (SCALE - SCALE * SCALE / denomSquared) / SCALE;
 
+  console.log("deploymentTime", deploymentTime);
+  console.log("currentTime", currentTime);
+  console.log("t", t);
+  console.log("currentEmissionCap", currentEmissionCap);
+  console.log("issued", issued);
+  console.log("currentEmissionCap - issued", currentEmissionCap - issued);
 
   // use inputs.length to find the cauldron token-buy output, since last ouput could be a bch change
   const tokensBought = 100n * cauldronTradeAdjustedTokenAmount / 95n;
@@ -222,8 +228,10 @@ export const investInIssuanceFund = async ({
   if (send) {
     await builder.send();
   } else {
+    console.log("not sending tx")
     // ensure we get an exception if the transaction is invalid
     builder.debug();
+    console.log("tx", builder.build());
   }
 
   // {

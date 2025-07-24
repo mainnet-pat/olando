@@ -5,8 +5,9 @@ import CauldronPoolArtifact from "../artifacts/CauldronPool.artifact.js";
 import IssuanceFundArtifact from "../artifacts/IssuanceFund.artifact.js";
 import Multisig_2of3Artifact from "../artifacts/Multisig_2of3.artifact.js";
 
-export const MaxTokenSupply = 8888888888_88n; // 8888 millions as per v0.3 whitepaper
-export const AuthGuardInitialSupply = 8888888888888888_88n; // OLA genesis supply
+export const MaxTokenSupply = 8530600968_64; // initial contract supply
+//export const AuthGuardInitialSupply = 8888888888888888_88n; // OLA genesis supply
+export const AuthGuardInitialSupply = 88888888888888_88n; // TTT genesis supply
 export const min = (...args: bigint[]) => args.reduce((m, e) => e < m ? e : m);
 export const require = (predicate: boolean, message: string) => {
   if (!predicate) {
