@@ -42,7 +42,8 @@ export const migrate = async ({
   )!;
 
   const adminUtxo = (await provider.getUtxos(adminMultisigContract.address)).find(u =>
-    u.satoshis === 1000n,
+    u.satoshis === 1000n &&
+    u.token === undefined
   )!;
 
   // funding utxo
@@ -78,10 +79,12 @@ export const migrate = async ({
   });
 
   {
-    const txSize = builder.build().length / 2;
+    const tx = builder.build()
+    const txSize = tx.length / 2;
     const change = builder.inputs.reduce((sum, input) => sum + input.satoshis, 0n) -
       builder.outputs.reduce((sum, output) => sum + (output.amount ?? 0n), 0n);
     console.log(`Transaction size: ${txSize} bytes, change: ${change} satoshis, fee/byte ${Number(change) / txSize}`);
+    console.log(tx);
   }
 
   if (send) {
