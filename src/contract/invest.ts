@@ -37,6 +37,7 @@ export const investInIssuanceFund = async ({
     addressToLockScript(adminMultisigContract.address),
   ], { provider, addressType: 'p2sh20' });
 
+  console.log("getting contractUtxos for contract", issuanceFundContract.address);
   const contractUtxo = (await provider.getUtxos(issuanceFundContract.address)).find(u =>
     u.token?.category === olandoCategory &&
     u.token?.nft?.capability === 'mutable' &&
@@ -110,9 +111,11 @@ export const investInIssuanceFund = async ({
     throw new Error(`No council UTXO found for ${address}`);
   }
 
+  console.log("building cauldron swap tx base");
   const { tradeTxList: proposedTxs, pools } = (await buildSwapTransaction(BigInt(investAmountBch * 1e8), wallet, olandoCategory));
   const proposedTx = proposedTxs[0]!;
 
+  console.log("building invest tx");
   const cauldronPoolUtxos: Utxo[] = zip(proposedTx.libauth_generated_transaction.inputs, proposedTx.libauth_source_outputs).map(([input, sourceOutput]) => ({
     txid: binToHex(input.outpointTransactionHash),
     vout: input.outpointIndex,

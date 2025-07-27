@@ -27,6 +27,7 @@ export const dissolveIssuanceFund = async ({
 }) => {
   const aliceSigTemplate = new SignatureTemplate(privKey);
 
+  console.log("getting userUtxos");
   const userUtxos = await provider.getUtxos(address);
   const issuanceFundContract = new Contract(
     IssuanceFundArtifact,
@@ -45,17 +46,20 @@ export const dissolveIssuanceFund = async ({
     throw new Error('No valid auth guard pair found in the wallet');
   }
 
+  console.log("getting contractUtxos for contract", issuanceFundContract.address);
   const contractUtxo = (await provider.getUtxos(issuanceFundContract.address)).find(u =>
     u.token?.category === olandoCategory &&
     u.token?.nft?.capability === 'mutable' &&
     u.token.nft.commitment.length === 16
   )!;
 
+  console.log("getting adminUtxo for address", adminMultisigContract.address)
   const adminUtxo = (await provider.getUtxos(adminMultisigContract.address)).find(u =>
     u.satoshis === 1000n,
   )!;
 
   // funding utxo
+  console.log("getting fundingUtxo");
   const fundingUtxo = userUtxos.find(u =>
     u.token === undefined &&
     u.satoshis >= 10_000n
@@ -64,6 +68,7 @@ export const dissolveIssuanceFund = async ({
     throw new Error(`No funding UTXO found for ${address}`);
   }
 
+  console.log("building dissolve tx");
   const builder = new TransactionBuilder({ provider })
     .addInput(authGuard.authGuardUtxo, authGuard.authGuardContract.unlock.unlockWithNft(true))
     .addInput(authGuard.authKeyUtxo, aliceSigTemplate.unlockP2PKH())

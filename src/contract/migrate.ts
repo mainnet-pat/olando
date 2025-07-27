@@ -35,18 +35,21 @@ export const migrate = async ({
     { provider, addressType: 'p2sh20' }
   );
 
+  console.log("getting contractUtxos for contract", issuanceFundContract.address);
   const contractUtxo = (await provider.getUtxos(issuanceFundContract.address)).find(u =>
     u.token?.category === olandoCategory &&
     u.token?.nft?.capability === 'mutable' &&
     u.token.nft.commitment.length === 16
   )!;
 
+  console.log("getting adminUtxos for address", adminMultisigContract.address);
   const adminUtxo = (await provider.getUtxos(adminMultisigContract.address)).find(u =>
     u.satoshis === 1000n &&
     u.token === undefined
   )!;
 
   // funding utxo
+  console.log("getting fundingUtxo");
   const fundingUtxo = userUtxos.find(u =>
     u.token === undefined &&
     u.satoshis >= 10_000n
@@ -55,6 +58,7 @@ export const migrate = async ({
     throw new Error(`No funding UTXO found for ${address}`);
   }
 
+  console.log("building migration tx")
   const builder = new TransactionBuilder({ provider })
     .addInput(contractUtxo, issuanceFundContract.unlock.migrate(addressToLockScript(newIssuanceFundContractAddress), addressToLockScript(newAdminMultisigContractAddress)))
     .addInput(adminUtxo, adminMultisigContract.unlock.spend(...signatures, 0n))
