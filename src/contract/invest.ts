@@ -229,6 +229,7 @@ export const investInIssuanceFund = async ({
   // console.log(builder.bitauthUri());
   // console.log(await builder.send());
   if (send) {
+    console.log ("tx", builder.build());
     await builder.send();
   } else {
     console.log("not sending tx")
