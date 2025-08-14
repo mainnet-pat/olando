@@ -27,7 +27,7 @@
   "dependencies": {
     "@bitauth/libauth": "^3.1.0-next.2",
     "cashlab": "0.0.11",
-    "cashscript": "^0.11.0",
+    "cashscript": "0.11.0",
     "mainnet-js": "^2.6.5"
   },
   "devDependencies": {
