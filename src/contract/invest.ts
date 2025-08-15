@@ -3,7 +3,7 @@ import { libauthOutputToCashScriptOutput, zip } from "cashscript/dist/utils";
 import { SendRequest, TestNetWallet, Wallet } from "mainnet-js";
 import { binToHex, hexToBin } from "@bitauth/libauth";
 import { buildSwapTransaction } from "../swap";
-import { vmToBigInt, getCauldronPoolContractInstance, toTokenAddress, padVmNumber, addressToLockScript, require, MaxTokenSupply } from "../utils";
+import { vmToBigInt, getCauldronPoolContractInstance, toTokenAddress, padVmNumber, addressToLockScript, require, MaxTokenSupply, toMainnetUtxo } from "../utils";
 import { Contract } from "cashscript";
 import Multisig_2of3Artifact from "../../artifacts/Multisig_2of3.artifact";
 import IssuanceFundArtifact from "../../artifacts/IssuanceFund.artifact";
@@ -112,7 +112,8 @@ export const investInIssuanceFund = async ({
   }
 
   console.log("building cauldron swap tx base");
-  const { tradeTxList: proposedTxs, pools } = (await buildSwapTransaction(BigInt(investAmountBch * 1e8), wallet, olandoCategory));
+  const utxos = userUtxos.filter(u => u.txid !== councilUtxo.txid && u.vout !== councilUtxo.vout).map(toMainnetUtxo);
+  const { tradeTxList: proposedTxs, pools } = (await buildSwapTransaction(BigInt(investAmountBch * 1e8), wallet, olandoCategory, utxos));
   const proposedTx = proposedTxs[0]!;
 
   console.log("building invest tx");
