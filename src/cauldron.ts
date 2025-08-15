@@ -160,11 +160,13 @@ export const fundProposedTrade = async ({
     tradeProposal,
     txFeePerByte = 1n,
     burnDustTokens = true,
+    utxos = undefined, // optional utxos to use instead of wallet's
   } : {
     wallet: Wallet | TestNetWallet,
     tradeProposal: TradeProposal,
     txFeePerByte?: bigint,
     burnDustTokens?: boolean,
+    utxos?: UtxoI[]
   }): Promise<TradeTxResult[]> => {
   const exlab = new ExchangeLab();
 
@@ -219,7 +221,7 @@ export const fundProposedTrade = async ({
   // to lock the coins, Having that, The following uses pkh & its cashaddr from the wallet
   // to construct the locking_bytecode & then retrieves the utxos associated with the addr
   const walletPrivateKey = wallet.privateKey as Uint8Array;
-  const utxoList: UtxoI[] = await wallet.getAddressUtxos(wallet.cashaddr);
+  const utxoList: UtxoI[] = utxos ?? await wallet.getAddressUtxos(wallet.cashaddr);
   const inputCoins: SpendableCoin[] = [];
   const walletLockingBytecode = privateKeyToP2pkhLockingBytecode({ privateKey: walletPrivateKey, throwErrors: true })
   // txfee reserve

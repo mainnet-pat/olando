@@ -1,9 +1,10 @@
 import { bigIntToVmNumber, binToHex, CashAddressNetworkPrefix, cashAddressToLockingBytecode, CashAddressType, decodeCashAddress, encodeCashAddress, hexToBin, padMinimallyEncodedVmNumber, vmNumberToBigInt } from "@bitauth/libauth";
-import { Artifact, Contract, encodeFunctionArgument, FunctionArgument, MockNetworkProvider, NetworkProvider } from "cashscript";
+import { Artifact, Contract, encodeFunctionArgument, FunctionArgument, MockNetworkProvider, NetworkProvider, Utxo } from "cashscript";
 import AuthGuardArtifact from "../artifacts/AuthGuard.artifact.js";
 import CauldronPoolArtifact from "../artifacts/CauldronPool.artifact.js";
 import IssuanceFundArtifact from "../artifacts/IssuanceFund.artifact.js";
 import Multisig_2of3Artifact from "../artifacts/Multisig_2of3.artifact.js";
+import { TokenI, UtxoI } from "mainnet-js";
 
 export const MaxTokenSupply = 8530600968_64n; // initial contract supply
 //export const AuthGuardInitialSupply = 8888888888888888_88n; // OLA genesis supply
@@ -139,3 +140,18 @@ export const getIssuanceContract = ({
     { provider, addressType: 'p2sh20' }
   );
 }
+
+export const toMainnetUtxo = (utxo: Utxo) =>
+  ({
+    satoshis: Number(utxo.satoshis),
+    txid: utxo.txid,
+    vout: utxo.vout,
+    token: utxo.token
+      ? ({
+          amount: utxo.token?.amount ? BigInt(utxo.token?.amount) : undefined,
+          tokenId: utxo.token?.category,
+          capability: utxo.token?.nft?.capability as any,
+          commitment: utxo.token?.nft?.commitment,
+        } as TokenI)
+      : undefined,
+  } as UtxoI);

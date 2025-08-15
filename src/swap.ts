@@ -1,5 +1,5 @@
 import { ElectrumClient, type RequestResponse, type SubscribeCallback } from "electrum-cash";
-import { type TestNetWallet, type Wallet } from 'mainnet-js';
+import { UtxoI, type TestNetWallet, type Wallet } from 'mainnet-js';
 import { type ActivePoolEntry, type ActivePoolsResult, fundProposedTrade, NATIVE_BCH_TOKEN_ID, proposeTrade, type RostrumCauldronContractSubscribeResponse } from './cauldron.js';
 
 export const getCauldronPools = async (tokenId: string): Promise<ActivePoolsResult> => {
@@ -38,7 +38,7 @@ export const getCauldronPools = async (tokenId: string): Promise<ActivePoolsResu
   });
 }
 
-export const buildSwapTransaction = async (bchInvestmentSatoshis: bigint, wallet: Wallet | TestNetWallet, olandoCategory: string) => {
+export const buildSwapTransaction = async (bchInvestmentSatoshis: bigint, wallet: Wallet | TestNetWallet, olandoCategory: string, utxos?: UtxoI[]) => {
   const pools = await getCauldronPools(olandoCategory);
 
   const tradeResult = await proposeTrade({
@@ -48,7 +48,7 @@ export const buildSwapTransaction = async (bchInvestmentSatoshis: bigint, wallet
     activePools: pools,
   });
 
-  const tradeTxList = await fundProposedTrade({wallet: wallet, tradeProposal: tradeResult});
+  const tradeTxList = await fundProposedTrade({wallet: wallet, tradeProposal: tradeResult, utxos});
 
   return { tradeTxList, pools };
 }
