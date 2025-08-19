@@ -23,6 +23,7 @@ describe('Issuance Fund Contract Donation Tests', () => {
       councilContract: councilMultisigContract,
       adminContract: adminMultisigContract,
       olandoCategory: olandoCategory,
+      deploymentMtp: BigInt(Math.floor(Date.now() / 1000) - 40 * 60 * 60),
     });
 
     // reduce the amount of tokens in the contract to test donation
@@ -77,6 +78,7 @@ describe('Issuance Fund Contract Donation Tests', () => {
       councilContract: councilMultisigContract,
       adminContract: adminMultisigContract,
       olandoCategory: olandoCategory,
+      deploymentMtp: BigInt(Math.floor(Date.now() / 1000) - 40 * 60 * 60),
     });
 
     // reduce the amount of tokens in the contract to test donation
@@ -131,6 +133,7 @@ describe('Issuance Fund Contract Donation Tests', () => {
       councilContract: councilMultisigContract,
       adminContract: adminMultisigContract,
       olandoCategory: olandoCategory,
+      deploymentMtp: BigInt(Math.floor(Date.now() / 1000) - 40 * 60 * 60),
     });
 
     // reduce the amount of tokens in the contract to test donation
@@ -185,6 +188,7 @@ describe('Issuance Fund Contract Donation Tests', () => {
       councilContract: councilMultisigContract,
       adminContract: adminMultisigContract,
       olandoCategory: olandoCategory,
+      deploymentMtp: BigInt(Math.floor(Date.now() / 1000) - 40 * 60 * 60),
     });
 
     // reduce the amount of tokens in the contract to test donation
@@ -239,6 +243,7 @@ describe('Issuance Fund Contract Donation Tests', () => {
       councilContract: councilMultisigContract,
       adminContract: adminMultisigContract,
       olandoCategory: olandoCategory,
+      deploymentMtp: BigInt(Math.floor(Date.now() / 1000) - 40 * 60 * 60),
     });
 
     const donationUtxo = randomUtxo({

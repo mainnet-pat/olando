@@ -31,6 +31,7 @@ describe('issuance raw tests', () => {
       councilContract: councilMultisigContract,
       adminContract: adminMultisigContract,
       olandoCategory: olandoCategory,
+      deploymentMtp: BigInt(Math.floor(Date.now() / 1000) - 40 * 60 * 60),
     });
 
     await expect(investInIssuanceFundExtraOutput({
@@ -68,6 +69,7 @@ describe('issuance raw tests', () => {
       councilContract: councilMultisigContract,
       adminContract: adminMultisigContract,
       olandoCategory: olandoCategory,
+      deploymentMtp: BigInt(Math.floor(Date.now() / 1000) - 40 * 60 * 60),
     });
 
     await expect(investInIssuanceFundSmallerCauldronOutputTokenAmount({
