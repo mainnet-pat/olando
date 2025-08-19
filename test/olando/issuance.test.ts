@@ -27,6 +27,7 @@ describe('test contract functions', () => {
       councilContract: councilMultisigContract,
       adminContract: adminMultisigContract,
       olandoCategory: olandoCategory,
+      deploymentMtp: BigInt(Math.floor(Date.now() / 1000) - 40 * 60 * 60),
     });
 
     await investInIssuanceFund({
@@ -60,6 +61,7 @@ describe('test contract functions', () => {
       councilContract: councilMultisigContract,
       adminContract: adminMultisigContract,
       olandoCategory: olandoCategory,
+      deploymentMtp: BigInt(Math.floor(Date.now() / 1000) - 40 * 60 * 60),
     });
 
     await investInIssuanceFund({
@@ -93,6 +95,7 @@ describe('test contract functions', () => {
       councilContract: councilMultisigContract,
       adminContract: adminMultisigContract,
       olandoCategory: olandoCategory,
+      deploymentMtp: BigInt(Math.floor(Date.now() / 1000) - 40 * 60 * 60),
     });
 
     await expect(investInIssuanceFund({
@@ -130,6 +133,7 @@ describe('test contract functions', () => {
       councilContract: councilMultisigContract,
       adminContract: adminMultisigContract,
       olandoCategory: olandoCategory,
+      deploymentMtp: BigInt(Math.floor(Date.now() / 1000) - 40 * 60 * 60),
     });
 
     await expect(investInIssuanceFund({

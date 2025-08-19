@@ -21,6 +21,7 @@ describe('Migrating Contract', () => {
       councilContract: councilMultisigContract,
       adminContract: adminMultisigContract,
       olandoCategory: olandoCategory,
+      deploymentMtp: BigInt(Math.floor(Date.now() / 1000) - 40 * 60 * 60),
     });
 
     const newCouncilContract = getAdminMultisig2of3Contract(provider); // set council contract same as admin multisig
@@ -66,6 +67,7 @@ describe('Migrating Contract', () => {
       councilContract: councilMultisigContract,
       adminContract: adminMultisigContract,
       olandoCategory: olandoCategory,
+      deploymentMtp: BigInt(Math.floor(Date.now() / 1000) - 40 * 60 * 60),
     });
 
     const newCouncilContract = getAdminMultisig2of3Contract(provider); // set council contract same as admin multisig
@@ -118,6 +120,7 @@ describe('Migrating Contract', () => {
       councilContract: councilMultisigContract,
       adminContract: adminMultisigContract,
       olandoCategory: olandoCategory,
+      deploymentMtp: BigInt(Math.floor(Date.now() / 1000) - 40 * 60 * 60),
     });
 
     const newCouncilContract = getAdminMultisig2of3Contract(provider); // set council contract same as admin multisig

@@ -61,7 +61,9 @@ export const investInIssuanceFund = async ({
       cashaddr: wallet.address!,
       unit: 'sat',
       value: 1000,
-    }));
+    }), {
+      queryBalance: false,
+    });
     userUtxos = await provider.getUtxos(address);
     userBchUtxos = userUtxos.filter(u => u.token === undefined);
   }
@@ -72,8 +74,7 @@ export const investInIssuanceFund = async ({
   }
 
   // funding + cauldron token-buy bch input
-  let investmentUtxo = userUtxos.find(u =>
-    u.token === undefined &&
+  let investmentUtxo = userBchUtxos.find(u =>
     u.satoshis >= BigInt(investAmountBch * 1e8) + 5000n
   );
 
@@ -86,11 +87,13 @@ export const investInIssuanceFund = async ({
       cashaddr: wallet.address!,
       unit: 'sat',
       value: 1000,
-    })]);
+    })], {
+      queryBalance: false,
+    });
 
     userUtxos = await provider.getUtxos(address);
-    investmentUtxo = userUtxos.find(u =>
-      u.token === undefined &&
+    userBchUtxos = userUtxos.filter(u => u.token === undefined);
+    investmentUtxo = userBchUtxos.find(u =>
       u.satoshis >= BigInt(investAmountBch * 1e8) + 5000n
     );
   }
@@ -100,8 +103,7 @@ export const investInIssuanceFund = async ({
   }
 
   // a BCH-only utxo at index 1 to be used to balance the council output
-  const councilUtxo = userUtxos.find(u =>
-    u.token === undefined &&
+  const councilUtxo = userBchUtxos.find(u =>
     u.satoshis >= 1000n &&
     !(u.txid === investmentUtxo.txid && // ensure it's not the same as the investment UTXO
       u.vout === investmentUtxo.vout) // ensure it's not the same as the investment UTXO
@@ -112,7 +114,7 @@ export const investInIssuanceFund = async ({
   }
 
   console.log("building cauldron swap tx base");
-  const utxos = userUtxos.filter(u => u.txid !== councilUtxo.txid && u.vout !== councilUtxo.vout).map(toMainnetUtxo);
+  const utxos = userUtxos.filter(u => !(u.txid === councilUtxo.txid && u.vout === councilUtxo.vout)).map(toMainnetUtxo);
   const { tradeTxList: proposedTxs, pools } = (await buildSwapTransaction(BigInt(investAmountBch * 1e8), wallet, olandoCategory, utxos));
   const proposedTx = proposedTxs[0]!;
 

@@ -22,6 +22,7 @@ describe('Dissolving Contract', () => {
       councilContract: councilMultisigContract,
       adminContract: adminMultisigContract,
       olandoCategory: olandoCategory,
+      deploymentMtp: BigInt(Math.floor(Date.now() / 1000) - 40 * 60 * 60),
     });
 
     const sigA = new SignatureTemplate(alicePriv, HashType.SIGHASH_ALL, SignatureAlgorithm.ECDSA);
@@ -56,6 +57,7 @@ describe('Dissolving Contract', () => {
       councilContract: councilMultisigContract,
       adminContract: adminMultisigContract,
       olandoCategory: olandoCategory,
+      deploymentMtp: BigInt(Math.floor(Date.now() / 1000) - 40 * 60 * 60),
     });
 
     const sigA = new SignatureTemplate(alicePriv, HashType.SIGHASH_ALL, SignatureAlgorithm.ECDSA);
@@ -90,6 +92,7 @@ describe('Dissolving Contract', () => {
       councilContract: councilMultisigContract,
       adminContract: adminMultisigContract,
       olandoCategory: olandoCategory,
+      deploymentMtp: BigInt(Math.floor(Date.now() / 1000) - 40 * 60 * 60),
     });
 
     const sigA = new SignatureTemplate(alicePriv, HashType.SIGHASH_ALL, SignatureAlgorithm.ECDSA);
@@ -134,6 +137,7 @@ describe('Dissolving Contract', () => {
       councilContract: councilMultisigContract,
       adminContract: adminMultisigContract,
       olandoCategory: olandoCategory,
+      deploymentMtp: BigInt(Math.floor(Date.now() / 1000) - 40 * 60 * 60),
     });
 
     const sigA = new SignatureTemplate(alicePriv, HashType.SIGHASH_ALL, SignatureAlgorithm.ECDSA);
