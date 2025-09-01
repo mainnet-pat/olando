@@ -58,7 +58,7 @@ export const investInIssuanceFund = async ({
 
   if (userBchUtxos.length === 1) {
     await wallet.send(new SendRequest({
-      cashaddr: wallet.address!,
+      cashaddr: wallet.cashaddr,
       unit: 'sat',
       value: 1000,
     }), {
@@ -80,11 +80,11 @@ export const investInIssuanceFund = async ({
 
   if (!investmentUtxo) {
     await wallet.send([new SendRequest({
-      cashaddr: wallet.address!,
+      cashaddr: wallet.cashaddr,
       unit: 'sat',
       value: 1e8 * investAmountBch + 5000,
     }), new SendRequest({
-      cashaddr: wallet.address!,
+      cashaddr: wallet.cashaddr,
       unit: 'sat',
       value: 1000,
     })], {

@@ -49,7 +49,7 @@ export const donate = async ({
   }
   if (!tokenUtxos.find(utxo => utxo.token!.amount > donationTokenAmount) && tokenUtxos.length > 1) {
     await wallet.send(new TokenSendRequest({
-      cashaddr: toTokenAddress(wallet.address!),
+      cashaddr: toTokenAddress(wallet.cashaddr),
       tokenId: olandoCategory,
       amount: donationTokenAmount,
     }));
