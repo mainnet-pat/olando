@@ -13,8 +13,8 @@ if [ "$#" -gt 1 ]; then
   exit 1
 fi
 
-rm -rf dist
-yarn install && yarn build
+rm -rf dist cache
+yarn install && yarn compile --release && yarn build
 git checkout -B $branch_name
 rm -rf src test tasks jest* tsconfig*
 git add -f dist
@@ -24,6 +24,7 @@ git push origin $branch_name --force
 git tag "$branch_name"
 git push origin tag "$branch_name"
 git checkout master
+rm -rf cache && yarn build
 
 echo "Release branch $branch_name created and pushed successfully."
 echo "yarn add olando@https://github.com/mainnet-pat/olando.git#$branch_name"

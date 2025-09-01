@@ -7,7 +7,11 @@ interface CompilationCacheItem {
   mtime: number;
 }
 
-export const compile = (): void => {
+export const compile = ({
+  release = false,
+} : {
+  release?: boolean
+}): void => {
   const cacheDirectory = new URL('../cache', import.meta.url);
   fs.mkdirSync(cacheDirectory, { recursive: true });
   const cacheFile = new URL('../cache/cashc.json', import.meta.url);
@@ -26,9 +30,14 @@ export const compile = (): void => {
 
   result.forEach(({ fn, contents }) => {
     const mtime = fs.statSync(new URL(urlJoin(contractsDirectory.toString(), fn))).mtimeMs;
-    if (!compilationCache[fn] || compilationCache[fn].mtime !== mtime) {
+    if (release || !compilationCache[fn] || compilationCache[fn].mtime !== mtime) {
       console.log(`Compiling ${fn}...`);
       const artifact = compileString(contents);
+
+      if (release) {
+        delete artifact.debug;
+        artifact.source = "";
+      }
 
       exportArtifact(artifact, new URL(`../artifacts/${fn.replace('.cash', '.artifact.ts')}`, import.meta.url));
       compilationCache[fn] = { mtime };
@@ -59,7 +68,9 @@ export const exportArtifact = (obj: object, outPath: string | URL): void => {
 
 switch (process.argv[2]) {
   case 'compile':
-    compile();
+    compile({
+      release: process.argv.includes('--release'),
+    });
     break;
   default:
     console.log('Unknown task');
