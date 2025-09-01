@@ -1,6 +1,6 @@
 {
   "name": "olando",
-  "version": "0.0.26",
+  "version": "0.0.27",
   "description": "Olando contracts",
   "main": "dist/src/index.js",
   "type": "module",
