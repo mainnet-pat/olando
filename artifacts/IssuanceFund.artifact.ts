@@ -43,5 +43,5 @@ export default {
     name: "cashc",
     version: "0.11.0"
   },
-  updatedAt: "2025-09-01T08:53:22.472Z"
+  updatedAt: "2025-09-01T08:54:34.121Z"
 } as const;
