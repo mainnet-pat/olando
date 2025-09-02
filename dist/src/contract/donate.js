@@ -1,0 +1,76 @@
+import { Contract, TransactionBuilder, SignatureTemplate } from "cashscript";
+import IssuanceFundArtifact from "../../artifacts/IssuanceFund.artifact";
+import { addressToLockScript, toTokenAddress } from "../utils";
+import { TokenSendRequest } from "mainnet-js";
+// Donates tokens to the IssuanceFund contract, changes are sent back to the donor
+export const donate = async ({ address, privKey, wallet, provider, olandoCategory, councilMultisigContract, adminMultisigContract, donationTokenAmount, }) => {
+    if (donationTokenAmount <= 0n) {
+        throw new Error('Donation token amount must be greater than zero');
+    }
+    const aliceSigTemplate = new SignatureTemplate(privKey);
+    const issuanceFundContract = new Contract(IssuanceFundArtifact, [addressToLockScript(councilMultisigContract.address), addressToLockScript(adminMultisigContract.address)], { provider, addressType: 'p2sh20' });
+    const contractUtxo = (await provider.getUtxos(issuanceFundContract.address)).find(u => u.token?.category === olandoCategory &&
+        u.token?.nft?.capability === 'mutable' &&
+        u.token.nft.commitment.length === 16);
+    let utxos = await provider.getUtxos(address);
+    const tokenUtxos = utxos.filter(u => u.token?.category === olandoCategory);
+    if (tokenUtxos.reduce((sum, u) => sum + (u.token?.category === olandoCategory ? u.token.amount : 0n), 0n) < donationTokenAmount) {
+        throw new Error(`Not enough ${olandoCategory} tokens in wallet to donate ${donationTokenAmount}`);
+    }
+    if (!tokenUtxos.find(utxo => utxo.token.amount > donationTokenAmount) && tokenUtxos.length > 1) {
+        await wallet.send(new TokenSendRequest({
+            cashaddr: toTokenAddress(wallet.cashaddr),
+            tokenId: olandoCategory,
+            amount: donationTokenAmount,
+        }));
+        utxos = await provider.getUtxos(address);
+    }
+    const fundingUtxo = utxos.find(utxo => utxo.token === undefined && utxo.satoshis >= 5000n);
+    if (!fundingUtxo) {
+        throw new Error(`No BCH UTXO found for ${address} with at least 5000 satoshis`);
+    }
+    const donationUtxo = utxos.find(utxo => utxo.token?.category === olandoCategory &&
+        utxo.token.amount >= donationTokenAmount);
+    if (!donationUtxo) {
+        throw new Error(`No ${olandoCategory} token UTXO found for ${address} with at least ${donationTokenAmount}`);
+    }
+    const builder = new TransactionBuilder({ provider })
+        .addInput(contractUtxo, issuanceFundContract.unlock.donate())
+        .addInput(donationUtxo, aliceSigTemplate.unlockP2PKH())
+        .addInput(fundingUtxo, aliceSigTemplate.unlockP2PKH())
+        .addOutput({
+        to: issuanceFundContract.tokenAddress,
+        amount: contractUtxo.satoshis,
+        token: {
+            ...contractUtxo.token,
+            amount: contractUtxo.token.amount + donationTokenAmount,
+        },
+    });
+    const tokenChange = donationUtxo.token.amount - donationTokenAmount;
+    if (tokenChange > 0n) {
+        builder.addOutput({
+            to: toTokenAddress(address),
+            amount: 1000n,
+            token: {
+                ...donationUtxo.token,
+                amount: tokenChange,
+            },
+        });
+    }
+    const txSize = builder.build().length / 2;
+    const change = builder.inputs.reduce((sum, input) => sum + input.satoshis, 0n) -
+        builder.outputs.reduce((sum, output) => sum + (output.amount ?? 0n), 0n);
+    builder.addOutput({
+        to: address,
+        amount: change - BigInt(txSize) - 100n, // BCH change
+        token: undefined,
+    });
+    await builder.send();
+    {
+        const txSize = builder.build().length / 2;
+        const change = builder.inputs.reduce((sum, input) => sum + input.satoshis, 0n) -
+            builder.outputs.reduce((sum, output) => sum + (output.amount ?? 0n), 0n);
+        console.log(`Transaction size: ${txSize} bytes, change: ${change} satoshis, fee/byte ${Number(change) / txSize}`);
+    }
+};
+//# sourceMappingURL=donate.js.map
