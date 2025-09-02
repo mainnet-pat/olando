@@ -68,21 +68,23 @@ export const investInIssuanceFund = async ({
     userBchUtxos = userUtxos.filter(u => u.token === undefined);
   }
 
+  const investAmountSat = BigInt(Math.round(investAmountBch * 1e8).toFixed(0));
+
   const balance = userBchUtxos.reduce((sum, u) => sum + u.satoshis, 0n);
-  if (balance < BigInt(investAmountBch * 1e8) + 5000n) {
+  if (balance < investAmountSat + 5000n) {
     throw new Error(`Not enough BCH balance to invest ${investAmountBch} BCH, current balance: ${Number(balance) / 1e8} BCH`);
   }
 
   // funding + cauldron token-buy bch input
   let investmentUtxo = userBchUtxos.find(u =>
-    u.satoshis >= BigInt(investAmountBch * 1e8) + 5000n
+    u.satoshis >= investAmountSat + 5000n
   );
 
   if (!investmentUtxo) {
     await wallet.send([new SendRequest({
       cashaddr: wallet.cashaddr,
       unit: 'sat',
-      value: 1e8 * investAmountBch + 5000,
+      value: Number(investAmountSat) + 5000,
     }), new SendRequest({
       cashaddr: wallet.cashaddr,
       unit: 'sat',
@@ -94,7 +96,7 @@ export const investInIssuanceFund = async ({
     userUtxos = await provider.getUtxos(address);
     userBchUtxos = userUtxos.filter(u => u.token === undefined);
     investmentUtxo = userBchUtxos.find(u =>
-      u.satoshis >= BigInt(investAmountBch * 1e8) + 5000n
+      u.satoshis >= investAmountSat + 5000n
     );
   }
 
@@ -115,7 +117,7 @@ export const investInIssuanceFund = async ({
 
   console.log("building cauldron swap tx base");
   const utxos = userUtxos.filter(u => !(u.txid === councilUtxo.txid && u.vout === councilUtxo.vout)).map(toMainnetUtxo);
-  const { tradeTxList: proposedTxs, pools } = (await buildSwapTransaction(BigInt(investAmountBch * 1e8), wallet, olandoCategory, utxos));
+  const { tradeTxList: proposedTxs, pools } = (await buildSwapTransaction(investAmountSat, wallet, olandoCategory, utxos));
   const proposedTx = proposedTxs[0]!;
 
   console.log("building invest tx");
