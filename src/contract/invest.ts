@@ -56,46 +56,68 @@ export const investInIssuanceFund = async ({
     throw new Error(`No BCH UTXOs found for ${address}`);
   }
 
+  if (userBchUtxos.length === 1) {
+    await wallet.send(new SendRequest({
+      cashaddr: wallet.cashaddr,
+      unit: 'sat',
+      value: 1000,
+    }), {
+      queryBalance: false,
+    });
+
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    userUtxos = await provider.getUtxos(address);
+    userBchUtxos = userUtxos.filter(u => u.token === undefined);
+  }
+
   const investAmountSat = BigInt(Math.round(investAmountBch * 1e8).toFixed(0));
+
   const balance = userBchUtxos.reduce((sum, u) => sum + u.satoshis, 0n);
-  if (balance < investAmountSat + 6000n) {
+  if (balance < investAmountSat + 5000n) {
     throw new Error(`Not enough BCH balance to invest ${investAmountBch} BCH, current balance: ${Number(balance) / 1e8} BCH`);
   }
 
-  console.log('preparing utxos for investment');
-  await wallet.send([
-    new SendRequest({
+  // funding + cauldron token-buy bch input
+  let investmentUtxo = userBchUtxos.find(u =>
+    u.satoshis >= investAmountSat + 5000n
+  );
+
+  if (!investmentUtxo) {
+    await wallet.send([new SendRequest({
       cashaddr: wallet.cashaddr,
       unit: 'sat',
       value: Number(investAmountSat) + 5000,
-    }),
-    new SendRequest({
+    }), new SendRequest({
       cashaddr: wallet.cashaddr,
       unit: 'sat',
       value: 1000,
     })], {
-    queryBalance: false,
-  });
-  userUtxos = await provider.getUtxos(address);
-  userBchUtxos = userUtxos.filter(u => u.token === undefined);
+      queryBalance: false,
+    });
 
-  // funding + cauldron token-buy bch input
-  const investmentUtxo = userBchUtxos.find(u =>
-    u.satoshis === investAmountSat + 5000n
-  );
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    userUtxos = await provider.getUtxos(address);
+    userBchUtxos = userUtxos.filter(u => u.token === undefined);
+    investmentUtxo = userBchUtxos.find(u =>
+      u.satoshis >= investAmountSat + 5000n
+    );
+  }
+
   if (!investmentUtxo) {
-    throw new Error(`No investment UTXO found for ${address}`);
+    throw new Error(`No funding UTXO found for ${address}`);
   }
 
   // a BCH-only utxo at index 1 to be used to balance the council output
   const councilUtxo = userBchUtxos.find(u =>
-    u.satoshis === 1000n &&
+    u.satoshis >= 1000n &&
     !(u.txid === investmentUtxo.txid && // ensure it's not the same as the investment UTXO
       u.vout === investmentUtxo.vout) // ensure it's not the same as the investment UTXO
   );
 
   if (!councilUtxo) {
-    throw new Error(`No balancing UTXO for council output found for ${address}`);
+    throw new Error(`No council UTXO found for ${address}`);
   }
 
   console.log("building cauldron swap tx base");
